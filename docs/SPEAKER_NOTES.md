@@ -21,8 +21,8 @@
 
 ### 1-3. Hak i teza
 
-Nie pytamy, czy AI jest „mądrzejsza”. Pytamy, które ruchy poznawcze potrafi
-wykonać tanio, szybko i weryfikowalnie. Kalkulator zmienił rachunki; modele
+Nie pytamy, czy AI jest „mądrzejsza”. Pytamy, w których czynnościach związanych
+z myśleniem potrafi nas szybko i skutecznie wyręczyć. Kalkulator zmienił rachunki; modele
 zmieniają także pisanie, szukanie wzorców i tworzenie procedur.
 
 ### 4-8. Jak działa GPT
@@ -33,9 +33,9 @@ rozproszone reprezentacje. Nie ma jednego „neuronu od Pitagorasa”.
 
 ### 9-10. Trening i matematyka
 
-Pre-trening uczy regularności. Post-trening kształtuje wykonywanie poleceń
-i rozumowanie. Agent dodaje narzędzia oraz pętlę testowania. Matematyka jest
-wdzięczna, bo daje strukturę i tani sygnał błędu.
+Pretrening uczy regularności. Posttrening kształtuje wykonywanie poleceń
+i rozumowanie. Agent dodaje narzędzia oraz możliwość wielokrotnego sprawdzania pracy.
+Matematyka jest wdzięczna, bo ma wyraźną strukturę i często szybko pokazuje błąd.
 
 ### 11-13. Przykłady
 
@@ -44,18 +44,18 @@ intuicje. `1=2`: płynność lokalnych kroków nie gwarantuje poprawności globa
 
 ### 14-15. Granice
 
-Pewny ton nie jest certyfikatem. AI generuje wielu kandydatów na idee,
-ale człowiek ocenia nowość, sens i wartość. Ta ocena jest częścią wiedzy.
+Pewny ton nie jest certyfikatem. AI tworzy wiele propozycji,
+ale człowiek ocenia ich nowość, sens i wartość. Ta ocena jest częścią wiedzy.
 
 ### 16-17. Codex i Euler
 
 Agent może czytać, planować, pisać kod i uruchamiać testy. Wielomian Eulera daje
 świetny przykład: kod znajduje `n=40`, a matematyka wyjaśnia `1681=41²`.
 
-### 18-20. Praktyka i finał
+### 18-21. Praktyka i finał
 
 Uczyć się z AI oznacza: spróbować, poprosić o wskazówkę, porównać, obronić
-i przenieść metodę na nowe zadanie. Dobry prompt określa cel, kontekst,
+i zastosować metodę w nowym zadaniu. Dobry prompt określa cel, kontekst,
 ograniczenia i kryterium ukończenia.
 
 ## Awaryjne skrócenie do 25 minut

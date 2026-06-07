@@ -17,7 +17,7 @@
 - Wybrano przykłady matematyczne: suma Gaussa, `0,999…=1`,
   fałszywy dowód `1=2` i wielomian `n²+n+41`.
 - Zmieniono zbyt mocne „AI nie generuje idei” na rozróżnienie:
-  kandydat, nowość, wartość i intuicja.
+  propozycja, nowość, wartość i intuicja.
 
 ### Grafika
 
@@ -44,3 +44,12 @@
 - Pierwszy przebieg wykrył i pomógł poprawić przepełnienie cytatu na slajdzie
   Gaussa, układ par liczb oraz brak pustej ikony strony.
 - Końcowy przebieg: brak przepełnień i błędów.
+
+### Redakcja językowa
+
+- Zastąpiono kalki z angielskiego i techniczny żargon naturalnymi polskimi
+  sformułowaniami.
+- Tytuł zmieniono na bardziej idiomatyczne „Czy AI zastąpi nam głowę?”.
+- Uproszczono podpisy, przykłady i instrukcje kierowane do uczniów.
+- Po redakcji ponownie sprawdzono 23 slajdy w trzech rozdzielczościach:
+  brak przepełnień i błędów.

@@ -11,14 +11,14 @@
 ## Decyzje merytoryczne
 
 - Nie używać absolutnego stwierdzenia „AI nie generuje idei”.
-- Mówić: AI generuje kandydatów, kombinuje i eksploruje, ale ma problem z oceną
+- Mówić: AI tworzy propozycje, łączy pomysły i bada możliwości, ale ma problem z oceną
   nowości, znaczenia, kosztu i długofalowej wartości.
 - Nie antropomorfizować mechanizmu atencji. To obliczanie wag zależności, nie
   świadome skupianie uwagi.
 - Nie sugerować, że współczesne modele ujawniają pełny skład danych treningowych
-  lub kompletną recepturę post-treningu.
+  lub kompletną recepturę posttreningu.
 - Nie utożsamiać eksperymentu obliczeniowego z dowodem.
-- Codex przedstawiać jako agenta pracującego w pętli: kontekst, plan, działanie,
+- Codex przedstawiać jako agenta pracującego w cyklu: kontekst, plan, działanie,
   test, poprawka, przegląd.
 
 ## Konwencja wizualna

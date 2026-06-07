@@ -7,13 +7,14 @@ liceum. Wykład ma jednocześnie:
 
 - wyjaśnić na wysokim poziomie tokeny, atencję, transformery i trening modeli;
 - pokazać, dlaczego modele i agenci tacy jak Codex są mocni w matematyce;
-- uczciwie oddzielić generowanie kandydatów od intuicji, oceny i odpowiedzialności;
+- uczciwie oddzielić tworzenie propozycji od intuicji, oceny i odpowiedzialności;
 - zawierać prawdziwą matematykę oraz momenty aktywnego udziału publiczności;
 - dać praktyczną metodę uczenia się z AI bez omijania własnego myślenia.
 
 ## Teza narracyjna
 
-AI nie tyle zastępuje „głowę”, ile automatyzuje rosnącą liczbę ruchów poznawczych.
+AI nie tyle zastępuje nam głowę, ile wyręcza nas w coraz większej liczbie czynności
+związanych z myśleniem.
 Modele są szczególnie skuteczne tam, gdzie istnieją wzorce, szybka informacja zwrotna
 i narzędzia weryfikacji. Człowiek nadal wybiera problem, standard dowodu, znaczenie
 wyniku i odpowiedzialność za jego użycie.
@@ -34,12 +35,12 @@ Slajdy 22-23 są dodatkami do pytań i nie wchodzą do czasu wykładu.
 
 ## Punkty interakcji
 
-1. Sonda rąk: „wyjaśnij / zrób / sprawdź”.
+1. Sonda rąk: „wyjaśnij / zrób za mnie / sprawdź moje rozwiązanie”.
 2. Następny element ciągu liczb pierwszych.
 3. Suma 1+…+100, 20-30 sekund na strategię.
 4. Głosowanie przy 0,999…=1.
 5. Znalezienie błędu w „dowodzie” 1=2.
-6. Klikane demo wielomianu Eulera.
+6. Klikany pokaz wielomianu Eulera.
 7. Końcowe pytanie: „Jaką część myślenia zostawisz sobie?”.
 
 ## Kryteria ukończenia

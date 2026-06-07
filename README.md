@@ -1,4 +1,4 @@
-# Czy AI zastąpi naszą głowę?
+# Czy AI zastąpi nam głowę?
 
 Lekka, 35-minutowa prezentacja popularnonaukowa dla klas 7-8 szkoły podstawowej
 i uczniów liceum. Slajdy działają lokalnie, bez sieci i bez zewnętrznych bibliotek.
