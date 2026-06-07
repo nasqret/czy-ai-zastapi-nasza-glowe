@@ -27,16 +27,19 @@ przewidywalne zachowanie pełnego ekranu.
 Przycisk na slajdzie o wielomianie Eulera uruchamia lokalny mini-eksperyment.
 Przycisk na slajdzie 16 odtwarza pracę Codex nad liczeniem prostokątów:
 błędny program, test wykrywający błąd, poprawkę i końcowy wynik.
+Przycisk na slajdzie 21 testuje hipotezę związaną z małym twierdzeniem Fermata,
+znajduje kontrprzykład `341` i prowadzi do samodzielnego rachunku modulo 7.
 
-Tę samą symulację można uruchomić w terminalu:
+Te same obliczenia można uruchomić w terminalu:
 
 ```bash
 npm run demo:rectangles
+npm run demo:fermat
 ```
 
 ## Pliki
 
-- `index.html` - treść 21 slajdów i 2 dodatków
+- `index.html` - treść 22 slajdów i 2 dodatków
 - `styles.css` - układ, typografia, animacje i tryb druku
 - `app.js` - nawigacja, fragmenty, notatki i demo
 - `PLAN.md` - plan projektu i rozkład czasu
@@ -46,6 +49,7 @@ npm run demo:rectangles
 - `docs/SOURCES.md` - bibliografia i zastrzeżenia
 - `assets/` - trzy autorskie ilustracje wygenerowane dla prezentacji
 - `scripts/rectangle_demo.py` - symulacja zadania użyta na slajdach 15-18
+- `scripts/fermat_demo.py` - obliczenia użyte w zabawie z małym twierdzeniem Fermata
 
 ## Testy
 

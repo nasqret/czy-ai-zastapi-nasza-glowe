@@ -7,7 +7,8 @@
 3. Naciśnij `F`, aby wejść w pełny ekran.
 4. Naciśnij `N`, aby sprawdzić notatki, a potem zamknij panel.
 5. Przejdź do slajdu „Euler” i sprawdź przycisk eksperymentu.
-6. Wróć `Home` na początek.
+6. Przejdź do slajdu „Zabawa z Fermatem” i sprawdź drugi przycisk eksperymentu.
+7. Wróć `Home` na początek.
 
 ## Rytm
 
@@ -60,13 +61,21 @@ dziewięciu. Test `1×1` powinien dać jeden prostokąt, a daje zero. Codex popr
 Następnie wielomian Eulera pokazuje podobny schemat: kod znajduje `n=40`,
 a matematyka wyjaśnia `1681=41²`.
 
-### 18-21. Praktyka i finał
+### 18-22. Praktyka i finał
 
 Odegraj rozmowę uczeń-Codex. Uczeń zaczyna od własnego błędu „64” i wyraźnie prosi,
 by nie podawać wyniku. Codex pyta kolejno o dziewięć linii i liczbę ich par.
 Na końcu uczeń stosuje tę samą metodę do planszy `10×10`, otrzymując
 `C(11,2)²=3025`. Dobry prompt określa cel, kontekst, ograniczenia i kryterium
-ukończenia.
+ukończenia. Po pięciu zasadach pokaż ich zastosowanie w jednym eksperymencie.
+Uczeń zauważa, że liczby pierwsze `2, 3, 5, 7, 11` dzielą `2^p-2`, ale zamiast
+prosić o potwierdzenie, żąda kontrprzykładu i testu. Kliknięcie uruchamia poszukiwanie
+i znajduje `341=11·31`. Wyjaśnij, że małe twierdzenie Fermata pozostaje prawdziwe;
+fałszywa jest dopiero wymyślona przez ucznia odwrotność.
+
+Na końcu symbolicznie wyłącz Codex. Niech sala policzy `3^100 mod 7`.
+Ponieważ `3^6≡1 (mod 7)`, a `100=16·6+4`, zostaje `3^4=81≡4`.
+To sprawdza, czy metoda przeszła z ekranu do głowy ucznia.
 
 ## Awaryjne skrócenie do 25 minut
 
@@ -80,4 +89,5 @@ ukończenia.
 - Dodać pytania po każdej części.
 - Przy atencji policzyć ręcznie trzy proste wagi.
 - Przy Eulerze poprosić uczniów o wyjaśnienie `n=40`.
+- Przy Fermacie poszukać kolejnych pseudopierwszych dla innych podstaw.
 - Otworzyć dodatki o źródłach i pytaniach definicyjnych.

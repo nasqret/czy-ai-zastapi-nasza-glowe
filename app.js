@@ -172,6 +172,40 @@
     });
   };
 
+  const runFermatDemo = (button) => {
+    const slide = button.closest(".slide");
+    const transcript = slide.querySelector("[data-fermat-transcript]");
+    const conclusion = slide.querySelector("[data-fermat-conclusion]");
+    const offline = slide.querySelector("[data-fermat-offline]");
+    const lines = [
+      ["plan", "[HIPOTEZA] p | (2^p - 2)  ⇔  p jest pierwsza?"],
+      ["run", "[TEST] p = 2, 3, 5, 7, 11 -> działa"],
+      ["diagnosis", "[SZUKAM] liczby złożone n < 400..."],
+      ["fail", "[KONTRPRZYKŁAD] 341 = 11 × 31"],
+      ["pass", "[SPRAWDZENIE] (2^341 - 2) mod 341 = 0"],
+      ["result", "[WERDYKT] Twierdzenie działa tylko w jedną stronę."]
+    ];
+
+    button.disabled = true;
+    button.textContent = "Codex sprawdza…";
+    transcript.innerHTML = "";
+
+    lines.forEach(([type, text], lineIndex) => {
+      window.setTimeout(() => {
+        const line = document.createElement("p");
+        line.className = `terminal-line--${type}`;
+        line.textContent = text;
+        transcript.appendChild(line);
+
+        if (lineIndex === lines.length - 1) {
+          button.textContent = "Kontrprzykład znaleziony";
+          conclusion.classList.add("is-visible");
+          offline.classList.add("is-visible");
+        }
+      }, lineIndex * 210);
+    });
+  };
+
   document.querySelector("[data-next]").addEventListener("click", next);
   document.querySelector("[data-prev]").addEventListener("click", previous);
   document.querySelector("[data-notes-toggle]").addEventListener("click", () => toggleNotes());
@@ -180,6 +214,7 @@
   document.querySelector("[data-fullscreen-toggle]").addEventListener("click", toggleFullscreen);
   document.querySelector("[data-run-demo]").addEventListener("click", (event) => runEulerDemo(event.currentTarget));
   document.querySelector("[data-run-rectangle-demo]").addEventListener("click", (event) => runRectangleDemo(event.currentTarget));
+  document.querySelector("[data-run-fermat-demo]").addEventListener("click", (event) => runFermatDemo(event.currentTarget));
 
   slides.forEach((slide, slideIndex) => {
     slide.addEventListener("click", () => {

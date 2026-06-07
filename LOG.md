@@ -77,3 +77,18 @@
   na planszę `10×10`.
 - Test przeglądarkowy uruchamia symulację i wymaga obecności `784`, `FAIL`
   oraz końcowego `1296`.
+
+### Zabawa z małym twierdzeniem Fermata
+
+- Po slajdzie z pięcioma zasadami dodano nowy slajd w konwencji okna Codexa.
+- Uczeń najpierw stawia hipotezę na podstawie liczb `2, 3, 5, 7, 11`, a potem
+  prosi o krytykę zamiast potwierdzenia.
+- Symulacja uruchamia test liczb złożonych i znajduje pierwszy kontrprzykład
+  w badanym zakresie: `341=11·31`, dla którego `(2^341-2) mod 341 = 0`.
+- Slajd oddziela małe twierdzenie Fermata od jego fałszywej odwrotności,
+  przypomina o ochronie danych i kończy rachunkiem bez AI: `3^100 mod 7 = 4`.
+- Dodano odtwarzalny skrypt `scripts/fermat_demo.py` oraz polecenie
+  `npm run demo:fermat`.
+- Liczbę slajdów głównych zwiększono do 22, zachowując dokładny czas 35:00.
+- Test przeglądarkowy sprawdził 24 slajdy w 1366×768, 1440×900 i 1920×1080:
+  brak przepełnień, kolizji, błędów konsoli i błędów interakcji.

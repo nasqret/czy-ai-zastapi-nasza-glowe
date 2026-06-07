@@ -20,7 +20,7 @@ const appendixSlides = slideTags.filter((match) => match[1].split(/\s+/).include
 const durations = talkSlides.map((match) => Number(match[4]));
 const ids = slideTags.map((match) => match[2]);
 
-check(talkSlides.length === 21, `21 slajdów głównych (jest ${talkSlides.length})`);
+check(talkSlides.length === 22, `22 slajdy główne (jest ${talkSlides.length})`);
 check(appendixSlides.length === 2, `2 slajdy dodatkowe (jest ${appendixSlides.length})`);
 check(durations.reduce((sum, value) => sum + value, 0) === 2100, "czas główny wynosi dokładnie 35:00");
 check(new Set(ids).size === ids.length, "identyfikatory slajdów są unikalne");
@@ -49,11 +49,19 @@ check(imagesWithoutAlt.length === 0, "każdy obraz ma tekst alternatywny");
 check(!/https?:\/\/[^"']+\.(?:js|css)/.test(html), "brak zewnętrznych zależności JS/CSS");
 check(html.includes('data-run-demo'), "pokaz wielomianu Eulera jest obecny");
 check(html.includes('data-run-rectangle-demo'), "symulacja liczenia prostokątów przez Codex jest obecna");
+check(html.includes('data-run-fermat-demo'), "zabawa z małym twierdzeniem Fermata jest obecna");
+check(html.includes('341 = 11 · 31'), "slajd Fermata pokazuje złożony kontrprzykład 341");
 check(html.includes('data-speaker-panel'), "panel notatek jest obecny");
 check(html.includes('prefers-reduced-motion') === false, "HTML nie zawiera przypadkowego CSS inline");
 
 const css = await readFile(resolve(root, "styles.css"), "utf8");
 const js = await readFile(resolve(root, "app.js"), "utf8");
+try {
+  await access(resolve(root, "scripts/fermat_demo.py"));
+  checks.push("istnieje odtwarzalny skrypt Fermata");
+} catch {
+  failures.push("brak odtwarzalnego skryptu Fermata");
+}
 check(css.includes("@media print"), "istnieje tryb druku");
 check(css.includes("prefers-reduced-motion"), "animacje respektują ograniczenie ruchu");
 check(js.includes("requestFullscreen"), "pełny ekran jest obsługiwany");

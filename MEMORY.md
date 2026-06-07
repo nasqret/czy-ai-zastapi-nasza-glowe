@@ -41,6 +41,13 @@
 - Slajdy 15, 16 i 18 tworzą jedno studium przypadku: liczenie prostokątów
   na szachownicy 8×8. Najpierw pomysł, potem kod i testy, na końcu rozmowa ucznia
   z Codexem bez podawania gotowej odpowiedzi.
+- Slajd 21 przekłada wszystkie pięć zasad ze slajdu 20 na jeden eksperyment:
+  uczeń stawia hipotezę o `2^p-2`, prosi Codex o kontrprzykład, sprawdza wynik
+  programem, nie przekazuje prywatnych danych i kończy samodzielnym rachunkiem
+  `3^100 mod 7 = 4`.
+- W zabawie z Fermatem trzeba wyraźnie rozdzielić prawdziwe twierdzenie
+  `p` pierwsza `⇒ a^p ≡ a (mod p)` od fałszywej odwrotności. Liczba
+  `341 = 11·31` jest kontrprzykładem dla testu o podstawie 2.
 
 ## Grafiki
 

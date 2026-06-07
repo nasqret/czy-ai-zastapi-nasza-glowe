@@ -34,7 +34,9 @@ OVERFLOW_SCRIPT = """(slide) => {
       '.backup-cards article', '.formula-card', '.token-machine',
       '.board-panel', '.candidate-card', '.codex-terminal',
       '.codex-run-prompt', '.codex-run-plan', '.code-diff',
-      '.chat-message', '.practice-prompt', '.learning-in-practice li'
+      '.chat-message', '.practice-prompt', '.learning-in-practice li',
+      '.fermat-lab', '.fermat-conclusion', '.fermat-offline',
+      '.fermat-rule-strip', '.fermat-rule-strip span'
     ];
     const problems = [];
     slide.querySelectorAll(selectors.join(',')).forEach((node) => {
@@ -70,6 +72,8 @@ OVERLAP_SCRIPT = """(slide) => {
           ? [['.slide-header', '.codex-run-grid'], ['.codex-run-grid', '.codex-result-line']]
         : slide.id === 'jak-sie-uczyc'
           ? [['.slide-header', '.tutor-case']]
+        : slide.id === 'fermat-zabawa'
+          ? [['.slide-header', '.fermat-lab'], ['.fermat-lab', '.fermat-rule-strip']]
         : [];
     return pairs.flatMap(([firstSelector, secondSelector]) => {
       const first = slide.querySelector(firstSelector);
@@ -106,8 +110,8 @@ def main() -> int:
 
         slides = page.locator(".slide")
         slide_count = slides.count()
-        if slide_count != 23:
-            failures.append(f"Oczekiwano 23 slajdów, znaleziono {slide_count}")
+        if slide_count != 24:
+            failures.append(f"Oczekiwano 24 slajdów, znaleziono {slide_count}")
 
         ids = page.locator(".slide").evaluate_all("(nodes) => nodes.map((node) => node.id)")
 
@@ -116,6 +120,9 @@ def main() -> int:
             if slide_id == "codex":
                 page.locator("[data-run-rectangle-demo]").click()
                 page.wait_for_timeout(1750)
+            if slide_id == "fermat-zabawa":
+                page.locator("[data-run-fermat-demo]").click()
+                page.wait_for_timeout(1350)
             page.wait_for_timeout(70)
 
             overflow = page.locator(f"#{slide_id}").evaluate(OVERFLOW_SCRIPT)
@@ -144,6 +151,9 @@ def main() -> int:
                 if slide_id == "codex":
                     page.locator("[data-run-rectangle-demo]").click()
                     page.wait_for_timeout(1750)
+                if slide_id == "fermat-zabawa":
+                    page.locator("[data-run-fermat-demo]").click()
+                    page.wait_for_timeout(1350)
                 overflow = page.locator(f"#{slide_id}").evaluate(OVERFLOW_SCRIPT)
                 overlap = page.locator(f"#{slide_id}").evaluate(OVERLAP_SCRIPT)
                 if overflow:
@@ -160,6 +170,7 @@ def main() -> int:
                     "idee",
                     "codex",
                     "jak-sie-uczyc",
+                    "fermat-zabawa",
                 }:
                     page.wait_for_timeout(320)
                     page.screenshot(
@@ -207,6 +218,19 @@ def main() -> int:
         rectangle_output = page.locator("[data-rectangle-transcript]").inner_text()
         if "784" not in rectangle_output or "FAIL" not in rectangle_output or "1296" not in rectangle_output:
             failures.append(f"Symulacja Codex ma niepełny przebieg: {rectangle_output}")
+
+        page.goto(f"{URL}/?fermat-interaction=1#fermat-zabawa", wait_until="networkidle")
+        page.locator("#fermat-zabawa .fragment").evaluate_all(
+            "(nodes) => nodes.forEach((node) => node.classList.add('is-visible'))"
+        )
+        page.locator("[data-run-fermat-demo]").click()
+        page.wait_for_timeout(1350)
+        fermat_output = page.locator("[data-fermat-transcript]").inner_text()
+        fermat_transfer = page.locator("[data-fermat-offline]").inner_text()
+        if "341 = 11 × 31" not in fermat_output or "mod 341 = 0" not in fermat_output:
+            failures.append(f"Symulacja Fermata nie znalazła kontrprzykładu: {fermat_output}")
+        if "3" not in fermat_transfer or "100" not in fermat_transfer or "4" not in fermat_transfer:
+            failures.append(f"Slajd Fermata nie pokazuje samodzielnego transferu: {fermat_transfer}")
 
         if console_errors:
             failures.append(f"Błędy konsoli: {console_errors}")

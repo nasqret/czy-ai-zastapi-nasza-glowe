@@ -11,7 +11,7 @@
 </head>
 <body>
   <main class="deck" aria-live="polite">
-    <section class="slide slide--image title-slide is-active" id="start" data-title="Tytuł" data-duration="75">
+    <section class="slide slide--image title-slide is-active" id="start" data-title="Tytuł" data-duration="60">
       <img class="slide-bg" src="assets/hero-human-ai.png" alt="Uczeń i zbudowany z kart pomocnik AI wspólnie oglądają geometryczną zagadkę">
       <div class="image-scrim"></div>
       <div class="title-lockup">
@@ -26,7 +26,7 @@
       </aside>
     </section>
 
-    <section class="slide" id="sonda" data-title="Sonda" data-duration="90">
+    <section class="slide" id="sonda" data-title="Sonda" data-duration="75">
       <div class="slide-header">
         <span class="kicker">Szybka sonda</span>
         <h2>Kto już dziś poprosił AI, żeby pomyślała za niego?</h2>
@@ -121,7 +121,7 @@
       </aside>
     </section>
 
-    <section class="slide slide--image" id="atencja" data-title="Atencja" data-duration="120">
+    <section class="slide slide--image" id="atencja" data-title="Atencja" data-duration="105">
       <img class="slide-bg" src="assets/attention-party.png" alt="Rząd geometrycznych postaci połączonych łukami o różnej grubości">
       <div class="image-scrim image-scrim--left"></div>
       <div class="image-copy">
@@ -139,7 +139,7 @@
       </aside>
     </section>
 
-    <section class="slide" id="atencja-matematycznie" data-title="Atencja matematycznie" data-duration="120">
+    <section class="slide" id="atencja-matematycznie" data-title="Atencja matematycznie" data-duration="105">
       <div class="slide-header compact">
         <span class="kicker">Wersja dla odważnych</span>
         <h2>Atencja w jednym wzorze</h2>
@@ -253,7 +253,7 @@
       </aside>
     </section>
 
-    <section class="slide" id="gauss" data-title="Gauss" data-duration="180">
+    <section class="slide" id="gauss" data-title="Gauss" data-duration="165">
       <div class="slide-header compact">
         <span class="kicker">Prawdziwa matematyka · runda 1</span>
         <h2>1 + 2 + 3 + … + 100 = ?</h2>
@@ -305,7 +305,7 @@
       </aside>
     </section>
 
-    <section class="slide" id="dowod-jeden-rowna-sie-dwa" data-title="Fałszywy dowód" data-duration="165">
+    <section class="slide" id="dowod-jeden-rowna-sie-dwa" data-title="Fałszywy dowód" data-duration="150">
       <div class="slide-header compact">
         <span class="kicker">Prawdziwa matematyka · pułapka</span>
         <h2>Dowód, że 1 = 2. Gdzie ukrył się błąd?</h2>
@@ -420,7 +420,7 @@
       </aside>
     </section>
 
-    <section class="slide" id="codex" data-title="Codex uruchamia test" data-duration="120">
+    <section class="slide" id="codex" data-title="Codex uruchamia test" data-duration="105">
       <div class="slide-header compact">
         <span class="kicker">Konkretny problem · etap 2</span>
         <h2>Codex pisze program. I popełnia błąd.</h2>
@@ -564,6 +564,76 @@
       </aside>
     </section>
 
+    <section class="slide" id="fermat-zabawa" data-title="Zabawa z Fermatem" data-duration="105">
+      <div class="slide-header compact">
+        <span class="kicker">Pięć zasad w jednym eksperymencie</span>
+        <h2>Czy podzielność rozpoznaje liczby pierwsze?</h2>
+      </div>
+      <div class="fermat-lab">
+        <div class="fermat-conversation" aria-label="Rozmowa ucznia z Codexem">
+          <div class="codex-window-bar">
+            <i></i><i></i><i></i>
+            <span>codex · fermat_lab.py</span>
+            <b>bez danych osobowych</b>
+          </div>
+          <div class="fermat-chat">
+            <div class="chat-message chat-message--student fragment">
+              <b>Uczeń · 1</b>
+              <span>Sprawdziłem liczby 2, 3, 5, 7 i 11. Każda dzieli <strong>2<sup>p</sup>−2</strong>. Hipoteza: dzieje się tak dokładnie dla liczb pierwszych.</span>
+            </div>
+            <div class="chat-message chat-message--student fragment">
+              <b>Uczeń · 2</b>
+              <span>Nie potwierdzaj. Znajdź najmniejszy kontrprzykład, pokaż test i nazwij twierdzenie.</span>
+            </div>
+            <div class="chat-message chat-message--codex fragment">
+              <b>Codex</b>
+              <span>Najpierw przetestuję liczby złożone. Potem oddzielę twierdzenie od jego odwrotności.</span>
+            </div>
+            <button class="demo-button fermat-demo-button fragment" type="button" data-run-fermat-demo>Uruchom Codex</button>
+          </div>
+        </div>
+        <div class="fermat-workbench">
+          <div class="codex-terminal fermat-terminal" aria-live="polite">
+            <div class="terminal-title"><i></i><i></i><i></i><span>python3 scripts/fermat_demo.py</span></div>
+            <div class="terminal-transcript" data-fermat-transcript>
+              <p class="terminal-idle">$ czekam na test hipotezy</p>
+            </div>
+          </div>
+          <div class="fermat-conclusion fragment" data-fermat-conclusion>
+            <div class="fermat-theorem">
+              <span>PRAWDA</span>
+              <b>p pierwsza ⇒ a<sup>p</sup> ≡ a (mod p)</b>
+              <small>Małe twierdzenie Fermata</small>
+            </div>
+            <div class="fermat-trap">
+              <span>PUŁAPKA</span>
+              <b>Odwrotność jest fałszywa.</b>
+              <small>341 = 11 · 31, a jednak przechodzi test dla podstawy 2.</small>
+            </div>
+          </div>
+          <div class="fermat-offline fragment" data-fermat-offline>
+            <span class="offline-label">AI WYŁĄCZONE · 5</span>
+            <p><b>3<sup>100</sup> mod 7 = ?</b> 100 = 16·6 + 4, więc 3<sup>100</sup> ≡ 3<sup>4</sup> = 81 ≡ <strong>4</strong>.</p>
+          </div>
+        </div>
+      </div>
+      <div class="fermat-rule-strip" aria-label="Pięć zasad zilustrowanych w eksperymencie">
+        <span><b>1</b> własna hipoteza</span>
+        <span><b>2</b> prośba o krytykę</span>
+        <span><b>3</b> kod + rachunek</span>
+        <span><b>4</b> bez prywatnych danych</span>
+        <span><b>5</b> samodzielny transfer</span>
+      </div>
+      <aside class="notes">
+        Najpierw przeczytaj hipotezę ucznia i zapytaj salę, czy pięć przykładów wystarcza.
+        Kliknij „Uruchom Codex”. Program znajduje 341: liczbę złożoną, która mimo to spełnia
+        podzielność dla podstawy 2. To nie obala małego twierdzenia Fermata, tylko fałszywą
+        odwrotność wymyśloną przez ucznia. Wskaż kolejno pięć zasad: własna próba, prośba
+        o krytykę, test i rachunek, brak danych osobowych oraz wyłączenie AI. Ostatni rachunek
+        wykonajcie wspólnie: 3^6 daje resztę 1 przy dzieleniu przez 7, więc zostaje wykładnik 4.
+      </aside>
+    </section>
+
     <section class="slide slide--image closing-slide" id="final" data-title="Finał" data-duration="75">
       <img class="slide-bg" src="assets/idea-garden.png" alt="Uczniowie z pomocnikiem AI badają nasiona pomysłów, z których wyrasta geometryczne drzewo">
       <div class="image-scrim image-scrim--left"></div>
@@ -614,7 +684,7 @@
   <nav class="deck-controls" aria-label="Sterowanie prezentacją">
     <button type="button" data-prev aria-label="Poprzedni slajd">←</button>
     <div class="progress-track" aria-hidden="true"><i data-progress></i></div>
-    <span class="slide-counter" data-counter>1 / 21</span>
+    <span class="slide-counter" data-counter>1 / 22</span>
     <button type="button" data-next aria-label="Następny slajd">→</button>
   </nav>
 
