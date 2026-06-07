@@ -2,79 +2,61 @@
 
 ## Odbiorca i ton
 
-- Odbiorcy: uczniowie klas 7-8 i liceum, bez wymaganego przygotowania technicznego.
-- Języki: polski i angielski, lekko, bez infantylizacji.
-- Humor ma wynikać z trafnych metafor i kontrastów, nie z memów wymagających
-  znajomości bieżącego internetu.
-- Główna ambicja: połączyć rozrywkę z uczciwością epistemiczną.
+- Uczniowie klas 7-8 i liceum, w tym grupy matematycznie zainteresowane.
+- Lekko i żartobliwie, lecz bez infantylizacji i bez udawania pewności.
+- Matematyka jest osią opowieści, nie dekoracją.
+- Warto zachować więcej slajdów i świadomie pomijać moduły zależnie od grupy.
 
 ## Decyzje merytoryczne
 
-- Nie używać absolutnego stwierdzenia „AI nie generuje idei”.
-- Mówić: AI tworzy propozycje, łączy pomysły i bada możliwości, ale ma problem z oceną
-  nowości, znaczenia, kosztu i długofalowej wartości.
-- Nie antropomorfizować mechanizmu atencji. To obliczanie wag zależności, nie
-  świadome skupianie uwagi.
-- Nie sugerować, że współczesne modele ujawniają pełny skład danych treningowych
-  lub kompletną recepturę posttreningu.
-- Nie utożsamiać eksperymentu obliczeniowego z dowodem.
-- Agent korzystający z narzędzi nie jest „trzecim etapem treningu”. Pretrening
-  i posttrening uczą model; agent to sposób użycia gotowego modelu w pętli działań.
-- Codex przedstawiać jako agenta pracującego w cyklu: kontekst, plan, działanie,
-  test, poprawka, przegląd.
-- Symulowane okna Codexa trzeba nazywać symulacją, a nie zapisem prawdziwej sesji.
+- Tytuł pozostaje: **„Czy AI zastąpi naszą głowę?”**.
+- AI może generować kandydatów na pomysły, ale nie gwarantuje ich nowości,
+  znaczenia, prawdy ani wartości.
+- Atencja to operacja algebraiczna. W GPT obowiązuje maska przyczynowa:
+  `softmax((QK^T+M)/sqrt(d_k))V`.
+- Pretrening i posttrening zmieniają parametry modelu. Rozmowa i agent opisują
+  sposób użycia gotowego modelu.
+- Agent typu Codex pracuje w pętli: czyta, planuje, działa, obserwuje wynik,
+  sprawdza i poprawia.
+- Eksperyment komputerowy sprawdza przypadki; dowód wyjaśnia ogół.
+- Płynny język nie jest certyfikatem prawdy ani istnienia cytowanego źródła.
 
-## Konwencja wizualna
+## Matematyka
 
-- Paleta: granat `#061b35`, krem `#f6ebce`, koral `#ff654d`,
-  cyjan `#2db9da`, żółty `#ffc64b`.
-- Styl: retrofuturystyczna ilustracja redakcyjna, faktura sitodruku,
-  nocna tablica / laboratorium idei.
-- Obrazy są dodatkiem do narracji; diagramy techniczne są kodowane w HTML/CSS,
-  aby pozostały ostre i łatwe do zmiany.
-- Brak zewnętrznych zależności, fontów sieciowych i odtwarzanych filmów.
+- `0,999…` jest definiowane jako granica skończonych rozwinięć w liczbach rzeczywistych.
+- Liczba prostokątów na planszy `m×k` wynosi
+  `C(m+1,2)C(k+1,2)`; kwadraty są wliczane.
+- Dla `f_p(n)=n²+n+p` zachodzi `f_p(p-1)=p²`.
+- `1` nie jest ani liczbą pierwszą, ani złożoną.
+- Małe twierdzenie Fermata:
+  `p` pierwsza `=> a^p ≡ a (mod p)` dla każdego całkowitego `a`.
+- Standardowy test `a^(n-1) ≡ 1 (mod n)` wymaga `NWD(a,n)=1` i nie jest
+  wystarczającym testem pierwszości; `341=11·31` przechodzi go dla `a=2`.
 
-## Serwis publiczny
+## Profile i prowadzenie
 
-- Landing page pod `/` pozwala wybrać wersję polską lub angielską.
-- Kanonicznym źródłem prezentacji jest `pl/index.html`; wersję angielską generuje
-  `scripts/build_english_presentation.py`.
-- Codex Math Lab zawiera pięć dwujęzycznych eksperymentów: prostokąty, test
-  Fermata, wielomian Eulera, audyt fałszywego dowodu i prompt dojo.
-- Wszystkie eksperymenty liczą lokalnie. Nie należy dodawać kluczy API ani
-  sugerować, że symulowany terminal jest zapisem prawdziwej sesji.
-- Publikacja GitHub Pages korzysta z gałęzi `main` i katalogu głównego.
-- Każda publiczna strona zawiera:
+- `core`: 22 slajdy, 35 minut.
+- `math`: rdzeń plus Gauss, granica, Euler i Fermat.
+- `full`: wszystkie slajdy matematyczne i techniczne.
+- Nie ujawniać odpowiedzi przed pytaniem.
+- Przy fałszywym dowodzie szukać pierwszego niedozwolonego przejścia.
+- Przy prostokątach zaczynać od małego przypadku `2×3`.
+- AI jako korepetytor ma zadawać jedno pytanie i dawać jedną wskazówkę naraz.
+- Przed użyciem AI uczeń wykonuje zapisaną własną próbę przez 3-5 minut.
+
+## Serwis
+
+- Polska prezentacja jest źródłem kanonicznym; generator EN ma kończyć się błędem,
+  jeśli nie zna tłumaczenia lub pozostawi polski tekst.
+- Pięć laboratoriów działa lokalnie i ma wersje PL/EN oraz treść `noscript`.
+- Landing page prowadzi bezpośrednio do każdego laboratorium.
+- Wszystkie publiczne strony zawierają:
   `Copyright © 2026 Bartosz Naskręcki. All rights reserved.`
-
-## Zasady prowadzenia
-
-- Ujawniać elementy pojedynczo; nie pokazywać odpowiedzi przed pytaniem.
-- Po pytaniach matematycznych zostawić realną ciszę.
-- Przy wzorze atencji nie robić wyprowadzenia. Wyjaśnić Q/K/V.
-- Przy slajdzie 1=2 szukać „pierwszego nielegalnego ruchu”.
-- Finał nie jest prognozą rynku pracy, lecz pytaniem o osobistą odpowiedzialność.
-- Slajdy 15, 16 i 18 tworzą jedno studium przypadku: liczenie prostokątów
-  na szachownicy 8×8. Najpierw pomysł, potem kod i testy, na końcu rozmowa ucznia
-  z Codexem bez podawania gotowej odpowiedzi.
-- Slajd 21 przekłada wszystkie pięć zasad ze slajdu 20 na jeden eksperyment:
-  uczeń stawia hipotezę o `2^p-2`, prosi Codex o kontrprzykład, sprawdza wynik
-  programem, nie przekazuje prywatnych danych i kończy samodzielnym rachunkiem
-  `3^100 mod 7 = 4`.
-- W zabawie z Fermatem trzeba wyraźnie rozdzielić prawdziwe twierdzenie
-  `p` pierwsza `⇒ a^p ≡ a (mod p)` dla każdego całkowitego `a` od testu
-  pierwszości opartego na jednej podstawie. Liczba `341 = 11·31` pokazuje,
-  że warunek `341 | 2^341−2` nie wystarcza do stwierdzenia pierwszości.
-- Dane autora na slajdzie tytułowym: Bartosz Naskręcki, UAM/CCAI,
-  Warszawa, 8.06.2026.
+- Publikacja: publiczne repozytorium GitHub, gałąź `main`, katalog główny.
 
 ## Grafiki
-
-Wbudowane narzędzie `imagegen` utworzyło trzy ilustracje bez tekstu:
 
 - `assets/hero-human-ai.png`
 - `assets/attention-party.png`
 - `assets/idea-garden.png`
-
-Oryginały pozostają również w katalogu generowanych obrazów Codex. Grafiki projektu
-mają format 1672×941, czyli proporcje bliskie 16:9.
+- `assets/site-qr.svg`

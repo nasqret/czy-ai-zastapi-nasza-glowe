@@ -2,60 +2,52 @@
 
 ## Cel
 
-Przygotować 35-minutowy, lekki i błyskotliwy wykład dla uczniów klas 7-8 oraz
-liceum. Wykład ma jednocześnie:
+Przygotować lekki, błyskotliwy i matematycznie uczciwy wykład dla uczniów klas
+7-8 oraz liceum. Uczniowie mają po nim:
 
-- wyjaśnić na wysokim poziomie tokeny, atencję, transformery i trening modeli;
-- pokazać, dlaczego modele i agenci tacy jak Codex są mocni w matematyce;
-- uczciwie oddzielić tworzenie propozycji od intuicji, oceny i odpowiedzialności;
-- zawierać prawdziwą matematykę oraz momenty aktywnego udziału publiczności;
-- dać praktyczną metodę uczenia się z AI bez omijania własnego myślenia.
+- rozumieć intuicję przewidywania tokenów, atencji, treningu i pracy agenta;
+- wiedzieć, dlaczego matematyka daje AI wyjątkowo dobrą informację zwrotną;
+- odróżniać płynność odpowiedzi, eksperyment obliczeniowy i dowód;
+- umieć użyć AI jako korepetytora, krytyka i narzędzia do testowania;
+- zachować odpowiedzialność za założenia, sprawdzenie i znaczenie wyniku.
 
-## Teza narracyjna
+## Architektura
 
-AI nie tyle zastępuje nam głowę, ile wyręcza nas w coraz większej liczbie czynności
-związanych z myśleniem.
-Modele są szczególnie skuteczne tam, gdzie istnieją wzorce, szybka informacja zwrotna
-i narzędzia weryfikacji. Człowiek nadal wybiera problem, standard dowodu, znaczenie
-wyniku i odpowiedzialność za jego użycie.
+| Profil | Zawartość | Przeznaczenie |
+|---|---|---|
+| `core` | 22 slajdy, 35:00 | standardowy wykład |
+| `math` | rdzeń + 6 slajdów | klasa matematyczna lub dłuższe spotkanie |
+| `full` | rdzeń + matematyka + 4 slajdy techniczne | grupa zaawansowana |
+| dodatki | źródła i ściąga | pytania po wykładzie |
 
-## Rozkład 35 minut
+Slajdy opcjonalne pozostają w logicznych miejscach narracji i są oznaczone.
 
-| Minuty | Slajdy | Funkcja |
-|---:|---|---|
-| 0:00-3:15 | 1-3 | Hak, sonda, teza |
-| 3:15-10:45 | 4-8 | Tokeny, atencja, transformer |
-| 10:45-14:15 | 9-10 | Trening i przewaga matematyki |
-| 14:15-21:15 | 11-13 | Gauss, 0,999…, fałszywy dowód |
-| 21:15-24:00 | 14-15 | Pewność i pomysł Codex na liczenie prostokątów |
-| 24:00-27:30 | 16-17 | Testy Codex i eksperyment Eulera |
-| 27:30-35:00 | 18-22 | Uczeń z Codexem, prompt, zasady, Fermat i finał |
+## Rdzeń 35 minut
 
-Slajdy 23-24 są dodatkami do pytań i nie wchodzą do czasu wykładu.
+1. Tytuł, sonda i nieabsolutna teza.
+2. Przewidywanie tokenu oraz intuicja ważenia kontekstu.
+3. Pretrening, posttrening, generowanie i agent.
+4. Dlaczego matematyka daje strukturę, testy i informację zwrotną.
+5. Pętla pracy agenta typu Codex oraz granice generowania pomysłów.
+6. Fałszywy dowód, audyt pierwszego błędu i zasada „płynność ≠ prawda”.
+7. Prostokąty na planszy `m×k`: hipoteza, kod, testy i dowód wzoru.
+8. AI jako korepetytor, dobry prompt i pięć pytań kontrolnych.
+9. Własna próba przez 3-5 minut i zasady używania AI w szkole.
+10. Materiały do dalszej pracy i finał o odpowiedzialności.
 
-## Punkty interakcji
+## Moduły opcjonalne
 
-1. Sonda rąk: „wyjaśnij / zrób za mnie / sprawdź moje rozwiązanie”.
-2. Następny element ciągu liczb pierwszych.
-3. Suma 1+…+100, 20-30 sekund na strategię.
-4. Głosowanie przy 0,999…=1.
-5. Znalezienie błędu w „dowodzie” 1=2.
-6. Klikany pokaz wielomianu Eulera.
-7. Końcowe pytanie: „Jaką część myślenia zostawisz sobie?”.
-8. Klikana symulacja Codex: `784 → FAIL → poprawka → 1296`.
-9. Klikana zabawa z Fermatem: hipoteza, kontrprzykład `341` i rachunek `3^100 mod 7`.
+- techniczne: tokenizacja, `Q/K/V`, maska przyczynowa i stos transformera;
+- matematyczne: Gauss, `0,999…`, Euler oraz małe twierdzenie Fermata;
+- dodatki: bibliografia i trzy rozróżnienia do pytań z sali.
 
 ## Kryteria ukończenia
 
-- 22 główne slajdy mają łącznie dokładnie 2100 sekund.
-- Polska i angielska wersja prezentacji mają ten sam układ i pełne notatki.
-- Landing page prowadzi do obu prezentacji oraz laboratoriów Codex Math Lab.
-- Pięć eksperymentów działa w języku polskim i angielskim bez zewnętrznego API.
-- Prezentacja działa offline i nie pobiera fontów ani bibliotek.
-- Każdy slajd ma notatki prowadzącego.
-- Klawiatura, dotyk, pełny ekran, przegląd i fragmenty działają.
-- Wszystkie lokalne obrazy i skrypty istnieją.
-- Brak poziomego lub pionowego przepełnienia w typowej rozdzielczości 16:9.
-- Landing page i laboratoria nie mają poziomego przepełnienia na telefonie.
-- GitHub Pages publikuje gałąź `main` z katalogu głównego.
-- Repozytorium git zawiera źródła, dokumentację i wyniki testów.
+- obie lokalizacje mają identyczną strukturę i naturalny język;
+- profil `core` ma dokładnie 22 slajdy i 2100 sekund;
+- wszystkie wzory i przykłady przechodzą automatyczną kontrolę;
+- każde laboratorium działa w PL i EN, także z sensowną treścią bez JavaScriptu;
+- na każdym pokazie widoczna jest różnica między przypadkiem sprawdzonym przez
+  komputer a argumentem matematycznym;
+- prezentacja nie ma przepełnień w typowych rozdzielczościach;
+- publiczna strona GitHub Pages zawiera landing page, slajdy, źródła i laboratoria.

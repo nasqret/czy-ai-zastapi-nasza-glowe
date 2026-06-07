@@ -47,19 +47,46 @@
 
     <section class="site-section" id="presentations">
       <div class="section-heading">
-        <p class="site-kicker" data-pl="Pełna interaktywność" data-en="Fully interactive">Pełna interaktywność</p>
-        <h2 data-pl="Wybierz wersję prezentacji" data-en="Choose a presentation">Wybierz wersję prezentacji</h2>
-        <p data-pl="Obie wersje mają 22 slajdy główne, notatki prowadzącego, klawiaturową nawigację oraz interaktywne demonstracje."
-          data-en="Both versions include 22 main slides, speaker notes, keyboard navigation, and interactive demonstrations.">
-          Obie wersje mają 22 slajdy główne, notatki prowadzącego, klawiaturową nawigację oraz interaktywne demonstracje.
+        <p class="site-kicker" data-pl="Wybierz własną ścieżkę" data-en="Choose your route">Wybierz własną ścieżkę</p>
+        <h2 data-pl="Rdzeń wykładu i moduły opcjonalne" data-en="The core talk and optional modules">Rdzeń wykładu i moduły opcjonalne</h2>
+        <p data-pl="Zacznij od zwartego rdzenia na 35 minut. Matematyczne i techniczne rozszerzenia pozostają w prezentacji, aby można je było włączyć dla zainteresowanej klasy albo pominąć bez utraty głównej opowieści."
+          data-en="Start with the focused 35-minute core. Mathematical and technical extensions remain in the deck, ready for an interested class or easy to skip without losing the main story.">
+          Zacznij od zwartego rdzenia na 35 minut. Matematyczne i techniczne rozszerzenia pozostają w prezentacji, aby można je było włączyć dla zainteresowanej klasy albo pominąć bez utraty głównej opowieści.
         </p>
+      </div>
+      <div class="talk-routes" aria-label="Ścieżki prezentacji"
+        data-aria-pl="Ścieżki prezentacji" data-aria-en="Presentation routes">
+        <article class="talk-route talk-route--core">
+          <span class="route-label" data-pl="Ścieżka główna" data-en="Main route">Ścieżka główna</span>
+          <h3 data-pl="35-minutowy rdzeń" data-en="35-minute core">35-minutowy rdzeń</h3>
+          <p data-pl="Jak działają modele, dlaczego pomagają w matematyce, gdzie się mylą i jak zachować odpowiedzialność za rozumowanie."
+            data-en="How models work, why they help with mathematics, where they fail, and how to remain responsible for the reasoning.">
+            Jak działają modele, dlaczego pomagają w matematyce, gdzie się mylą i jak zachować odpowiedzialność za rozumowanie.
+          </p>
+        </article>
+        <article class="talk-route talk-route--math">
+          <span class="route-label" data-pl="Opcjonalnie" data-en="Optional">Opcjonalnie</span>
+          <h3 data-pl="Moduły matematyczne" data-en="Mathematical modules">Moduły matematyczne</h3>
+          <p data-pl="Gauss, 0,999…, fałszywy dowód, prostokąty, wielomian Eulera i małe twierdzenie Fermata."
+            data-en="Gauss, 0.999…, a false proof, rectangles, Euler's polynomial, and Fermat's little theorem.">
+            Gauss, 0,999…, fałszywy dowód, prostokąty, wielomian Eulera i małe twierdzenie Fermata.
+          </p>
+        </article>
+        <article class="talk-route talk-route--tech">
+          <span class="route-label" data-pl="Opcjonalnie" data-en="Optional">Opcjonalnie</span>
+          <h3 data-pl="Moduły techniczne" data-en="Technical modules">Moduły techniczne</h3>
+          <p data-pl="Tokenizacja, mechanizm uwagi, macierze Q, K, V, trening, posttrening oraz pętla pracy agenta."
+            data-en="Tokenization, attention, the Q, K, V matrices, training, post-training, and the agent workflow loop.">
+            Tokenizacja, mechanizm uwagi, macierze Q, K, V, trening, posttrening oraz pętla pracy agenta.
+          </p>
+        </article>
       </div>
       <div class="language-cards">
         <a class="language-card language-card--pl" href="pl/">
           <span class="language-code">PL</span>
           <div>
             <h3>Czy AI zastąpi naszą głowę?</h3>
-            <p>Polska wersja wykładu</p>
+            <p data-pl="Polska wersja: rdzeń i wszystkie moduły" data-en="Polish version: core and every module">Polska wersja: rdzeń i wszystkie moduły</p>
           </div>
           <b>→</b>
         </a>
@@ -67,7 +94,7 @@
           <span class="language-code">EN</span>
           <div>
             <h3>Will AI replace our minds?</h3>
-            <p>English version of the talk</p>
+            <p data-pl="Wersja angielska: rdzeń i wszystkie moduły" data-en="English version: core and every module">Wersja angielska: rdzeń i wszystkie moduły</p>
           </div>
           <b>→</b>
         </a>
@@ -85,38 +112,66 @@
         </p>
       </div>
       <div class="experiment-grid">
-        <article>
-          <span>01</span>
+        <a class="experiment-card" href="experiments/pl/rectangles.html"
+          data-href-pl="experiments/pl/rectangles.html" data-href-en="experiments/en/rectangles.html"
+          data-aria-pl="Otwórz laboratorium: Polowanie na prostokąty"
+          data-aria-en="Open laboratory: Rectangle hunt">
+          <span class="experiment-number">01</span>
           <h3 data-pl="Polowanie na prostokąty" data-en="Rectangle hunt">Polowanie na prostokąty</h3>
           <p data-pl="Zobacz błąd „o jeden”, uruchom testy i wyprowadź wzór dla dowolnej planszy."
             data-en="Expose an off-by-one bug, run tests, and derive the formula for any board.">
             Zobacz błąd „o jeden”, uruchom testy i wyprowadź wzór dla dowolnej planszy.
           </p>
-        </article>
-        <article>
-          <span>02</span>
+          <strong data-pl="Otwórz eksperyment →" data-en="Open experiment →">Otwórz eksperyment →</strong>
+        </a>
+        <a class="experiment-card" href="experiments/pl/fermat.html"
+          data-href-pl="experiments/pl/fermat.html" data-href-en="experiments/en/fermat.html"
+          data-aria-pl="Otwórz laboratorium: Łowca pseudopierwszych"
+          data-aria-en="Open laboratory: Pseudoprime hunter">
+          <span class="experiment-number">02</span>
           <h3 data-pl="Łowca pseudopierwszych" data-en="Pseudoprime hunter">Łowca pseudopierwszych</h3>
           <p data-pl="Zmieniaj podstawę testu Fermata i szukaj liczb złożonych, które udają pierwsze."
             data-en="Change the Fermat-test base and find composite numbers that impersonate primes.">
             Zmieniaj podstawę testu Fermata i szukaj liczb złożonych, które udają pierwsze.
           </p>
-        </article>
-        <article>
-          <span>03</span>
+          <strong data-pl="Otwórz eksperyment →" data-en="Open experiment →">Otwórz eksperyment →</strong>
+        </a>
+        <a class="experiment-card" href="experiments/pl/euler.html"
+          data-href-pl="experiments/pl/euler.html" data-href-en="experiments/en/euler.html"
+          data-aria-pl="Otwórz laboratorium: Wielomian Eulera"
+          data-aria-en="Open laboratory: Euler's polynomial">
+          <span class="experiment-number">03</span>
           <h3 data-pl="Laboratorium Eulera" data-en="Euler laboratory">Laboratorium Eulera</h3>
           <p data-pl="Badaj wielomiany n²+n+c i sprawdzaj, jak długo produkują liczby pierwsze."
             data-en="Explore polynomials n²+n+c and test how long they keep producing primes.">
             Badaj wielomiany n²+n+c i sprawdzaj, jak długo produkują liczby pierwsze.
           </p>
-        </article>
-        <article>
-          <span>04</span>
-          <h3 data-pl="Audyt dowodu i prompt dojo" data-en="Proof audit and prompt dojo">Audyt dowodu i prompt dojo</h3>
-          <p data-pl="Znajdź pierwszy niedozwolony krok i zbuduj polecenie, które pomaga myśleć zamiast podawać odpowiedź."
-            data-en="Find the first illegal step and build a prompt that supports thinking instead of giving away the answer.">
-            Znajdź pierwszy niedozwolony krok i zbuduj polecenie, które pomaga myśleć zamiast podawać odpowiedź.
+          <strong data-pl="Otwórz eksperyment →" data-en="Open experiment →">Otwórz eksperyment →</strong>
+        </a>
+        <a class="experiment-card" href="experiments/pl/proof.html"
+          data-href-pl="experiments/pl/proof.html" data-href-en="experiments/en/proof.html"
+          data-aria-pl="Otwórz laboratorium: Audyt fałszywego dowodu"
+          data-aria-en="Open laboratory: False-proof audit">
+          <span class="experiment-number">04</span>
+          <h3 data-pl="Audyt fałszywego dowodu" data-en="False-proof audit">Audyt fałszywego dowodu</h3>
+          <p data-pl="Przejdź przez pozornie elegancki dowód i wskaż pierwszy krok, który łamie reguły matematyki."
+            data-en="Inspect a seemingly elegant proof and identify the first step that breaks the rules of mathematics.">
+            Przejdź przez pozornie elegancki dowód i wskaż pierwszy krok, który łamie reguły matematyki.
           </p>
-        </article>
+          <strong data-pl="Otwórz eksperyment →" data-en="Open experiment →">Otwórz eksperyment →</strong>
+        </a>
+        <a class="experiment-card" href="experiments/pl/prompt.html"
+          data-href-pl="experiments/pl/prompt.html" data-href-en="experiments/en/prompt.html"
+          data-aria-pl="Otwórz laboratorium: Prompt dojo"
+          data-aria-en="Open laboratory: Prompt dojo">
+          <span class="experiment-number">05</span>
+          <h3 data-pl="Prompt dojo" data-en="Prompt dojo">Prompt dojo</h3>
+          <p data-pl="Zbuduj polecenie, które zamienia AI w cierpliwego korepetytora i pomaga myśleć zamiast zdradzać odpowiedź."
+            data-en="Build a prompt that turns AI into a patient tutor and supports thinking instead of giving away the answer.">
+            Zbuduj polecenie, które zamienia AI w cierpliwego korepetytora i pomaga myśleć zamiast zdradzać odpowiedź.
+          </p>
+          <strong data-pl="Otwórz eksperyment →" data-en="Open experiment →">Otwórz eksperyment →</strong>
+        </a>
       </div>
       <div class="lab-actions">
         <a class="primary-action" href="experiments/pl/" data-pl="Eksperymentuj po polsku" data-en="Open the Polish lab">Eksperymentuj po polsku</a>

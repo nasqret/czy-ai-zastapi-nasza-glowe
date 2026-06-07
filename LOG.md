@@ -139,3 +139,28 @@
 - Pierwszy build Pages zakończył się statusem `built`.
 - Test wykonany bezpośrednio na publicznej stronie potwierdził przełączanie
   języka, 24 slajdy wersji angielskiej i działanie laboratorium Fermata.
+
+## 2026-06-08
+
+### Duża przebudowa po krytycznym audycie
+
+- Dodano trzy profile prezentacji: `core`, `math` i `full`.
+- Rdzeń ma 22 slajdy i dokładnie 35:00; pełna talia ma 34 slajdy na język.
+- Techniczne i matematyczne rozszerzenia pozostawiono w logicznych miejscach
+  narracji zamiast usuwać je z prezentacji.
+- Wzór atencji uzupełniono o maskę przyczynową `M` i osobną macierz wag.
+- Rozdzielono pretrening, posttrening, generowanie odpowiedzi i działanie agenta.
+- Dodano osobny slajd o pętli pracy agenta oraz precyzyjniejsze granice
+  generowania pomysłów i intuicji.
+- Zdefiniowano `0,999…` jako granicę i uogólniono prostokąty na planszę `m×k`.
+- Rozdzielono zagadkę `1=2` od ujawnienia pierwszego niedozwolonego kroku.
+- Po pokazach dodano parę: „komputer sprawdził” / „matematyka wyjaśniła”.
+- Euler otrzymał poprawną klasyfikację liczby `1` i wyjaśnienie
+  `f_p(p-1)=p²`.
+- Fermat używa standardowego testu z jawnym warunkiem `gcd(a,n)=1`.
+- Dodano prompt korepetytorski, pytania kontrolne, własną próbę 3-5 minut
+  i sześć konkretnych zasad używania AI w szkole.
+- Landing page pokazuje profile oraz pięć bezpośrednich kart laboratoriów.
+- Laboratoria otrzymały prostokątne plansze, stopniowane wskazówki, dodatkowe
+  dziedziny Prompt Dojo, treść `noscript` i dostępne komunikaty `aria-live`.
+- Dodano lokalny kod QR do publicznej strony oraz dokument `REVAMP_PLAN.md`.

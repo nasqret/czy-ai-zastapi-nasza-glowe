@@ -3,98 +3,63 @@
 ## Przed wykładem
 
 1. Uruchom `npm run serve`.
-2. Otwórz `http://localhost:4173`.
-3. Naciśnij `F`, aby wejść w pełny ekran.
-4. Naciśnij `N`, aby sprawdzić notatki, a potem zamknij panel.
-5. Przejdź do slajdu „Euler” i sprawdź przycisk eksperymentu.
-6. Przejdź do slajdu „Zabawa z Fermatem” i sprawdź drugi przycisk eksperymentu.
-7. Wróć `Home` na początek.
+2. Otwórz `http://127.0.0.1:4173/pl/?track=core`.
+3. Sprawdź profil w prawym górnym rogu: `Rdzeń 35 min`.
+4. Naciśnij `F`, a następnie `N`, aby sprawdzić pełny ekran i notatki.
+5. Uruchom symulację prostokątów.
+6. Dla profilu `math` sprawdź pokazy Eulera i Fermata.
+7. Sprawdź kod QR na slajdzie „Materiały”.
 
-## Rytm
+## Rytm rdzenia
 
-- Pierwsze 4 minuty: szybko, kontakt z salą, bez terminologii.
-- Część techniczna: jedna metafora i jeden konkretny szczegół na slajd.
-- Matematyka: zwolnić; cisza jest częścią wykładu.
-- Część praktyczna: znów przyspieszyć i dać zdania gotowe do użycia.
-- Finał: zwolnić, nie dopowiadać po ostatnim pytaniu.
+- 0-3 min: tytuł, anonimowa sonda, teza bez prognoz rynku pracy.
+- 3-8 min: następny token i mechanizm uwagi.
+- 8-14 min: trening, matematyka, agent i granice idei.
+- 14-20 min: zagadka `1=2`, audyt i płynność kontra prawda.
+- 20-26 min: prostokąty `m×k`, błąd programu, testy i argument ogólny.
+- 26-32 min: korepetytor, prompt, pytania kontrolne i własna próba.
+- 32-35 min: zasady szkolne, materiały i finał.
 
-## Skrócony skrypt
+## Najważniejsze momenty
 
-### 1-3. Hak i teza
+### Atencja
 
-Nie pytamy, czy AI jest „mądrzejsza”. Pytamy, w których czynnościach związanych
-z myśleniem potrafi nas szybko i skutecznie wyręczyć. Kalkulator zmienił rachunki; modele
-zmieniają także pisanie, szukanie wzorców i tworzenie procedur.
+Metafora „słuchania” ma pomóc, ale od razu dopowiedz: to mnożenie macierzy,
+softmax i ważona suma, nie świadoma uwaga. W module technicznym pokaż maskę `M`.
 
-### 4-8. Jak działa GPT
+### Trening
 
-Model dostaje tokeny i przewiduje kolejny token. Atencja pozwala każdemu tokenowi
-ważyć informacje z kontekstu. Wiele warstw transformera buduje użyteczne,
-rozproszone reprezentacje. Nie ma jednego „neuronu od Pitagorasa”.
+Rozdziel cztery rzeczy: pretrening, posttrening, dodatkowe kroki podczas
+generowania oraz agent z narzędziami. Rozmowa zwykle nie doucza modelu na żywo.
 
-### 9-10. Trening i matematyka
+### Fałszywy dowód
 
-Pretrening uczy regularności. Posttrening kształtuje wykonywanie poleceń
-i rozwiązywanie zadań. Agent nie jest kolejnym etapem treningu: podczas użycia
-dodaje narzędzia oraz możliwość wielokrotnego sprawdzania pracy.
-Matematyka jest wdzięczna, bo ma wyraźną strukturę i często szybko pokazuje błąd.
+Najpierw pokaż tylko zagadkę. Poproś o numer pierwszego błędnego przejścia
+i warunek potrzebny do jego wykonania. Dopiero na następnym slajdzie pokaż,
+że `a-b=0`, więc skrócenie oznacza dzielenie przez zero.
 
-### 11-13. Przykłady
+### Prostokąty
 
-Gauss: dobra reprezentacja usuwa pracę. `0,999…=1`: różne dowody budują różne
-intuicje. `1=2`: płynność lokalnych kroków nie gwarantuje poprawności globalnej.
-Na końcu pokaż, jak Codex powinien przeprowadzić audyt: przeczytać założenie,
-sprawdzić warunek każdej operacji i wskazać pierwszy niepoprawny krok. W założeniu
-użyj `a=b≠0`: warunek `b≠0` uzasadnia dopiero ostatnie przejście z `2b=b` do `2=1`,
-ale pierwszy błąd występuje wcześniej, przy dzieleniu przez `a−b=0`.
+Zacznij od planszy `2×3`. Każdy prostokąt wybiera dwie z `m+1` linii poziomych
+i dwie z `k+1` pionowych. Symulacja pokazuje błąd „o jeden”; program sprawdza
+przypadki, a bijekcja między parami linii i prostokątami uzasadnia wzór.
 
-### 14-15. Granice
+### Korepetytor
 
-Pewny ton nie jest certyfikatem. Przejdź do problemu szachownicy 8×8 i przyjmij
-z sali szybkie odpowiedzi. „64” jest użytecznym błędem: liczy pola, nie prostokąty.
-Pokaż zaznaczony prostokąt i zapytaj, co naprawdę go wyznacza. Codex łączy geometrię
-z kombinatoryką, proponuje wybór dwóch linii pionowych i dwóch poziomych oraz program
-sprawdzający. Człowiek doprecyzowuje, czy kwadraty także zaliczamy do prostokątów.
+Uczeń pokazuje własną próbę i zakazuje podawania całego rozwiązania. AI zadaje
+jedno pytanie, daje jedną wskazówkę i czeka. Sukcesem jest samodzielne rozwiązanie
+nowego wariantu, nie samo uzyskanie odpowiedzi.
 
-### 16-17. Codex i Euler
+## Moduły matematyczne
 
-Kliknij symulację. Pierwsza wersja kodu zwraca `784`, bo liczy osiem linii zamiast
-dziewięciu. Test `1×1` powinien dać jeden prostokąt, a daje zero. Codex poprawia
-`range(n)` na `range(n+1)`, uruchamia testy `1×1`, `2×2`, `8×8` i uzyskuje `1296`.
-Powiedz wyraźnie, że jest to zaprogramowana ilustracja cyklu pracy, nie nagranie
-autentycznej sesji.
-Następnie wielomian Eulera pokazuje podobny schemat: kod znajduje `n=40`,
-a matematyka wyjaśnia `1681=41²`.
+- Gauss: zmiana reprezentacji ujawnia symetrię.
+- `0,999…`: nieskończony zapis oznacza granicę.
+- Euler: komputer znajduje `n=40`, algebra pokazuje `f_p(p-1)=p²`.
+- Fermat: rozdziel twierdzenie od testu; pokaż `NWD(a,n)=1` oraz `341=11·31`.
 
-### 18-22. Praktyka i finał
+## Warianty czasu
 
-Odegraj rozmowę uczeń-Codex. Uczeń zaczyna od własnego błędu „64” i wyraźnie prosi,
-by nie podawać wyniku. Codex pyta kolejno o dziewięć linii i liczbę ich par.
-Na końcu uczeń stosuje tę samą metodę do planszy `10×10`, otrzymując
-`C(11,2)²=3025`. Dobry prompt określa cel, kontekst, ograniczenia i kryterium
-ukończenia. Po pięciu zasadach pokaż ich zastosowanie w jednym eksperymencie.
-Uczeń zauważa, że liczby pierwsze `2, 3, 5, 7, 11` dzielą `2^p-2`, ale zamiast
-prosić o potwierdzenie, żąda kontrprzykładu i testu. Kliknięcie uruchamia poszukiwanie
-i znajduje `341=11·31`. Wyjaśnij, że małe twierdzenie Fermata pozostaje prawdziwe;
-zawodzi dopiero pomysł, że pojedynczy test dla `a=2` rozpoznaje wszystkie liczby
-pierwsze. Twierdzenie mówi: dla pierwszej `p` i każdego całkowitego `a` zachodzi
-`a^p≡a (mod p)`.
-
-Na końcu symbolicznie wyłącz Codex. Niech sala policzy `3^100 mod 7`.
-Ponieważ `3^6≡1 (mod 7)`, a `100=16·6+4`, zostaje `3^4=81≡4`.
-To sprawdza, czy metoda przeszła z ekranu do głowy ucznia.
-
-## Awaryjne skrócenie do 25 minut
-
-- Pominąć slajd z formalnym wzorem atencji.
-- Pokazać tylko jedną drogę dla `0,999…=1`.
-- Skrócić sondę i listę zasad.
-- Zostawić Gaussa, fałszywy dowód, Codex/Euler i finał.
-
-## Rozszerzenie do 45 minut
-
-- Dodać pytania po każdej części.
-- Przy atencji policzyć ręcznie trzy proste wagi.
-- Przy Eulerze poprosić uczniów o wyjaśnienie `n=40`.
-- Przy Fermacie poszukać kolejnych pseudopierwszych dla innych podstaw.
-- Otworzyć dodatki o źródłach i pytaniach definicyjnych.
+- 25 minut: profil `core`, skrócić sondę, trening i zasady szkolne; nie usuwać
+  fałszywego dowodu ani prostokątów.
+- 45 minut: profil `math`; wybrać Euler albo Fermat jako główny moduł.
+- 55-60 minut: profil `full`; dodać tokenizację, wzór uwagi, maskę i pytania.

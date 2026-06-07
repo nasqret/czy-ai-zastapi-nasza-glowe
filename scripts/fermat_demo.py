@@ -1,4 +1,6 @@
-"""Deterministic calculations used by the Fermat slide."""
+"""Deterministic calculations for the standard Fermat primality test."""
+
+from math import gcd
 
 
 def is_prime(number: int) -> bool:
@@ -12,38 +14,52 @@ def is_prime(number: int) -> bool:
     return True
 
 
+def passes_fermat_test(number: int, base: int = 2) -> bool:
+    """Return whether gcd(base,n)=1 and base^(n-1) is 1 modulo n."""
+    return number > 1 and gcd(base, number) == 1 and pow(base, number - 1, number) == 1
+
+
 def passes_base_two_fermat_test(number: int) -> bool:
-    return pow(2, number, number) == 2 % number
+    """Backward-compatible name for the standard base-two test."""
+    return passes_fermat_test(number, 2)
 
 
-def first_base_two_pseudoprime(limit: int) -> int:
+def first_fermat_pseudoprime(limit: int, base: int = 2) -> int:
     return next(
         number
         for number in range(4, limit)
-        if not is_prime(number) and passes_base_two_fermat_test(number)
+        if not is_prime(number) and passes_fermat_test(number, base)
     )
+
+
+def first_base_two_pseudoprime(limit: int) -> int:
+    return first_fermat_pseudoprime(limit, 2)
 
 
 def main() -> None:
-    print("[1] Własna obserwacja")
-    for prime in [2, 3, 5, 7, 11]:
-        remainder = (pow(2, prime, prime) - 2) % prime
-        print(f"    p={prime:>2}: (2^p - 2) mod p = {remainder}")
+    base = 2
+    print("[THEOREM] If p is prime and gcd(a,p)=1, then a^(p-1) = 1 (mod p).")
+    for prime in [3, 5, 7, 11]:
+        print(
+            f"    p={prime:>2}: gcd({base},{prime})={gcd(base, prime)}, "
+            f"2^(p-1) mod p = {pow(base, prime - 1, prime)}"
+        )
 
-    print("\n[2-3] Krytyka hipotezy i test programu")
-    counterexample = first_base_two_pseudoprime(400)
-    print(f"    pierwszy złożony kontrprzykład < 400: {counterexample}")
+    counterexample = first_fermat_pseudoprime(400, base)
+    print("\n[COMPUTER FOUND]")
+    print(f"    first composite base-{base} pseudoprime < 400: {counterexample}")
+    print(f"    gcd({base},{counterexample}) = {gcd(base, counterexample)}")
     print(f"    {counterexample} = 11 * 31")
     print(
-        "    (2^341 - 2) mod 341 = "
-        f"{(pow(2, counterexample, counterexample) - 2) % counterexample}"
+        f"    {base}^({counterexample}-1) mod {counterexample} = "
+        f"{pow(base, counterexample - 1, counterexample)}"
     )
 
-    print("\n[4] Do tego testu nie potrzeba żadnych danych osobowych.")
-    print("\n[5] Małe twierdzenie Fermata i samodzielny transfer")
-    print("    jeśli p jest pierwsza, to dla każdego całkowitego a: a^p = a (mod p)")
-    print(f"    3^6 mod 7 = {pow(3, 6, 7)}")
-    print(f"    3^100 mod 7 = {pow(3, 100, 7)}")
+    print("\n[EQUIVALENCE WHEN gcd(a,n)=1]")
+    print("    a^(n-1) = 1 (mod n)  <=>  a^n = a (mod n)")
+    print("    Forward: multiply by a. Reverse: multiply by the inverse of a modulo n.")
+    print("\n[MATHEMATICS STILL NEEDS TO EXPLAIN]")
+    print("    Passing a Fermat test is necessary for primes, but does not prove primality.")
 
 
 if __name__ == "__main__":
