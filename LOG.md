@@ -129,3 +129,13 @@
 - Test przeglądarkowy sprawdził 48 slajdów w 1366×768, 1440×900 i 1920×1080.
 - Osobny test serwisu sprawdził landing page, wszystkie typy laboratoriów,
   obliczenia, przełącznik języka oraz brak poziomego przepełnienia w 390×844.
+
+### Publikacja GitHub Pages
+
+- Repozytorium `nasqret/czy-ai-zastapi-nasza-glowe` zmieniono na publiczne.
+- Pull request `#1` scalono do `main` jako commit `43bca35`.
+- GitHub Pages publikuje katalog główny gałęzi `main` pod adresem:
+  `https://nasqret.github.io/czy-ai-zastapi-nasza-glowe/`.
+- Pierwszy build Pages zakończył się statusem `built`.
+- Test wykonany bezpośrednio na publicznej stronie potwierdził przełączanie
+  języka, 24 slajdy wersji angielskiej i działanie laboratorium Fermata.
