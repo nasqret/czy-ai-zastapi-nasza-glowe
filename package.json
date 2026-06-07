@@ -1,0 +1,11 @@
+{
+  "name": "czy-ai-zastapi-nasza-glowe",
+  "version": "1.0.0",
+  "private": true,
+  "description": "35-minutowy popularnonaukowy wykład HTML o AI, matematyce i myśleniu.",
+  "scripts": {
+    "serve": "python3 -m http.server 4173 --bind 127.0.0.1",
+    "test": "node scripts/validate-slides.mjs",
+    "test:browser": "python3 tests/test_slides.py"
+  }
+}

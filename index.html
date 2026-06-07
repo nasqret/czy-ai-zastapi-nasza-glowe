@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Czy AI zastąpi naszą głowę?</title>
+  <meta name="description" content="35-minutowy popularnonaukowy wykład o AI, matematyce i myśleniu dla klas 7-8 i liceum.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="deck" aria-live="polite">
+    <section class="slide slide--image title-slide is-active" id="start" data-title="Tytuł" data-duration="75">
+      <img class="slide-bg" src="assets/hero-human-ai.png" alt="Uczeń i zbudowany z kart pomocnik AI wspólnie oglądają geometryczną zagadkę">
+      <div class="image-scrim"></div>
+      <div class="title-lockup">
+        <p class="eyebrow">35 minut · zero magii · trochę matematyki</p>
+        <h1>Czy AI zastąpi<br>naszą <em>głowę?</em></h1>
+        <p class="lead">Krótka instrukcja obsługi nowego współlokatora w naszej głowie.</p>
+      </div>
+      <aside class="notes">
+        <strong>Otwarcie.</strong> „Nie odpowiem dziś, czy AI zabierze wam pracę w 2042 roku.
+        Spróbujemy odpowiedzieć na trudniejsze pytanie: które części myślenia warto jej oddać,
+        a których oddać nie wolno?”. Poproś, by publiczność zapamiętała swoją odpowiedź do końca.
+      </aside>
+    </section>
+
+    <section class="slide" id="sonda" data-title="Sonda" data-duration="90">
+      <div class="slide-header">
+        <span class="kicker">Szybka sonda</span>
+        <h2>Kto już dziś pożyczył AI kawałek głowy?</h2>
+      </div>
+      <div class="poll-grid">
+        <article class="poll-card coral fragment">
+          <span class="poll-icon">?</span>
+          <h3>„Wyjaśnij mi”</h3>
+          <p>temat, którego podręcznik wyjaśnił po podręcznikowemu</p>
+        </article>
+        <article class="poll-card cyan fragment">
+          <span class="poll-icon">{ }</span>
+          <h3>„Zrób mi”</h3>
+          <p>kod, prezentację, zadanie albo wiadomość do wychowawcy</p>
+        </article>
+        <article class="poll-card yellow fragment">
+          <span class="poll-icon">✓</span>
+          <h3>„Sprawdź mnie”</h3>
+          <p>znajdź błąd, zadaj pytania, skrytykuj moje rozwiązanie</p>
+        </article>
+      </div>
+      <p class="bottom-line fragment">Te trzy prośby wyglądają podobnie. Dla mózgu są <strong>zupełnie różne.</strong></p>
+      <aside class="notes">
+        Głosowanie ręką. Najpierw pytanie o „wyjaśnij”, potem „zrób”, potem „sprawdź”.
+        Nie oceniaj odpowiedzi. Puenta: AI jako korepetytor, wykonawca i recenzent to trzy różne role.
+      </aside>
+    </section>
+
+    <section class="slide slide--statement" id="teza" data-title="Teza" data-duration="60">
+      <div class="orbit orbit--one"></div>
+      <div class="orbit orbit--two"></div>
+      <p class="eyebrow">Teza na dziś</p>
+      <h2>AI raczej nie zastąpi<br><span class="ink-coral">naszej głowy.</span></h2>
+      <p class="statement-tail fragment">Ale zastąpi wiele <strong>ruchów</strong>, które głowa dotąd wykonywała sama.</p>
+      <div class="micro fragment">I właśnie dlatego trzeba nauczyć się prowadzić, zanim włączymy autopilota.</div>
+      <aside class="notes">
+        Zaznacz różnicę między narzędziem i odpowiedzialnością. Kalkulator nie „zastąpił matematyki”,
+        ale zmienił, które rachunki wykonujemy ręcznie. AI ma większy zakres, więc zmiana jest poważniejsza.
+      </aside>
+    </section>
+
+    <section class="slide" id="gra-w-token" data-title="Gra w następny token" data-duration="90">
+      <div class="slide-header compact">
+        <span class="kicker">Najdroższa gra w zgadywanie świata</span>
+        <h2>Co będzie dalej?</h2>
+      </div>
+      <div class="prediction-stage">
+        <div class="prompt-line">
+          <span class="token">2</span><span class="token">3</span><span class="token">5</span>
+          <span class="token">7</span><span class="token">11</span><span class="token token--question">?</span>
+        </div>
+        <div class="candidates fragment">
+          <span style="--p: 0.72">13 <small>72%</small></span>
+          <span style="--p: 0.16">12 <small>16%</small></span>
+          <span style="--p: 0.08">17 <small>8%</small></span>
+          <span style="--p: 0.04">kot <small>4%</small></span>
+        </div>
+        <div class="giant-arrow fragment">↓</div>
+        <p class="prediction-punch fragment">GPT robi to samo z językiem. <strong>Miliony razy.</strong></p>
+      </div>
+      <p class="tiny source-note">Uproszczenie: model przewiduje token, nie „słowo” i nie wybiera zawsze maksimum.</p>
+      <aside class="notes">
+        Najpierw pozwól odpowiedzieć publiczności. „13” nie jest zapisane w modelu jako odpowiedź do tej planszy:
+        wynik powstaje z rozkładu prawdopodobieństwa kolejnego tokenu. Podkreśl, że „przewidywanie” nie znaczy
+        „bezmyślne kopiowanie”; żeby dobrze przewidywać, model musi uchwycić bardzo dużo struktury.
+      </aside>
+    </section>
+
+    <section class="slide" id="tokeny" data-title="Tokeny" data-duration="75">
+      <div class="two-col">
+        <div>
+          <span class="kicker">Krok 1</span>
+          <h2>Tekst trafia do <span class="ink-cyan">krajalnicy</span></h2>
+          <p class="lead">Model nie widzi zdań tak jak my. Dostaje serię kawałków: tokenów.</p>
+          <div class="tokenizer-demo fragment" aria-label="Przykładowy podział wyrazu matematyka na tokeny">
+            <span>mate</span><span>mat</span><span>yka</span><span>!</span>
+          </div>
+          <p class="caveat fragment">To tylko ilustracja. Faktyczny podział zależy od konkretnego tokenizera.</p>
+        </div>
+        <div class="token-machine" aria-hidden="true">
+          <div class="machine-mouth">Abstrakcja jest super!</div>
+          <div class="machine-blades">✦ ✦ ✦</div>
+          <div class="machine-output">
+            <i>Ab</i><i>strak</i><i>cja</i><i>jest</i><i>super</i><i>!</i>
+          </div>
+        </div>
+      </div>
+      <aside class="notes">
+        Token może być słowem, częścią słowa, znakiem lub fragmentem kodu. To ważne w matematyce:
+        model operuje na zapisie symboli, nie ogląda od razu „znaczenia” tak jak człowiek.
+      </aside>
+    </section>
+
+    <section class="slide slide--image" id="atencja" data-title="Atencja" data-duration="120">
+      <img class="slide-bg" src="assets/attention-party.png" alt="Rząd geometrycznych postaci połączonych łukami o różnej grubości">
+      <div class="image-scrim image-scrim--left"></div>
+      <div class="image-copy">
+        <span class="kicker">Krok 2 · Attention</span>
+        <h2>Każdy token pyta:<br><em>„Na kogo mam patrzeć?”</em></h2>
+        <div class="attention-example fragment">
+          <span>Ola</span> podała <span>Mai</span> jej zeszyt, bo <b>ona</b>…
+        </div>
+        <p class="fragment">Atencja przypisuje wcześniejszym tokenom różne wagi. Nie rozwiązuje całej zagadki, ale buduje kontekst.</p>
+      </div>
+      <aside class="notes">
+        Powiedz: „Wyobraźcie sobie klasową imprezę, na której każdy słucha wszystkich, ale nie każdego równie mocno”.
+        Zapytaj: kim jest „ona”? Język bywa niejednoznaczny. Mechanizm atencji pomaga śledzić zależności,
+        lecz sam nie gwarantuje poprawnej interpretacji.
+      </aside>
+    </section>
+
+    <section class="slide" id="atencja-matematycznie" data-title="Atencja matematycznie" data-duration="120">
+      <div class="slide-header compact">
+        <span class="kicker">Wersja dla odważnych</span>
+        <h2>Atencja w jednym wzorze</h2>
+      </div>
+      <div class="formula-card">
+        <div class="formula">Attention(Q,K,V) = softmax(<span>QK<sup>T</sup></span> / √d) V</div>
+        <div class="formula-legend">
+          <div class="fragment"><b>Q</b><span>czego szukam?</span></div>
+          <div class="fragment"><b>K</b><span>co oferuję?</span></div>
+          <div class="fragment"><b>V</b><span>jaką informację niosę?</span></div>
+        </div>
+      </div>
+      <div class="attention-plain fragment">
+        <span>1.</span> Porównaj pytanie z kluczami
+        <span>2.</span> Zamień podobieństwa na wagi
+        <span>3.</span> Zrób ważoną mieszankę informacji
+      </div>
+      <p class="tiny source-note">Vaswani i in., „Attention Is All You Need”, 2017.</p>
+      <aside class="notes">
+        Nie wyprowadzaj wzoru. Pokaż tylko intuicję: Q jak „query”, K jak „key”, V jak „value”.
+        Softmax zamienia wyniki porównania na wagi podobne do procentów. Kilka głów atencji może równolegle
+        tropić różne relacje: składnię, odwołania, wzorce w kodzie czy zależności między symbolami.
+      </aside>
+    </section>
+
+    <section class="slide" id="transformer" data-title="Transformer" data-duration="75">
+      <div class="two-col two-col--wide">
+        <div>
+          <span class="kicker">Krok 3</span>
+          <h2>Jedna warstwa to za mało</h2>
+          <p class="lead">Transformer wielokrotnie miesza kontekst i przekształca reprezentacje.</p>
+          <p class="fragment">Na dole: znaki. Wyżej: składnia, role, wzorce, procedury. Nie ma jednej szufladki „twierdzenie Pitagorasa”.</p>
+        </div>
+        <div class="transformer-stack" aria-label="Schemat wielu warstw transformera">
+          <div class="stack-output fragment">następny token</div>
+          <div class="stack-layer">atencja + sieć</div>
+          <div class="stack-layer">atencja + sieć</div>
+          <div class="stack-layer">atencja + sieć</div>
+          <div class="stack-dots">⋮</div>
+          <div class="stack-layer">atencja + sieć</div>
+          <div class="stack-input">tokeny + pozycje</div>
+        </div>
+      </div>
+      <aside class="notes">
+        To reprezentacje rozproszone: wiedza nie siedzi w jednym „neuronie od ułamków”.
+        Kolejne warstwy budują coraz użyteczniejsze przekształcenia. Porównanie: wiele filtrów,
+        z których każdy poprawia mapę sytuacji.
+      </aside>
+    </section>
+
+    <section class="slide" id="trening" data-title="Trening" data-duration="105">
+      <div class="slide-header compact">
+        <span class="kicker">Skąd to umie?</span>
+        <h2>Trzy akty treningu</h2>
+      </div>
+      <div class="training-timeline">
+        <article class="training-card fragment">
+          <span class="act">I</span>
+          <h3>Pre-trening</h3>
+          <p>Przewiduj kolejny token na ogromnej liczbie przykładów.</p>
+          <small>Powstaje model świata zapisany w parametrach.</small>
+        </article>
+        <div class="timeline-arrow">→</div>
+        <article class="training-card fragment">
+          <span class="act">II</span>
+          <h3>Post-trening</h3>
+          <p>Ucz się lepiej wykonywać polecenia, rozumować i unikać szkodliwych odpowiedzi.</p>
+          <small>Ludzie i automatyczne oceny porównują odpowiedzi.</small>
+        </article>
+        <div class="timeline-arrow">→</div>
+        <article class="training-card fragment">
+          <span class="act">III</span>
+          <h3>Agent + narzędzia</h3>
+          <p>Czytaj pliki, uruchamiaj kod, sprawdzaj wynik, poprawiaj błąd.</p>
+          <small>To tutaj Codex przestaje być tylko „oknem czatu”.</small>
+        </article>
+      </div>
+      <p class="caveat fragment">Dokładny skład danych i wszystkie receptury treningowe współczesnych modeli nie są publiczne.</p>
+      <aside class="notes">
+        Rozdziel trzy rzeczy. Pre-trening tworzy ogólne kompetencje. Post-trening kształtuje zachowanie.
+        Agent dodaje pętlę działania i zewnętrzne narzędzia. Nie mów, że model „uczy się z każdej rozmowy”
+        w czasie rzeczywistym. Wspomnij, że procesy nowszych modeli są tylko częściowo opisane publicznie.
+      </aside>
+    </section>
+
+    <section class="slide" id="dlaczego-matematyka" data-title="Dlaczego matematyka" data-duration="105">
+      <div class="slide-header compact">
+        <span class="kicker">Dlaczego modele nagle polubiły matematykę?</span>
+        <h2>Bo matematyka zostawia <span class="ink-yellow">ślady</span></h2>
+      </div>
+      <div class="reason-grid">
+        <article class="reason fragment">
+          <span>①</span><h3>Ma strukturę</h3><p>Definicje, dowody i kod mają powtarzalne reguły.</p>
+        </article>
+        <article class="reason fragment">
+          <span>②</span><h3>Da się sprawdzić</h3><p>Równanie, test lub kompilator często mówi „tak / nie”.</p>
+        </article>
+        <article class="reason fragment">
+          <span>③</span><h3>Można próbować</h3><p>Model generuje wariant, bada go i wraca po poprawkę.</p>
+        </article>
+        <article class="reason fragment">
+          <span>④</span><h3>Ma narzędzia</h3><p>Python, system algebry, wyszukiwarka i tester są zewnętrzną pamięcią roboczą.</p>
+        </article>
+      </div>
+      <p class="bottom-line fragment">Największy skok nie brzmi: „AI zna więcej wzorów”. Brzmi: <strong>AI dostała pętlę sprawdzania.</strong></p>
+      <aside class="notes">
+        To centralny slajd. Podkreśl różnicę między pamiętaniem wyniku i procedurą dochodzenia do wyniku.
+        Matematyka i programowanie mają stosunkowo tani sygnał poprawności. To nie eliminuje błędów,
+        ale pozwala je wykrywać częściej niż w pytaniach o gust, sens lub wartość pomysłu.
+      </aside>
+    </section>
+
+    <section class="slide" id="gauss" data-title="Gauss" data-duration="180">
+      <div class="slide-header compact">
+        <span class="kicker">Prawdziwa matematyka · runda 1</span>
+        <h2>1 + 2 + 3 + … + 100 = ?</h2>
+      </div>
+      <div class="gauss-stage">
+        <div class="gauss-question fragment">Liczyć po kolei?</div>
+        <div class="pairing fragment">
+          <div><b>1</b> + <b>100</b> = <span>101</span></div>
+          <div><b>2</b> + <b>99</b> = <span>101</span></div>
+          <div><b>3</b> + <b>98</b> = <span>101</span></div>
+          <div class="ellipsis">…</div>
+          <div><b>50</b> + <b>51</b> = <span>101</span></div>
+        </div>
+        <div class="gauss-result fragment">50 × 101 = <strong>5050</strong></div>
+      </div>
+      <blockquote class="fragment">Intuicja to często sztuka znalezienia reprezentacji, w której odpowiedź staje się oczywista.</blockquote>
+      <aside class="notes">
+        Daj 20-30 sekund na pomysły. Najpierw zaakceptuj odpowiedź z kalkulatorem, potem zapytaj o metodę,
+        która działa również dla miliona. Pokaż parowanie. Powiedz, że model widział wiele podobnych strategii
+        i umie je składać; nie wiemy jednak, czy „widzi” symetrię tak jak człowiek.
+      </aside>
+    </section>
+
+    <section class="slide" id="dziewiec-dziewiec" data-title="0,999..." data-duration="105">
+      <div class="slide-header compact">
+        <span class="kicker">Prawdziwa matematyka · runda 2</span>
+        <h2>Czy 0,999… naprawdę równa się 1?</h2>
+      </div>
+      <div class="proof-split">
+        <div class="proof-card fragment">
+          <span class="proof-label">Droga algebraiczna</span>
+          <p>x = 0,999…</p>
+          <p>10x = 9,999…</p>
+          <p>9x = 9</p>
+          <p class="proof-answer">x = 1</p>
+        </div>
+        <div class="proof-card fragment">
+          <span class="proof-label">Droga „bez szczeliny”</span>
+          <p>Gdyby 1 − 0,999… było dodatnie,</p>
+          <p>musiałoby być mniejsze od 0,1; 0,01; 0,001; …</p>
+          <p class="proof-answer">Nie ma dodatniej liczby mniejszej od wszystkich.</p>
+        </div>
+      </div>
+      <p class="bottom-line fragment">Model może podać pięć dowodów. <strong>Ty wybierasz ten, który buduje twoją intuicję.</strong></p>
+      <aside class="notes">
+        Zapytaj o pierwszą reakcję: „to prawda” czy „to oszustwo zapisu?”. Pokaż dwa wyjaśnienia.
+        Druga droga jest celowo mniej formalna dla młodszych. W liceum można dopowiedzieć o granicy ciągu
+        lub szeregu geometrycznym. To przykład wartości AI jako generatora różnych wyjaśnień.
+      </aside>
+    </section>
+
+    <section class="slide" id="dowod-jeden-rowna-sie-dwa" data-title="Fałszywy dowód" data-duration="165">
+      <div class="slide-header compact">
+        <span class="kicker">Prawdziwa matematyka · pułapka</span>
+        <h2>Dowód, że 1 = 2. Gdzie jest przestępstwo?</h2>
+      </div>
+      <div class="bad-proof">
+        <div class="proof-lines">
+          <p class="fragment">Załóżmy: <b>a = b</b></p>
+          <p class="fragment">a² = ab</p>
+          <p class="fragment">a² − b² = ab − b²</p>
+          <p class="fragment">(a − b)(a + b) = b(a − b)</p>
+          <p class="fragment trap-line">a + b = b <span class="trap-marker">← dzielimy przez a − b</span></p>
+          <p class="fragment">2b = b, więc <strong>2 = 1</strong></p>
+        </div>
+        <div class="crime-scene fragment">
+          <span>ALARM</span>
+          <b>a − b = 0</b>
+          <p>Dzielenie przez zero przebrało się za zwykłe skracanie.</p>
+        </div>
+      </div>
+      <p class="bottom-line fragment">Błąd może mieć świetną składnię, garnitur i bardzo pewny ton.</p>
+      <aside class="notes">
+        Nie pokazuj alarmu od razu. Daj publiczności trop: „Który krok wymaga warunku?”.
+        To modelowy przykład halucynacji matematycznej: lokalnie płynne kroki, jeden niedozwolony ruch,
+        globalnie absurdalny wynik. Dobre pytanie do AI: „Wskaż pierwszy niepoprawny krok i nazwij warunek”.
+      </aside>
+    </section>
+
+    <section class="slide slide--statement" id="pewnosc" data-title="Pewność" data-duration="60">
+      <p class="eyebrow">Najważniejszy bezpiecznik</p>
+      <h2>Płynność ≠ prawda</h2>
+      <div class="confidence-meter fragment">
+        <span>brzmi pewnie</span>
+        <div class="meter"><i></i></div>
+        <strong>99%</strong>
+      </div>
+      <div class="truth-meter fragment">
+        <span>jest sprawdzone</span>
+        <div class="meter"><i></i></div>
+        <strong>?</strong>
+      </div>
+      <p class="micro fragment">Model jest trenowany, żeby tworzyć dobrą odpowiedź. Nie ma wbudowanego dzwonka, który zawsze zadzwoni przy fałszu.</p>
+      <aside class="notes">
+        „Brzmieć jak ekspert” i „mieć rację” to dwie osie. W matematyce pytaj o weryfikację,
+        kontrprzykład, test numeryczny lub niezależny dowód. W sprawach faktograficznych pytaj o źródła
+        i sprawdzaj je poza modelem.
+      </aside>
+    </section>
+
+    <section class="slide" id="idee" data-title="Idee i intuicja" data-duration="105">
+      <div class="slide-header compact">
+        <span class="kicker">Czy AI ma pomysły?</span>
+        <h2>Tak. Nie. To zależy, co nazywamy <em>pomysłem.</em></h2>
+      </div>
+      <div class="idea-axis">
+        <div class="axis-card strong fragment">
+          <span>mocna</span>
+          <h3>Kombinacja</h3>
+          <p>Łączy znane motywy w tysiące kandydatów.</p>
+        </div>
+        <div class="axis-card strong fragment">
+          <span>mocna</span>
+          <h3>Eksploracja</h3>
+          <p>Szybko przeszukuje warianty i testuje hipotezy.</p>
+        </div>
+        <div class="axis-card weak fragment">
+          <span>słaba</span>
+          <h3>Nowość</h3>
+          <p>Nie zawsze wie, czy ktoś już to wymyślił.</p>
+        </div>
+        <div class="axis-card weak fragment">
+          <span>słaba</span>
+          <h3>Wartość</h3>
+          <p>Nie przeżywa problemu i nie wie, czemu warto poświęcić mu dekadę.</p>
+        </div>
+      </div>
+      <p class="bottom-line fragment">AI produkuje nasiona. <strong>Intuicja wybiera, które podlewać.</strong></p>
+      <aside class="notes">
+        To korekta zbyt prostej tezy „AI nie potrafi generować idei”. Potrafi generować kandydatów,
+        czasem zaskakujących. Trudniej ocenia ich nowość, sens, piękno, znaczenie i koszt realizacji.
+        Ludzka intuicja też nie jest magią: powstaje z doświadczenia, ciała, celów i długiej pracy.
+      </aside>
+    </section>
+
+    <section class="slide" id="codex" data-title="Codex" data-duration="120">
+      <div class="slide-header compact">
+        <span class="kicker">Dlaczego Codex bywa mocniejszy niż sam czat?</span>
+        <h2>Bo może zamknąć pętlę</h2>
+      </div>
+      <div class="agent-loop" aria-label="Pętla pracy agenta Codex">
+        <div class="loop-node fragment"><b>1</b><span>czytaj</span><small>problem, pliki, dane</small></div>
+        <div class="loop-arrow">→</div>
+        <div class="loop-node fragment"><b>2</b><span>planuj</span><small>hipoteza i kroki</small></div>
+        <div class="loop-arrow">→</div>
+        <div class="loop-node fragment"><b>3</b><span>działaj</span><small>kod, rachunek, narzędzie</small></div>
+        <div class="loop-arrow">→</div>
+        <div class="loop-node fragment"><b>4</b><span>testuj</span><small>dowód, test, wynik</small></div>
+        <div class="loop-return fragment">↺ popraw</div>
+      </div>
+      <div class="codex-callout fragment">
+        <span>Sam model:</span> „Wydaje mi się, że działa.”
+        <span>Agent:</span> „Uruchomiłem. Nie działało. Poprawiłem. Oto test.”
+      </div>
+      <p class="tiny source-note">Oficjalny podręcznik Codex: pętla model → działania → weryfikacja; nacisk na testy i przegląd.</p>
+      <aside class="notes">
+        Codex jest agentem programistycznym: może czytać repozytorium, edytować pliki i uruchamiać polecenia.
+        To ważne także w matematyce obliczeniowej: kod staje się laboratorium. Nadal trzeba ocenić,
+        czy test sprawdza właściwą rzecz i czy eksperyment numeryczny nie jest mylony z dowodem.
+      </aside>
+    </section>
+
+    <section class="slide" id="euler" data-title="Euler i narzędzia" data-duration="105">
+      <div class="slide-header compact">
+        <span class="kicker">Mini-demo bez internetu</span>
+        <h2>Kiedy pęka piękny wzór Eulera?</h2>
+      </div>
+      <div class="euler-grid">
+        <div class="euler-problem">
+          <p>n² + n + 41</p>
+          <small>Daje liczby pierwsze dla n = 0, 1, 2, …</small>
+          <button class="demo-button" type="button" data-run-demo>Uruchom eksperyment</button>
+        </div>
+        <pre class="code-window"><code>for (let n = 0; ; n++) {
+  const value = n*n + n + 41;
+  if (!isPrime(value)) {
+    return { n, value };
+  }
+}</code></pre>
+        <div class="terminal-window" aria-live="polite">
+          <span class="terminal-prompt">$ testujemy hipotezę…</span>
+          <strong class="terminal-result">czekam na uruchomienie</strong>
+        </div>
+      </div>
+      <p class="bottom-line fragment">Eksperyment znajduje kontrprzykład. <strong>Dowód wyjaśnia, dlaczego musi się pojawić.</strong></p>
+      <aside class="notes">
+        Kliknij przycisk. Wynik: n=40, wartość 1681=41². Zapytaj „czy to przypadek?”.
+        Dla n=40 mamy 40²+40+41=1681=41². To przykład współpracy: narzędzie znajduje,
+        człowiek lub model dopowiada strukturę. Eksperyment nie dowodzi, że wcześniejsze wartości są pierwsze,
+        dopóki ich nie sprawdzimy.
+      </aside>
+    </section>
+
+    <section class="slide" id="jak-sie-uczyc" data-title="Jak się uczyć z AI" data-duration="105">
+      <div class="slide-header compact">
+        <span class="kicker">Jak uczyć się AI, żeby nie oduczyć się myślenia?</span>
+        <h2>Nie pytaj tylko o odpowiedź</h2>
+      </div>
+      <div class="learning-loop">
+        <div class="learning-step fragment"><b>1</b><span>Spróbuj</span><small>zapisz własny pierwszy ruch</small></div>
+        <div class="learning-step fragment"><b>2</b><span>Zapytaj</span><small>o wskazówkę, nie gotowca</small></div>
+        <div class="learning-step fragment"><b>3</b><span>Starcie</span><small>porównaj dwa rozwiązania</small></div>
+        <div class="learning-step fragment"><b>4</b><span>Obrona</span><small>wytłumacz wynik bez AI</small></div>
+        <div class="learning-step fragment"><b>5</b><span>Transfer</span><small>rozwiąż podobne zadanie sam</small></div>
+      </div>
+      <div class="prompt-chip fragment">„Nie rozwiązuj. Zadaj mi jedno pytanie, które odblokuje następny krok.”</div>
+      <aside class="notes">
+        Najlepszy test nauki: czy potrafisz odtworzyć ideę bez okna czatu i zastosować ją w nowym zadaniu.
+        Uczniowie mogą prosić AI o rolę sokratejskiego korepetytora, generator kontrprzykładów,
+        recenzenta rozwiązania lub autora krótkiego quizu.
+      </aside>
+    </section>
+
+    <section class="slide" id="dobry-prompt" data-title="Dobry prompt" data-duration="75">
+      <div class="slide-header compact">
+        <span class="kicker">Instrukcja obsługi</span>
+        <h2>Dobry prompt to mały kontrakt</h2>
+      </div>
+      <div class="prompt-recipe">
+        <div class="recipe-row fragment"><b>CEL</b><span>Co próbuję osiągnąć?</span></div>
+        <div class="recipe-row fragment"><b>KONTEKST</b><span>Co już wiem, mam i czego próbowałem?</span></div>
+        <div class="recipe-row fragment"><b>OGRANICZENIA</b><span>Czego nie rób? Jaki poziom, czas, format?</span></div>
+        <div class="recipe-row fragment"><b>GOTOWE, GDY…</b><span>Jak sprawdzimy, że wynik jest dobry?</span></div>
+      </div>
+      <div class="prompt-example fragment">
+        <span>Zamiast:</span> „Zrób zadanie 7.”
+        <span>Spróbuj:</span> „Jestem w 8 klasie. Pokaż jedną wskazówkę. Potem sprawdź mój krok i znajdź pierwszy błąd.”
+      </div>
+      <aside class="notes">
+        To cztery elementy zalecane również w aktualnych dobrych praktykach Codex:
+        goal, context, constraints, done when. W szkole „gotowe” powinno często znaczyć:
+        „umiem wyjaśnić metodę i rozwiązać wariant sam”, a nie „mam tekst do oddania”.
+      </aside>
+    </section>
+
+    <section class="slide" id="zasady" data-title="Zasady" data-duration="90">
+      <div class="slide-header compact">
+        <span class="kicker">Pięć zasad higieny umysłowej</span>
+        <h2>Oddawaj pracę. Nie oddawaj kierownicy.</h2>
+      </div>
+      <ol class="rules-list">
+        <li class="fragment"><b>Najpierw własny ślad.</b><span>Choćby hipoteza, rysunek albo pytanie.</span></li>
+        <li class="fragment"><b>Proś o krytykę.</b><span>„Znajdź pierwszy błąd”, nie „potwierdź, że mam rację”.</span></li>
+        <li class="fragment"><b>Wymagaj testu.</b><span>Źródło, rachunek, kontrprzykład, drugi dowód.</span></li>
+        <li class="fragment"><b>Chroń dane.</b><span>Nie wklejaj cudzych danych, haseł i prywatnych historii.</span></li>
+        <li class="fragment"><b>Umiej odłączyć.</b><span>Jeśli bez AI nie potrafisz wyjaśnić wyniku, to jeszcze nie jest twoja wiedza.</span></li>
+      </ol>
+      <aside class="notes">
+        Zwróć uwagę na prywatność i zasady szkoły. Nie moralizuj o „oszukiwaniu”; pokaż praktyczny koszt:
+        oddając zadanie, oddaje się trening własnego mózgu. AI może trening wzmocnić albo go ominąć.
+      </aside>
+    </section>
+
+    <section class="slide slide--image closing-slide" id="final" data-title="Finał" data-duration="75">
+      <img class="slide-bg" src="assets/idea-garden.png" alt="Uczniowie z pomocnikiem AI badają nasiona pomysłów, z których wyrasta geometryczne drzewo">
+      <div class="image-scrim image-scrim--left"></div>
+      <div class="closing-copy">
+        <p class="eyebrow">Odpowiedź po 35 minutach</p>
+        <h2>AI nie zastąpi<br>naszej głowy.</h2>
+        <p class="fragment">Ale ktoś, kto umie z nią <strong>myśleć, sprawdzać i tworzyć</strong>, może zastąpić kogoś, kto tylko naciska „generuj”.</p>
+        <div class="final-question fragment">Jaką część myślenia zostawisz sobie?</div>
+      </div>
+      <aside class="notes">
+        Wróć do odpowiedzi z pierwszego slajdu. Ostatnie zdanie wypowiedz wolno.
+        Zostaw 3 sekundy ciszy przed pytaniami. Nie kończ prognozą rynku pracy, tylko decyzją,
+        którą uczeń może podjąć dziś.
+      </aside>
+    </section>
+
+    <section class="slide appendix" id="zrodla" data-title="Źródła" data-duration="0">
+      <div class="slide-header compact">
+        <span class="kicker">Dodatek · źródła</span>
+        <h2>Na czym stoi ten wykład?</h2>
+      </div>
+      <div class="sources-grid">
+        <a href="https://arxiv.org/abs/1706.03762">Vaswani i in. (2017)<span>Attention Is All You Need</span></a>
+        <a href="https://arxiv.org/abs/2005.14165">Brown i in. (2020)<span>Language Models are Few-Shot Learners</span></a>
+        <a href="https://arxiv.org/abs/2203.02155">Ouyang i in. (2022)<span>Training language models to follow instructions</span></a>
+        <a href="https://arxiv.org/abs/2305.20050">Lightman i in. (2023)<span>Let's Verify Step by Step</span></a>
+        <a href="https://openai.com/index/learning-to-reason-with-llms/">OpenAI (2024)<span>Learning to reason with LLMs</span></a>
+        <a href="https://developers.openai.com/codex/">OpenAI Codex<span>Dokumentacja i dobre praktyki</span></a>
+      </div>
+      <p class="tiny source-note">Pełna bibliografia i zastrzeżenia: docs/SOURCES.md. Stan materiałów OpenAI: 7 czerwca 2026.</p>
+      <aside class="notes">Slajd zapasowy do pytań. Linki są klikalne, ale prezentacja działa całkowicie offline.</aside>
+    </section>
+
+    <section class="slide appendix" id="sciaga" data-title="Ściąga prowadzącego" data-duration="0">
+      <div class="slide-header compact">
+        <span class="kicker">Dodatek · pytania z sali</span>
+        <h2>Trzy zdania, których warto pilnować</h2>
+      </div>
+      <div class="backup-cards">
+        <article><b>„Czy model rozumie?”</b><p>Zależy od definicji rozumienia. Zachowuje się kompetentnie w wielu zadaniach, ale nie mamy prostego testu na ludzkie doświadczenie wewnętrzne.</p></article>
+        <article><b>„Czy AI jest kreatywna?”</b><p>Generuje nowe kombinacje i czasem wartościowe rozwiązania. Spór dotyczy nowości, intencji, oceny i autorstwa.</p></article>
+        <article><b>„Czy można jej ufać?”</b><p>Tak jak narzędziu o znanym błędzie: tym bardziej, im lepszy mamy test. Nigdy wyłącznie dlatego, że brzmi pewnie.</p></article>
+      </div>
+      <aside class="notes">Materiał zapasowy. Nie używaj w podstawowych 35 minutach.</aside>
+    </section>
+  </main>
+
+  <nav class="deck-controls" aria-label="Sterowanie prezentacją">
+    <button type="button" data-prev aria-label="Poprzedni slajd">←</button>
+    <div class="progress-track" aria-hidden="true"><i data-progress></i></div>
+    <span class="slide-counter" data-counter>1 / 21</span>
+    <button type="button" data-next aria-label="Następny slajd">→</button>
+  </nav>
+
+  <div class="presenter-tools" aria-live="polite">
+    <span data-clock>00:00</span>
+    <button type="button" data-notes-toggle>Notatki <kbd>N</kbd></button>
+    <button type="button" data-overview-toggle>Przegląd <kbd>O</kbd></button>
+    <button type="button" data-fullscreen-toggle>Pełny ekran <kbd>F</kbd></button>
+  </div>
+
+  <aside class="speaker-panel" data-speaker-panel aria-label="Notatki prowadzącego">
+    <div class="speaker-panel__head">
+      <strong data-note-title>Tytuł</strong>
+      <button type="button" data-notes-close aria-label="Zamknij notatki">×</button>
+    </div>
+    <div class="speaker-panel__body" data-note-body></div>
+    <div class="speaker-panel__foot">
+      <span>Plan slajdu: <b data-slide-time>1:15</b></span>
+      <span>Plan łączny: <b data-total-time>35:00</b></span>
+    </div>
+  </aside>
+
+  <noscript>Ta prezentacja wymaga JavaScript do nawigacji i ujawniania elementów.</noscript>
+  <script src="app.js"></script>
+</body>
+</html>
