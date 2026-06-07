@@ -111,3 +111,21 @@
   liczbowe użyte w wykładzie.
 - Ponownie sprawdzono aktualny oficjalny podręcznik Codex i poprawiono nieaktualny
   odsyłacz do materiału o zastosowaniach GPT w nauce i matematyce.
+
+### Dwujęzyczny serwis i laboratoria
+
+- Przeniesiono polską prezentację pod `/pl/` i dodano odtwarzalnie generowaną
+  wersję angielską pod `/en/`.
+- Dodano landing page z przełącznikiem języka, wyborem prezentacji i opisem
+  części eksperymentalnej.
+- Dodano pięć laboratoriów Codex Math Lab w dwóch językach:
+  prostokąty, pseudopierwsze Fermata, wielomian Eulera, audyt dowodu i prompt dojo.
+- Laboratoria wykonują prawdziwe obliczenia w przeglądarce, ale wyraźnie opisują
+  przebieg pracy Codexa jako lokalną symulację.
+- Dodano przełączniki PL/EN do prezentacji i laboratoriów.
+- Dodano `.nojekyll`, stronę `404.html`, pełny copyright i plik `LICENSE`.
+- Rozszerzono walidację statyczną do 85 kontroli obejmujących obie prezentacje,
+  landing page, komplet laboratoriów, zasoby i copyright.
+- Test przeglądarkowy sprawdził 48 slajdów w 1366×768, 1440×900 i 1920×1080.
+- Osobny test serwisu sprawdził landing page, wszystkie typy laboratoriów,
+  obliczenia, przełącznik języka oraz brak poziomego przepełnienia w 390×844.
