@@ -35,7 +35,8 @@ rozproszone reprezentacje. Nie ma jednego „neuronu od Pitagorasa”.
 ### 9-10. Trening i matematyka
 
 Pretrening uczy regularności. Posttrening kształtuje wykonywanie poleceń
-i rozumowanie. Agent dodaje narzędzia oraz możliwość wielokrotnego sprawdzania pracy.
+i rozwiązywanie zadań. Agent nie jest kolejnym etapem treningu: podczas użycia
+dodaje narzędzia oraz możliwość wielokrotnego sprawdzania pracy.
 Matematyka jest wdzięczna, bo ma wyraźną strukturę i często szybko pokazuje błąd.
 
 ### 11-13. Przykłady
@@ -43,7 +44,9 @@ Matematyka jest wdzięczna, bo ma wyraźną strukturę i często szybko pokazuje
 Gauss: dobra reprezentacja usuwa pracę. `0,999…=1`: różne dowody budują różne
 intuicje. `1=2`: płynność lokalnych kroków nie gwarantuje poprawności globalnej.
 Na końcu pokaż, jak Codex powinien przeprowadzić audyt: przeczytać założenie,
-sprawdzić warunek każdej operacji i wskazać pierwszy niepoprawny krok.
+sprawdzić warunek każdej operacji i wskazać pierwszy niepoprawny krok. W założeniu
+użyj `a=b≠0`: warunek `b≠0` uzasadnia dopiero ostatnie przejście z `2b=b` do `2=1`,
+ale pierwszy błąd występuje wcześniej, przy dzieleniu przez `a−b=0`.
 
 ### 14-15. Granice
 
@@ -58,6 +61,8 @@ sprawdzający. Człowiek doprecyzowuje, czy kwadraty także zaliczamy do prostok
 Kliknij symulację. Pierwsza wersja kodu zwraca `784`, bo liczy osiem linii zamiast
 dziewięciu. Test `1×1` powinien dać jeden prostokąt, a daje zero. Codex poprawia
 `range(n)` na `range(n+1)`, uruchamia testy `1×1`, `2×2`, `8×8` i uzyskuje `1296`.
+Powiedz wyraźnie, że jest to zaprogramowana ilustracja cyklu pracy, nie nagranie
+autentycznej sesji.
 Następnie wielomian Eulera pokazuje podobny schemat: kod znajduje `n=40`,
 a matematyka wyjaśnia `1681=41²`.
 
@@ -71,7 +76,9 @@ ukończenia. Po pięciu zasadach pokaż ich zastosowanie w jednym eksperymencie.
 Uczeń zauważa, że liczby pierwsze `2, 3, 5, 7, 11` dzielą `2^p-2`, ale zamiast
 prosić o potwierdzenie, żąda kontrprzykładu i testu. Kliknięcie uruchamia poszukiwanie
 i znajduje `341=11·31`. Wyjaśnij, że małe twierdzenie Fermata pozostaje prawdziwe;
-fałszywa jest dopiero wymyślona przez ucznia odwrotność.
+zawodzi dopiero pomysł, że pojedynczy test dla `a=2` rozpoznaje wszystkie liczby
+pierwsze. Twierdzenie mówi: dla pierwszej `p` i każdego całkowitego `a` zachodzi
+`a^p≡a (mod p)`.
 
 Na końcu symbolicznie wyłącz Codex. Niech sala policzy `3^100 mod 7`.
 Ponieważ `3^6≡1 (mod 7)`, a `100=16·6+4`, zostaje `3^4=81≡4`.

@@ -22,7 +22,7 @@ Stan materiałów produktowych OpenAI: **7 czerwca 2026**.
    [Learning to reason with LLMs](https://openai.com/index/learning-to-reason-with-llms/),
    2024. Publiczny opis modeli uczonych wzmacnianiem do rozumowania.
 6. OpenAI,
-   [GPT-5 for science](https://openai.com/index/gpt-5-for-science/),
+   [Advancing science and math with GPT-5.2](https://openai.com/index/gpt-5-2-for-science-and-math/),
    2025. Przykłady współpracy ekspertów z modelem w badaniach matematycznych
    i naukowych. Traktowane jako studia przypadków, nie dowód autonomicznej nauki.
 
@@ -31,11 +31,12 @@ Stan materiałów produktowych OpenAI: **7 czerwca 2026**.
 7. OpenAI, [Codex](https://developers.openai.com/codex/).
 8. OpenAI, [Codex best practices](https://developers.openai.com/codex/learn/best-practices).
 9. OpenAI, [Codex prompting](https://developers.openai.com/codex/prompting).
+10. OpenAI, [Codex manual](https://developers.openai.com/codex/codex-manual.md).
 
 Wykład korzysta z aktualnego oficjalnego opisu Codex jako agenta, który może
 czytać kod, wykonywać działania, uruchamiać testy i przeglądać wynik. Dobre
 praktyki podkreślają cztery elementy polecenia: cel, kontekst, ograniczenia
-i kryterium ukończenia.
+i kryterium ukończenia. Podręcznik sprawdzono ponownie 7 czerwca 2026.
 
 ## Ważne zastrzeżenia
 
@@ -49,6 +50,8 @@ i kryterium ukończenia.
   na jednym procencie ani rankingu.
 - Wygenerowanie kontrprzykładu lub wykonanie obliczeń nie jest samo w sobie
   dowodem matematycznym.
+- Pretrening i posttrening są etapami uczenia modelu. Korzystanie z plików,
+  kodu i testów przez agenta opisuje sposób użycia modelu, a nie kolejny etap treningu.
 
 ## Ilustracje
 

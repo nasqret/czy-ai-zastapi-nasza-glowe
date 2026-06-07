@@ -183,7 +183,7 @@
       ["diagnosis", "[SZUKAM] liczby złożone n < 400..."],
       ["fail", "[KONTRPRZYKŁAD] 341 = 11 × 31"],
       ["pass", "[SPRAWDZENIE] (2^341 - 2) mod 341 = 0"],
-      ["result", "[WERDYKT] Twierdzenie działa tylko w jedną stronę."]
+      ["result", "[WERDYKT] Test dla podstawy 2 nie rozpoznaje pierwszości."]
     ];
 
     button.disabled = true;

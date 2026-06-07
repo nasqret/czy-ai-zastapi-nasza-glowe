@@ -3,6 +3,8 @@
 Lekka, 35-minutowa prezentacja popularnonaukowa dla klas 7-8 szkoły podstawowej
 i uczniów liceum. Slajdy działają lokalnie, bez sieci i bez zewnętrznych bibliotek.
 
+Autor: Bartosz Naskręcki, UAM/CCAI. Warszawa, 8.06.2026.
+
 ## Uruchomienie
 
 ```bash
@@ -50,6 +52,7 @@ npm run demo:fermat
 - `assets/` - trzy autorskie ilustracje wygenerowane dla prezentacji
 - `scripts/rectangle_demo.py` - symulacja zadania użyta na slajdach 15-18
 - `scripts/fermat_demo.py` - obliczenia użyte w zabawie z małym twierdzeniem Fermata
+- `scripts/verify_math.py` - automatyczna kontrola wszystkich przykładów liczbowych
 
 ## Testy
 
@@ -59,7 +62,9 @@ npm run test:browser
 ```
 
 Test statyczny sprawdza między innymi liczbę slajdów, łączny czas 35:00,
-notatki prowadzącego, unikalność identyfikatorów i istnienie lokalnych zasobów.
+notatki prowadzącego, dane autora, unikalność identyfikatorów i istnienie lokalnych
+zasobów. Test matematyczny ponownie oblicza sumę Gaussa, liczby prostokątów,
+wartości wielomianu Eulera oraz przykłady związane z twierdzeniem Fermata.
 Test przeglądarkowy wymaga działającego `npm run serve`, lokalnego Chrome i pakietu
 Playwright dla Pythona. Otwiera każdą planszę w 1366×768, 1440×900 i 1920×1080,
 sprawdza przepełnienia i interakcje oraz zapisuje kontrolne zrzuty w ignorowanym

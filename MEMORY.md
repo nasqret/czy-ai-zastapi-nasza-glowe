@@ -18,8 +18,11 @@
 - Nie sugerować, że współczesne modele ujawniają pełny skład danych treningowych
   lub kompletną recepturę posttreningu.
 - Nie utożsamiać eksperymentu obliczeniowego z dowodem.
+- Agent korzystający z narzędzi nie jest „trzecim etapem treningu”. Pretrening
+  i posttrening uczą model; agent to sposób użycia gotowego modelu w pętli działań.
 - Codex przedstawiać jako agenta pracującego w cyklu: kontekst, plan, działanie,
   test, poprawka, przegląd.
+- Symulowane okna Codexa trzeba nazywać symulacją, a nie zapisem prawdziwej sesji.
 
 ## Konwencja wizualna
 
@@ -46,8 +49,11 @@
   programem, nie przekazuje prywatnych danych i kończy samodzielnym rachunkiem
   `3^100 mod 7 = 4`.
 - W zabawie z Fermatem trzeba wyraźnie rozdzielić prawdziwe twierdzenie
-  `p` pierwsza `⇒ a^p ≡ a (mod p)` od fałszywej odwrotności. Liczba
-  `341 = 11·31` jest kontrprzykładem dla testu o podstawie 2.
+  `p` pierwsza `⇒ a^p ≡ a (mod p)` dla każdego całkowitego `a` od testu
+  pierwszości opartego na jednej podstawie. Liczba `341 = 11·31` pokazuje,
+  że warunek `341 | 2^341−2` nie wystarcza do stwierdzenia pierwszości.
+- Dane autora na slajdzie tytułowym: Bartosz Naskręcki, UAM/CCAI,
+  Warszawa, 8.06.2026.
 
 ## Grafiki
 

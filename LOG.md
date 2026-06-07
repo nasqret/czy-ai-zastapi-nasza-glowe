@@ -92,3 +92,22 @@
 - Liczbę slajdów głównych zwiększono do 22, zachowując dokładny czas 35:00.
 - Test przeglądarkowy sprawdził 24 slajdy w 1366×768, 1440×900 i 1920×1080:
   brak przepełnień, kolizji, błędów konsoli i błędów interakcji.
+
+### Pełny audyt merytoryczny i językowy
+
+- Dodano na slajdzie tytułowym: Bartosz Naskręcki, UAM/CCAI,
+  Warszawa, 8.06.2026.
+- Ponownie przeczytano wszystkie slajdy i notatki prowadzącego.
+- Skorygowano wzór atencji z `√d` na standardowe `√d_k`.
+- Oddzielono pretrening i posttrening od późniejszej pracy agenta z narzędziami.
+- Zmieniono zdania sugerujące, że sam model zawsze sprawdza własne próby:
+  weryfikację wykonuje model lub agent korzystający z odpowiedniego narzędzia.
+- W fałszywym dowodzie dodano założenie `a=b≠0` i doprecyzowano oba warunki dzielenia.
+- Doprecyzowano, że `341` obala test pierwszości dla podstawy `2`,
+  a nie małe twierdzenie Fermata.
+- Oznaczono przebieg z prostokątami jako symulację, nie zapis prawdziwej sesji Codexa.
+- Usunięto ilustracyjne `99%`, które mogło wyglądać jak rzeczywista miara pewności modelu.
+- Dodano `scripts/verify_math.py`, który automatycznie sprawdza wszystkie przykłady
+  liczbowe użyte w wykładzie.
+- Ponownie sprawdzono aktualny oficjalny podręcznik Codex i poprawiono nieaktualny
+  odsyłacz do materiału o zastosowaniach GPT w nauce i matematyce.

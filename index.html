@@ -18,11 +18,16 @@
         <p class="eyebrow">35 minut · zero magii · trochę matematyki</p>
         <h1>Czy AI zastąpi<br>naszą <em>głowę?</em></h1>
         <p class="lead">Krótka instrukcja współpracy z maszyną do myślenia.</p>
+        <div class="title-meta">
+          <strong>Bartosz Naskręcki</strong>
+          <span>UAM/CCAI</span>
+          <span>Warszawa, 8.06.2026</span>
+        </div>
       </div>
       <aside class="notes">
         <strong>Otwarcie.</strong> „Nie odpowiem dziś, czy AI zabierze wam pracę w 2042 roku.
         Spróbujemy odpowiedzieć na trudniejsze pytanie: które części myślenia warto jej oddać,
-        a których oddać nie wolno?”. Poproś, by publiczność zapamiętała swoją odpowiedź do końca.
+        a które warto zachować dla siebie?”. Poproś, by publiczność zapamiętała swoją odpowiedź do końca.
       </aside>
     </section>
 
@@ -62,7 +67,7 @@
       <p class="eyebrow">Teza na dziś</p>
       <h2>AI raczej nie zastąpi<br><span class="ink-coral">nam głowy.</span></h2>
       <p class="statement-tail fragment">Ale wyręczy nas w wielu <strong>czynnościach</strong>, które dotąd wykonywaliśmy sami.</p>
-      <div class="micro fragment">Dlatego warto nauczyć się prowadzić, zanim oddamy jej kierownicę.</div>
+      <div class="micro fragment">Dlatego warto nauczyć się nią kierować, zanim pozwolimy jej wybrać drogę.</div>
       <aside class="notes">
         Zaznacz różnicę między narzędziem i odpowiedzialnością. Kalkulator nie „zastąpił matematyki”,
         ale zmienił, które rachunki wykonujemy ręcznie. AI ma większy zakres, więc zmiana jest poważniejsza.
@@ -88,7 +93,7 @@
         <div class="giant-arrow fragment">↓</div>
         <p class="prediction-punch fragment">GPT robi podobną rzecz z językiem. <strong>Token po tokenie.</strong></p>
       </div>
-      <p class="tiny source-note">Uproszczenie: model przewiduje token, nie całe słowo, i nie zawsze wybiera najbardziej prawdopodobną możliwość.</p>
+      <p class="tiny source-note">Uproszczenie: procenty są ilustracyjne. Model przewiduje token, nie całe słowo, i nie zawsze wybiera najbardziej prawdopodobną możliwość.</p>
       <aside class="notes">
         Najpierw pozwól odpowiedzieć publiczności. „13” nie jest zapisane w modelu jako odpowiedź do tej planszy:
         wynik powstaje z rozkładu prawdopodobieństwa kolejnego tokenu. Podkreśl, że „przewidywanie” nie znaczy
@@ -125,7 +130,7 @@
       <img class="slide-bg" src="assets/attention-party.png" alt="Rząd geometrycznych postaci połączonych łukami o różnej grubości">
       <div class="image-scrim image-scrim--left"></div>
       <div class="image-copy">
-        <span class="kicker">Krok 2 · Attention</span>
+        <span class="kicker">Krok 2 · mechanizm atencji</span>
         <h2>Każdy token pyta:<br><em>„Kogo mam słuchać?”</em></h2>
         <div class="attention-example fragment">
           <span>Ola</span> powiedziała <span>Mai</span>, że <b>ona</b> wygrała.
@@ -145,7 +150,7 @@
         <h2>Atencja w jednym wzorze</h2>
       </div>
       <div class="formula-card">
-        <div class="formula">Attention(Q,K,V) = softmax(<span>QK<sup>T</sup></span> / √d) V</div>
+        <div class="formula">Attention(Q,K,V) = softmax(<span>QK<sup>T</sup></span> / √d<sub>k</sub>) V</div>
         <div class="formula-legend">
           <div class="fragment"><b>Q</b><span>czego szukam?</span></div>
           <div class="fragment"><b>K</b><span>do czego pasuję?</span></div>
@@ -171,7 +176,7 @@
           <span class="kicker">Krok 3</span>
           <h2>Jedna warstwa to za mało</h2>
           <p class="lead">Transformer wielokrotnie łączy informacje z kontekstu i je przekształca.</p>
-          <p class="fragment">Na dole są znaki. Wyżej pojawiają się składnia, role, wzorce i procedury. Nie ma jednej szufladki z napisem „twierdzenie Pitagorasa”.</p>
+          <p class="fragment">Na wejściu są reprezentacje tokenów i ich pozycji. Kolejne warstwy mogą kodować zależności, role i procedury. Nie ma jednej szufladki z napisem „twierdzenie Pitagorasa”.</p>
         </div>
         <div class="transformer-stack" aria-label="Schemat wielu warstw transformera">
           <div class="stack-output fragment">następny token</div>
@@ -185,50 +190,51 @@
       </div>
       <aside class="notes">
         Wiedza jest rozproszona: nie siedzi w jednym „neuronie od ułamków”.
-        Kolejne warstwy coraz lepiej porządkują informacje. Można je porównać do serii filtrów,
-        z których każdy dopracowuje obraz sytuacji.
+        Kolejne warstwy przekształcają reprezentacje tokenów. Można je porównać do serii filtrów,
+        z których każdy wydobywa inne zależności potrzebne do przewidzenia dalszego ciągu.
       </aside>
     </section>
 
     <section class="slide" id="trening" data-title="Trening" data-duration="105">
       <div class="slide-header compact">
-        <span class="kicker">Skąd model to wszystko umie?</span>
-        <h2>Trzy etapy treningu</h2>
+        <span class="kicker">Skąd bierze się ta skuteczność?</span>
+        <h2>Dwa etapy uczenia. Potem narzędzia.</h2>
       </div>
       <div class="training-timeline">
         <article class="training-card fragment">
           <span class="act">I</span>
-          <h3>Trening wstępny</h3>
+          <h3>Pretrening</h3>
           <p>Model uczy się przewidywać kolejny token na podstawie ogromnej liczby przykładów.</p>
           <small>W parametrach zapisują się wzorce poznane z danych.</small>
         </article>
         <div class="timeline-arrow">→</div>
         <article class="training-card fragment">
           <span class="act">II</span>
-          <h3>Dostrajanie</h3>
-          <p>Model uczy się lepiej wykonywać polecenia, rozumować i unikać szkodliwych odpowiedzi.</p>
-          <small>Odpowiedzi są oceniane przez ludzi i automatyczne systemy.</small>
+          <h3>Posttrening</h3>
+          <p>Model uczy się lepiej wykonywać polecenia, rozwiązywać zadania i przestrzegać zasad.</p>
+          <small>Wykorzystuje przykłady, oceny oraz automatyczne sprawdzanie.</small>
         </article>
         <div class="timeline-arrow">→</div>
         <article class="training-card fragment">
           <span class="act">III</span>
-          <h3>Agent + narzędzia</h3>
+          <h3>Użycie: agent + narzędzia</h3>
           <p>Agent czyta pliki, uruchamia kod, sprawdza wynik i poprawia błędy.</p>
-          <small>To tutaj Codex przestaje być tylko „oknem czatu”.</small>
+          <small>To nie jest trening, lecz sposób pracy gotowego modelu.</small>
         </article>
       </div>
       <p class="caveat fragment">Dokładny skład danych i wszystkie receptury treningowe współczesnych modeli nie są publiczne.</p>
       <aside class="notes">
-        Rozdziel trzy rzeczy. Trening wstępny, nazywany też pretreningiem, buduje ogólne umiejętności.
-        Dostrajanie i posttrening kształtują zachowanie.
-        Agent dodaje pętlę działania i zewnętrzne narzędzia. Nie mów, że model „uczy się z każdej rozmowy”
+        Rozdziel trzy rzeczy. Pretrening buduje ogólne umiejętności przewidywania i reprezentacje.
+        Posttrening kształtuje sposób wykonywania poleceń i rozwiązywania zadań.
+        Agent nie jest trzecim etapem treningu: dodaje pętlę działania i zewnętrzne narzędzia.
+        Nie mów, że model „uczy się z każdej rozmowy”
         w czasie rzeczywistym. Wspomnij, że procesy nowszych modeli są tylko częściowo opisane publicznie.
       </aside>
     </section>
 
     <section class="slide" id="dlaczego-matematyka" data-title="Dlaczego matematyka" data-duration="105">
       <div class="slide-header compact">
-        <span class="kicker">Dlaczego modele nagle polubiły matematykę?</span>
+        <span class="kicker">Dlaczego nowsze modele są tak dobre w matematyce?</span>
         <h2>Bo matematyka zostawia <span class="ink-yellow">ślady</span></h2>
       </div>
       <div class="reason-grid">
@@ -236,19 +242,21 @@
           <span>①</span><h3>Ma strukturę</h3><p>W definicjach, dowodach i kodzie powtarzają się reguły oraz wzorce.</p>
         </article>
         <article class="reason fragment">
-          <span>②</span><h3>Da się sprawdzić</h3><p>Równanie, test lub kompilator często daje jasny wynik: działa albo nie.</p>
+          <span>②</span><h3>Da się sprawdzać</h3><p>Wiele wyników można zweryfikować rachunkiem, testem albo programem.</p>
         </article>
         <article class="reason fragment">
-          <span>③</span><h3>Można próbować</h3><p>Model proponuje rozwiązanie, sprawdza je i poprawia.</p>
+          <span>③</span><h3>Można próbować</h3><p>Propozycja → test → poprawka. Błąd może stać się informacją zwrotną.</p>
         </article>
         <article class="reason fragment">
           <span>④</span><h3>Ma narzędzia</h3><p>Python, programy do algebry i testy działają jak zewnętrzny brudnopis.</p>
         </article>
       </div>
-      <p class="bottom-line fragment">Największa zmiana nie polega na tym, że AI zna więcej wzorów. <strong>Potrafi też sprawdzać własne próby.</strong></p>
+      <p class="bottom-line fragment">Największa zmiana nie polega na tym, że AI zna więcej wzorów. <strong>Może też użyć narzędzi do sprawdzania prób.</strong></p>
       <aside class="notes">
         To centralny slajd. Podkreśl różnicę między pamiętaniem wyniku i procedurą dochodzenia do wyniku.
-        Matematyka i programowanie często dają szybką i jednoznaczną informację zwrotną. To nie eliminuje błędów,
+        Matematyka i programowanie często dają szybką i jednoznaczną informację zwrotną. Agent może
+        wykorzystać test, interpreter albo system algebry, ale narzędzie również trzeba zastosować poprawnie.
+        To nie eliminuje błędów,
         ale pozwala je wykrywać częściej niż w pytaniach o gust, sens lub wartość pomysłu.
       </aside>
     </section>
@@ -291,10 +299,10 @@
           <p class="proof-answer">x = 1</p>
         </div>
         <div class="proof-card fragment">
-          <span class="proof-label">Dowód przez różnicę</span>
+          <span class="proof-label">Argument przez różnicę</span>
           <p>Gdyby różnica 1 − 0,999… była dodatnia,</p>
           <p>musiałaby być mniejsza od 0,1; 0,01; 0,001; …</p>
-          <p class="proof-answer">Taka dodatnia różnica nie może istnieć.</p>
+          <p class="proof-answer">W liczbach rzeczywistych taka dodatnia różnica nie istnieje.</p>
         </div>
       </div>
       <p class="proof-takeaway fragment">Model może podać pięć dowodów. <strong>Ty wybierasz ten, który naprawdę pomaga ci zrozumieć.</strong></p>
@@ -312,7 +320,7 @@
       </div>
       <div class="bad-proof">
         <div class="proof-lines">
-          <p class="fragment">Załóżmy: <b>a = b</b></p>
+          <p class="fragment">Załóżmy: <b>a = b ≠ 0</b></p>
           <p class="fragment">a² = ab</p>
           <p class="fragment">a² − b² = ab − b²</p>
           <p class="fragment">(a − b)(a + b) = b(a − b)</p>
@@ -341,10 +349,11 @@
       <p class="bad-proof-takeaway fragment">Codex nie powinien oceniać tylko wyniku. Powinien sprawdzić <strong>każdy krok i jego warunki.</strong></p>
       <aside class="notes">
         Nie pokazuj alarmu od razu. Daj publiczności trop: „Który krok wymaga warunku?”.
-        To modelowy przykład halucynacji matematycznej: lokalnie płynne kroki, jeden niedozwolony ruch,
-        globalnie absurdalny wynik. Potem pokaż ścieżkę Codex. Dobre polecenie nie brzmi „czy ten dowód
+        To dobry model błędu spotykanego w matematycznych halucynacjach: lokalnie płynne kroki,
+        jeden niedozwolony ruch, globalnie absurdalny wynik. Potem pokaż ścieżkę Codex. Dobre polecenie nie brzmi „czy ten dowód
         jest poprawny?”, lecz: „Sprawdź każdy krok, wskaż pierwszy niepoprawny i nazwij złamany warunek”.
-        Codex powinien odczytać założenie a=b, wywnioskować a−b=0 i dopiero wtedy odrzucić skracanie.
+        Założenie b≠0 jest potrzebne dopiero w ostatnim kroku, aby z 2b=b wyciągnąć 2=1.
+        Codex powinien odczytać a=b, wywnioskować a−b=0 i odrzucić wcześniejsze skracanie.
       </aside>
     </section>
 
@@ -354,14 +363,14 @@
       <div class="confidence-meter fragment">
         <span>brzmi pewnie</span>
         <div class="meter"><i></i></div>
-        <strong>99%</strong>
+        <strong>bardzo</strong>
       </div>
       <div class="truth-meter fragment">
         <span>jest sprawdzone</span>
         <div class="meter"><i></i></div>
         <strong>?</strong>
       </div>
-      <p class="micro fragment">Model uczy się tworzyć przekonujące odpowiedzi. Nie ma jednak niezawodnego alarmu, który włącza się, gdy odpowiedź jest fałszywa.</p>
+      <p class="micro fragment">Model potrafi tworzyć płynne i przekonujące odpowiedzi. Nie ma jednak niezawodnego alarmu, który włącza się, gdy odpowiedź jest fałszywa.</p>
       <aside class="notes">
         „Brzmieć jak ekspert” i „mieć rację” to dwie osie. W matematyce pytaj o weryfikację,
         kontrprzykład, test numeryczny lub niezależny dowód. W sprawach faktograficznych pytaj o źródła
@@ -398,19 +407,19 @@
           <article class="candidate-card candidate-card--test fragment">
             <b>3. Sprawdzenie</b>
             <strong>Program</strong>
-            <p>Przejdź przez wszystkie pary linii i policz otrzymane prostokąty.</p>
+            <p>Wybierz każdą parę linii pionowych i każdą parę poziomych, a potem policz wyniki.</p>
           </article>
           <article class="candidate-card candidate-card--human fragment">
             <b>4. Człowiek ustala sens</b>
             <strong>Czy kwadrat też liczymy?</strong>
-            <p>Tak. Bez doprecyzowania nawet poprawny rachunek może odpowiadać na inne pytanie.</p>
+            <p>W szkolnej geometrii tak. Bez doprecyzowania poprawny rachunek może odpowiadać na inne pytanie.</p>
           </article>
         </div>
       </div>
       <div class="case-principles fragment">
         <span><b>Łączenie:</b> geometria + kombinatoryka</span>
         <span><b>Poszukiwanie:</b> kilka metod</span>
-        <span><b>Ocena:</b> test i ludzki sens</span>
+        <span><b>Ocena:</b> test + definicja problemu</span>
       </div>
       <aside class="notes">
         Najpierw poproś salę o szybki strzał. „64” jest kuszące, ale liczy pola. Pokaż zaznaczony
@@ -422,8 +431,8 @@
 
     <section class="slide" id="codex" data-title="Codex uruchamia test" data-duration="105">
       <div class="slide-header compact">
-        <span class="kicker">Konkretny problem · etap 2</span>
-        <h2>Codex pisze program. I popełnia błąd.</h2>
+        <span class="kicker">Konkretny problem · symulowany etap 2</span>
+        <h2>Codex pisze program. Test znajduje błąd.</h2>
       </div>
       <div class="codex-run-grid">
         <div class="codex-run-brief">
@@ -449,6 +458,7 @@
       </div>
       <p class="codex-result-line fragment" data-rectangle-result>Wzór przewiduje: C(9,2)² = 36² = <strong>1296</strong>.</p>
       <aside class="notes">
+        To zaprogramowana ilustracja typowego cyklu pracy, a nie zapis prawdziwej sesji.
         Kliknij „Uruchom symulację Codex”. Pierwszy program zwraca 784, bo używa ośmiu linii zamiast
         dziewięciu. Mały test 1×1 natychmiast pokazuje zero zamiast jednego. Codex diagnozuje błąd
         typu „o jeden”, zmienia range(n) na range(n+1), uruchamia trzy testy i otrzymuje 1296.
@@ -460,7 +470,7 @@
     <section class="slide" id="euler" data-title="Euler i narzędzia" data-duration="105">
       <div class="slide-header compact">
         <span class="kicker">Krótki pokaz bez internetu</span>
-        <h2>Kiedy pęka piękny wzór Eulera?</h2>
+        <h2>Kiedy zawodzi słynny wielomian Eulera?</h2>
       </div>
       <div class="euler-grid">
         <div class="euler-problem">
@@ -483,8 +493,8 @@
       <aside class="notes">
         Kliknij przycisk. Wynik: n=40, wartość 1681=41². Zapytaj „czy to przypadek?”.
         Dla n=40 mamy 40²+40+41=1681=41². To przykład współpracy: narzędzie znajduje kontrprzykład,
-        a człowiek lub model dostrzega stojącą za nim zależność. Eksperyment nie dowodzi, że wcześniejsze wartości są pierwsze,
-        dopóki ich nie sprawdzimy.
+        a człowiek lub model dostrzega stojącą za nim zależność. Poprawny test pierwszości może sprawdzić
+        skończoną listę n=0,…,39; nadal nie wyjaśnia jednak, dlaczego pierwszy prosty rozkład pojawia się dla n=40.
       </aside>
     </section>
 
@@ -511,7 +521,7 @@
             <li class="fragment"><b>Własna próba:</b> „64” daje punkt wyjścia.</li>
             <li class="fragment"><b>Wskazówka:</b> Codex pyta o liczbę linii.</li>
             <li class="fragment"><b>Sprawdzenie:</b> program daje 1296.</li>
-            <li class="fragment"><b>Wyjaśnienie:</b> każda para boków daje jeden prostokąt.</li>
+            <li class="fragment"><b>Wyjaśnienie:</b> para linii pionowych i para poziomych wyznaczają prostokąt.</li>
             <li class="fragment"><b>Nowe zadanie:</b> plansza 10×10 → C(11,2)² = 3025.</li>
           </ol>
         </div>
@@ -533,7 +543,7 @@
         <div class="recipe-row fragment"><b>CEL</b><span>Co chcę osiągnąć?</span></div>
         <div class="recipe-row fragment"><b>KONTEKST</b><span>Co już wiem i czego próbowałem?</span></div>
         <div class="recipe-row fragment"><b>OGRANICZENIA</b><span>Jaki poziom, zakres i format? Czego AI ma nie robić?</span></div>
-        <div class="recipe-row fragment"><b>DOBRY WYNIK</b><span>Po czym poznam, że odpowiedź jest dobra?</span></div>
+        <div class="recipe-row fragment"><b>GOTOWE, GDY…</b><span>Co musi być sprawdzone, zanim uznam zadanie za zakończone?</span></div>
       </div>
       <div class="prompt-example fragment">
         <span>Zamiast:</span> „Zrób zadanie 7.”
@@ -554,7 +564,7 @@
       <ol class="rules-list">
         <li class="fragment"><b>Najpierw spróbuj sam.</b><span>Zapisz choćby hipotezę, rysunek albo pytanie.</span></li>
         <li class="fragment"><b>Proś o krytykę.</b><span>„Znajdź pierwszy błąd”, nie „potwierdź, że mam rację”.</span></li>
-        <li class="fragment"><b>Proś o sprawdzenie.</b><span>Poproś o źródło, rachunek, kontrprzykład albo drugi dowód.</span></li>
+        <li class="fragment"><b>Proś o sprawdzenie.</b><span>Poproś o rachunek, kontrprzykład lub drugi dowód. Źródła sprawdź sam.</span></li>
         <li class="fragment"><b>Chroń dane.</b><span>Nie wklejaj cudzych danych, haseł ani prywatnych rozmów.</span></li>
         <li class="fragment"><b>Umiej wyłączyć AI.</b><span>Jeśli bez niej nie umiesz wyjaśnić wyniku, to jeszcze nie jest twoja wiedza.</span></li>
       </ol>
@@ -587,7 +597,7 @@
             </div>
             <div class="chat-message chat-message--codex fragment">
               <b>Codex</b>
-              <span>Najpierw przetestuję liczby złożone. Potem oddzielę twierdzenie od jego odwrotności.</span>
+              <span>Najpierw przetestuję liczby złożone. Potem oddzielę twierdzenie od zbyt mocnego wniosku.</span>
             </div>
             <button class="demo-button fermat-demo-button fragment" type="button" data-run-fermat-demo>Uruchom Codex</button>
           </div>
@@ -603,17 +613,17 @@
             <div class="fermat-theorem">
               <span>PRAWDA</span>
               <b>p pierwsza ⇒ a<sup>p</sup> ≡ a (mod p)</b>
-              <small>Małe twierdzenie Fermata</small>
+              <small>Małe twierdzenie Fermata, dla każdej liczby całkowitej a.</small>
             </div>
             <div class="fermat-trap">
               <span>PUŁAPKA</span>
-              <b>Odwrotność jest fałszywa.</b>
-              <small>341 = 11 · 31, a jednak przechodzi test dla podstawy 2.</small>
+              <b>Test dla a=2 nie rozpoznaje pierwszości.</b>
+              <small>341 = 11 · 31, a mimo to 341 dzieli 2<sup>341</sup>−2.</small>
             </div>
           </div>
           <div class="fermat-offline fragment" data-fermat-offline>
             <span class="offline-label">AI WYŁĄCZONE · 5</span>
-            <p><b>3<sup>100</sup> mod 7 = ?</b> 100 = 16·6 + 4, więc 3<sup>100</sup> ≡ 3<sup>4</sup> = 81 ≡ <strong>4</strong>.</p>
+            <p><b>3<sup>100</sup> mod 7 = ?</b> 3<sup>6</sup>≡1, a 100=16·6+4, więc 3<sup>100</sup>≡3<sup>4</sup>=81≡<strong>4</strong>.</p>
           </div>
         </div>
       </div>
@@ -627,8 +637,9 @@
       <aside class="notes">
         Najpierw przeczytaj hipotezę ucznia i zapytaj salę, czy pięć przykładów wystarcza.
         Kliknij „Uruchom Codex”. Program znajduje 341: liczbę złożoną, która mimo to spełnia
-        podzielność dla podstawy 2. To nie obala małego twierdzenia Fermata, tylko fałszywą
-        odwrotność wymyśloną przez ucznia. Wskaż kolejno pięć zasad: własna próba, prośba
+        podzielność dla podstawy 2. To nie obala małego twierdzenia Fermata. Pokazuje tylko,
+        że pojedynczy test z a=2 nie wystarcza do rozpoznawania liczb pierwszych.
+        Wskaż kolejno pięć zasad: własna próba, prośba
         o krytykę, test i rachunek, brak danych osobowych oraz wyłączenie AI. Ostatni rachunek
         wykonajcie wspólnie: 3^6 daje resztę 1 przy dzieleniu przez 7, więc zostaje wykładnik 4.
       </aside>
@@ -640,7 +651,7 @@
       <div class="closing-copy">
         <p class="eyebrow">Odpowiedź po 35 minutach</p>
         <h2>AI nie zastąpi<br>nam głowy.</h2>
-        <p class="fragment">Kto umie z nią <strong>myśleć, sprawdzać i tworzyć</strong>, zyska przewagę nad tym, kto tylko naciska „generuj”.</p>
+        <p class="fragment">Kto umie z nią <strong>myśleć, sprawdzać i tworzyć</strong>, zachowa więcej sprawczości niż ktoś, kto tylko naciska „generuj”.</p>
         <div class="final-question fragment">Jaką część myślenia zostawisz sobie?</div>
       </div>
       <aside class="notes">
@@ -673,9 +684,9 @@
         <h2>Trzy zdania, których warto pilnować</h2>
       </div>
       <div class="backup-cards">
-        <article><b>„Czy model rozumie?”</b><p>Zależy od tego, co nazywamy rozumieniem. Model radzi sobie z wieloma zadaniami, ale nie mamy prostego testu, który powiedziałby, czy doświadcza świata tak jak człowiek.</p></article>
+        <article><b>„Czy model rozumie?”</b><p>Zależy od definicji. Wynik w zadaniu nie rozstrzyga, czy model ma ludzką intuicję, intencje albo doświadczenie świata.</p></article>
         <article><b>„Czy AI jest kreatywna?”</b><p>Generuje nowe kombinacje i czasem wartościowe rozwiązania. Spór dotyczy nowości, intencji, oceny i autorstwa.</p></article>
-        <article><b>„Czy można jej ufać?”</b><p>Tak jak każdemu narzędziu, które bywa zawodne: tym bardziej, im lepiej potrafimy sprawdzić wynik. Nigdy tylko dlatego, że odpowiedź brzmi pewnie.</p></article>
+        <article><b>„Czy można jej ufać?”</b><p>Tylko w granicach, w których umiemy sprawdzić wynik, a koszt błędu jest akceptowalny. Pewny ton nie jest dowodem.</p></article>
       </div>
       <aside class="notes">Materiał zapasowy. Nie używaj w podstawowych 35 minutach.</aside>
     </section>

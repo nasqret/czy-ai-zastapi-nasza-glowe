@@ -175,6 +175,33 @@ button:focus-visible, a:focus-visible {
   text-shadow: 0 2px 15px var(--navy);
 }
 
+.title-meta {
+  display: grid;
+  grid-template-columns: auto auto;
+  width: fit-content;
+  margin-top: 28px;
+  padding: 14px 18px;
+  gap: 3px 20px;
+  border-left: 4px solid var(--cyan);
+  border-radius: 0 10px 10px 0;
+  background: rgb(6 27 53 / 68%);
+  font-size: clamp(14px, 1.15vw, 20px);
+}
+
+.title-meta strong {
+  grid-column: 1 / -1;
+  color: var(--cream);
+  font-size: 1.18em;
+}
+
+.title-meta span {
+  color: var(--muted);
+}
+
+.title-meta span:last-child {
+  color: var(--yellow);
+}
+
 .poll-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -574,17 +601,29 @@ button:focus-visible, a:focus-visible {
   font-size: 44px;
 }
 
+#trening.is-active {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: clamp(10px, 1.5vh, 18px);
+}
+
+#trening .slide-header h2 {
+  font-size: clamp(42px, 4.7vw, 78px);
+}
+
 .training-timeline {
   display: grid;
   grid-template-columns: 1fr auto 1fr auto 1fr;
   gap: 24px;
-  margin-top: 62px;
+  min-height: 0;
+  margin-top: 8px;
   align-items: center;
 }
 
 .training-card {
-  min-height: 390px;
-  padding: 34px;
+  min-height: 0;
+  height: 100%;
+  padding: clamp(24px, 2.3vw, 34px);
   border: 1px solid rgb(255 255 255 / 15%);
   border-radius: 24px;
   background: rgb(255 255 255 / 5%);
@@ -620,6 +659,10 @@ button:focus-visible, a:focus-visible {
   color: var(--muted);
   font-size: clamp(15px, 1.15vw, 20px);
   line-height: 1.35;
+}
+
+#trening > .caveat {
+  margin-top: 0 !important;
 }
 
 .timeline-arrow { color: var(--yellow); font-size: 48px; }
@@ -2314,7 +2357,8 @@ noscript {
   #idee.is-active,
   #codex.is-active,
   #jak-sie-uczyc.is-active,
-  #fermat-zabawa.is-active {
+  #fermat-zabawa.is-active,
+  #trening.is-active {
     display: block;
   }
   .proof-takeaway,

@@ -36,7 +36,7 @@ OVERFLOW_SCRIPT = """(slide) => {
       '.codex-run-prompt', '.codex-run-plan', '.code-diff',
       '.chat-message', '.practice-prompt', '.learning-in-practice li',
       '.fermat-lab', '.fermat-conclusion', '.fermat-offline',
-      '.fermat-rule-strip', '.fermat-rule-strip span'
+      '.fermat-rule-strip', '.fermat-rule-strip span', '.title-meta'
     ];
     const problems = [];
     slide.querySelectorAll(selectors.join(',')).forEach((node) => {

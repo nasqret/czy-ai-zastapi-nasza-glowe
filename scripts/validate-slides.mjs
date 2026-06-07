@@ -51,6 +51,10 @@ check(html.includes('data-run-demo'), "pokaz wielomianu Eulera jest obecny");
 check(html.includes('data-run-rectangle-demo'), "symulacja liczenia prostokątów przez Codex jest obecna");
 check(html.includes('data-run-fermat-demo'), "zabawa z małym twierdzeniem Fermata jest obecna");
 check(html.includes('341 = 11 · 31'), "slajd Fermata pokazuje złożony kontrprzykład 341");
+check(html.includes('Bartosz Naskręcki'), "slajd tytułowy zawiera imię i nazwisko autora");
+check(html.includes('UAM/CCAI'), "slajd tytułowy zawiera afiliację autora");
+check(html.includes('Warszawa, 8.06.2026'), "slajd tytułowy zawiera miejsce i datę wykładu");
+check(html.includes('√d<sub>k</sub>'), "wzór atencji używa skali √d_k");
 check(html.includes('data-speaker-panel'), "panel notatek jest obecny");
 check(html.includes('prefers-reduced-motion') === false, "HTML nie zawiera przypadkowego CSS inline");
 
@@ -61,6 +65,12 @@ try {
   checks.push("istnieje odtwarzalny skrypt Fermata");
 } catch {
   failures.push("brak odtwarzalnego skryptu Fermata");
+}
+try {
+  await access(resolve(root, "scripts/verify_math.py"));
+  checks.push("istnieje automatyczna weryfikacja obliczeń");
+} catch {
+  failures.push("brak automatycznej weryfikacji obliczeń");
 }
 check(css.includes("@media print"), "istnieje tryb druku");
 check(css.includes("prefers-reduced-motion"), "animacje respektują ograniczenie ruchu");
