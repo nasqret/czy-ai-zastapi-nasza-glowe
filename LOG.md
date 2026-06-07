@@ -49,7 +49,7 @@
 
 - Zastąpiono kalki z angielskiego i techniczny żargon naturalnymi polskimi
   sformułowaniami.
-- Tytuł zmieniono na bardziej idiomatyczne „Czy AI zastąpi nam głowę?”.
+- Zachowano ustalony tytuł wykładu: „Czy AI zastąpi naszą głowę?”.
 - Uproszczono podpisy, przykłady i instrukcje kierowane do uczniów.
 - Po redakcji ponownie sprawdzono 23 slajdy w trzech rozdzielczościach:
   brak przepełnień i błędów.
