@@ -265,31 +265,17 @@ button:focus-visible, a:focus-visible {
   border-radius: 50%;
 }
 
-.orbit::before {
-  content: "";
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--coral);
-  box-shadow: 0 0 30px var(--coral);
-}
-
 .orbit--one {
   width: 720px;
   height: 720px;
   transform: rotate(18deg);
 }
 
-.orbit--one::before { top: 70px; right: 110px; }
-
 .orbit--two {
   width: 1080px;
   height: 460px;
   transform: rotate(-12deg);
 }
-
-.orbit--two::before { right: 190px; bottom: 12px; background: var(--yellow); }
 
 .prediction-stage {
   display: grid;
