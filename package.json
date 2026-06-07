@@ -6,6 +6,7 @@
   "scripts": {
     "serve": "python3 -m http.server 4173 --bind 127.0.0.1",
     "test": "node scripts/validate-slides.mjs",
-    "test:browser": "python3 tests/test_slides.py"
+    "test:browser": "python3 tests/test_slides.py",
+    "demo:rectangles": "python3 scripts/rectangle_demo.py"
   }
 }

@@ -63,3 +63,17 @@
   pierwszej niedozwolonej operacji.
 - Test przeglądarkowy sprawdza teraz również nakładanie się głównych sekcji
   na obu slajdach.
+
+### Konkretne studium przypadku Codex
+
+- Slajdy 15, 16 i 18 przebudowano wokół pytania:
+  „Ile prostokątów ma szachownica 8×8?”.
+- Slajd 15 pokazuje błędny szybki strzał `64`, pomysł wyboru linii, program
+  sprawdzający i pytanie człowieka o zaliczanie kwadratów.
+- Slajd 16 zawiera klikalną symulację terminala: wynik `784`, nieudany test
+  planszy `1×1`, diagnozę błędu `n` zamiast `n+1`, poprawkę i wynik `1296`.
+- Dodano odtwarzalny skrypt `scripts/rectangle_demo.py`.
+- Slajd 18 pokazuje konkretną rozmowę ucznia z Codexem oraz przeniesienie metody
+  na planszę `10×10`.
+- Test przeglądarkowy uruchamia symulację i wymaga obecności `784`, `FAIL`
+  oraz końcowego `1296`.

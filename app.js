@@ -137,6 +137,41 @@
     }, 700);
   };
 
+  const runRectangleDemo = (button) => {
+    const slide = button.closest(".slide");
+    const transcript = slide.querySelector("[data-rectangle-transcript]");
+    const result = slide.querySelector("[data-rectangle-result]");
+    const lines = [
+      ["plan", "[PLAN] Prostokąt wyznaczają 2 linie pionowe i 2 poziome."],
+      ["run", "[RUN 1] count_rectangles_buggy(8) = 784"],
+      ["fail", "[TEST] plansza 1x1: oczekiwano 1, otrzymano 0 -> FAIL"],
+      ["diagnosis", "[DIAGNOZA] Plansza nxn ma n+1 linii, nie n."],
+      ["patch", "[POPRAWKA] range(n) -> range(n + 1)"],
+      ["pass", "[TEST] plansza 1x1: 1 -> PASS"],
+      ["pass", "[TEST] plansza 2x2: 9 -> PASS"],
+      ["pass", "[TEST] plansza 8x8: 1296 -> PASS"],
+      ["result", "[WYNIK] C(9,2)^2 = 36^2 = 1296"]
+    ];
+
+    button.disabled = true;
+    button.textContent = "Codex pracuje…";
+    transcript.innerHTML = "";
+
+    lines.forEach(([type, text], lineIndex) => {
+      window.setTimeout(() => {
+        const line = document.createElement("p");
+        line.className = `terminal-line--${type}`;
+        line.textContent = text;
+        transcript.appendChild(line);
+
+        if (lineIndex === lines.length - 1) {
+          button.textContent = "Testy zakończone";
+          result.classList.add("is-visible");
+        }
+      }, lineIndex * 180);
+    });
+  };
+
   document.querySelector("[data-next]").addEventListener("click", next);
   document.querySelector("[data-prev]").addEventListener("click", previous);
   document.querySelector("[data-notes-toggle]").addEventListener("click", () => toggleNotes());
@@ -144,6 +179,7 @@
   document.querySelector("[data-overview-toggle]").addEventListener("click", toggleOverview);
   document.querySelector("[data-fullscreen-toggle]").addEventListener("click", toggleFullscreen);
   document.querySelector("[data-run-demo]").addEventListener("click", (event) => runEulerDemo(event.currentTarget));
+  document.querySelector("[data-run-rectangle-demo]").addEventListener("click", (event) => runRectangleDemo(event.currentTarget));
 
   slides.forEach((slide, slideIndex) => {
     slide.addEventListener("click", () => {

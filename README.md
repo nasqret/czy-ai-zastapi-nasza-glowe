@@ -25,6 +25,14 @@ przewidywalne zachowanie pełnego ekranu.
 - gest w lewo/prawo: nawigacja na ekranie dotykowym
 
 Przycisk na slajdzie o wielomianie Eulera uruchamia lokalny mini-eksperyment.
+Przycisk na slajdzie 16 odtwarza pracę Codex nad liczeniem prostokątów:
+błędny program, test wykrywający błąd, poprawkę i końcowy wynik.
+
+Tę samą symulację można uruchomić w terminalu:
+
+```bash
+npm run demo:rectangles
+```
 
 ## Pliki
 
@@ -37,6 +45,7 @@ Przycisk na slajdzie o wielomianie Eulera uruchamia lokalny mini-eksperyment.
 - `docs/SPEAKER_NOTES.md` - skrypt prowadzącego
 - `docs/SOURCES.md` - bibliografia i zastrzeżenia
 - `assets/` - trzy autorskie ilustracje wygenerowane dla prezentacji
+- `scripts/rectangle_demo.py` - symulacja zadania użyta na slajdach 15-18
 
 ## Testy
 

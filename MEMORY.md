@@ -38,6 +38,9 @@
 - Przy wzorze atencji nie robić wyprowadzenia. Wyjaśnić Q/K/V.
 - Przy slajdzie 1=2 szukać „pierwszego nielegalnego ruchu”.
 - Finał nie jest prognozą rynku pracy, lecz pytaniem o osobistą odpowiedzialność.
+- Slajdy 15, 16 i 18 tworzą jedno studium przypadku: liczenie prostokątów
+  na szachownicy 8×8. Najpierw pomysł, potem kod i testy, na końcu rozmowa ucznia
+  z Codexem bez podawania gotowej odpowiedzi.
 
 ## Grafiki
 

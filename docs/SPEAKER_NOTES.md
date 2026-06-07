@@ -46,19 +46,27 @@ sprawdzić warunek każdej operacji i wskazać pierwszy niepoprawny krok.
 
 ### 14-15. Granice
 
-Pewny ton nie jest certyfikatem. AI tworzy wiele propozycji,
-ale człowiek ocenia ich nowość, sens i wartość. Ta ocena jest częścią wiedzy.
+Pewny ton nie jest certyfikatem. Przejdź do problemu szachownicy 8×8 i przyjmij
+z sali szybkie odpowiedzi. „64” jest użytecznym błędem: liczy pola, nie prostokąty.
+Pokaż zaznaczony prostokąt i zapytaj, co naprawdę go wyznacza. Codex łączy geometrię
+z kombinatoryką, proponuje wybór dwóch linii pionowych i dwóch poziomych oraz program
+sprawdzający. Człowiek doprecyzowuje, czy kwadraty także zaliczamy do prostokątów.
 
 ### 16-17. Codex i Euler
 
-Agent może czytać, planować, pisać kod i uruchamiać testy. Wielomian Eulera daje
-świetny przykład: kod znajduje `n=40`, a matematyka wyjaśnia `1681=41²`.
+Kliknij symulację. Pierwsza wersja kodu zwraca `784`, bo liczy osiem linii zamiast
+dziewięciu. Test `1×1` powinien dać jeden prostokąt, a daje zero. Codex poprawia
+`range(n)` na `range(n+1)`, uruchamia testy `1×1`, `2×2`, `8×8` i uzyskuje `1296`.
+Następnie wielomian Eulera pokazuje podobny schemat: kod znajduje `n=40`,
+a matematyka wyjaśnia `1681=41²`.
 
 ### 18-21. Praktyka i finał
 
-Uczyć się z AI oznacza: spróbować, poprosić o wskazówkę, porównać, obronić
-i zastosować metodę w nowym zadaniu. Dobry prompt określa cel, kontekst,
-ograniczenia i kryterium ukończenia.
+Odegraj rozmowę uczeń-Codex. Uczeń zaczyna od własnego błędu „64” i wyraźnie prosi,
+by nie podawać wyniku. Codex pyta kolejno o dziewięć linii i liczbę ich par.
+Na końcu uczeń stosuje tę samą metodę do planszy `10×10`, otrzymując
+`C(11,2)²=3025`. Dobry prompt określa cel, kontekst, ograniczenia i kryterium
+ukończenia.
 
 ## Awaryjne skrócenie do 25 minut
 

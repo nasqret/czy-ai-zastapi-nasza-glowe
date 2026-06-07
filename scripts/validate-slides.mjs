@@ -48,6 +48,7 @@ check(imagesWithoutAlt.length === 0, "każdy obraz ma tekst alternatywny");
 
 check(!/https?:\/\/[^"']+\.(?:js|css)/.test(html), "brak zewnętrznych zależności JS/CSS");
 check(html.includes('data-run-demo'), "pokaz wielomianu Eulera jest obecny");
+check(html.includes('data-run-rectangle-demo'), "symulacja liczenia prostokątów przez Codex jest obecna");
 check(html.includes('data-speaker-panel'), "panel notatek jest obecny");
 check(html.includes('prefers-reduced-motion') === false, "HTML nie zawiera przypadkowego CSS inline");
 

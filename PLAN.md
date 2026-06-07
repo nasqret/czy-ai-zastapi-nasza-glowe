@@ -27,9 +27,9 @@ wyniku i odpowiedzialność za jego użycie.
 | 3:45-11:15 | 4-8 | Tokeny, atencja, transformer |
 | 11:15-14:45 | 9-10 | Trening i przewaga matematyki |
 | 14:45-22:15 | 11-13 | Gauss, 0,999…, fałszywy dowód |
-| 22:15-25:00 | 14-15 | Pewność, idee i intuicja |
-| 25:00-28:45 | 16-17 | Codex i mini-eksperyment Eulera |
-| 28:45-35:00 | 18-21 | Nauka z AI, prompt, zasady i finał |
+| 22:15-25:00 | 14-15 | Pewność i pomysł Codex na liczenie prostokątów |
+| 25:00-28:45 | 16-17 | Testy Codex i eksperyment Eulera |
+| 28:45-35:00 | 18-21 | Uczeń pracuje z Codexem, prompt, zasady i finał |
 
 Slajdy 22-23 są dodatkami do pytań i nie wchodzą do czasu wykładu.
 
@@ -42,6 +42,7 @@ Slajdy 22-23 są dodatkami do pytań i nie wchodzą do czasu wykładu.
 5. Znalezienie błędu w „dowodzie” 1=2.
 6. Klikany pokaz wielomianu Eulera.
 7. Końcowe pytanie: „Jaką część myślenia zostawisz sobie?”.
+8. Klikana symulacja Codex: `784 → FAIL → poprawka → 1296`.
 
 ## Kryteria ukończenia
 

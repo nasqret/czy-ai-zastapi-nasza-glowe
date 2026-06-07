@@ -31,7 +31,10 @@ OVERFLOW_SCRIPT = """(slide) => {
       '.poll-card', '.training-card', '.reason', '.proof-card',
       '.crime-scene', '.axis-card', '.loop-node', '.learning-step',
       '.recipe-row', '.rules-list li', '.sources-grid a',
-      '.backup-cards article', '.formula-card', '.token-machine'
+      '.backup-cards article', '.formula-card', '.token-machine',
+      '.board-panel', '.candidate-card', '.codex-terminal',
+      '.codex-run-prompt', '.codex-run-plan', '.code-diff',
+      '.chat-message', '.practice-prompt', '.learning-in-practice li'
     ];
     const problems = [];
     slide.querySelectorAll(selectors.join(',')).forEach((node) => {
@@ -57,6 +60,16 @@ OVERLAP_SCRIPT = """(slide) => {
       ? [['.proof-split', '.proof-takeaway']]
       : slide.id === 'dowod-jeden-rowna-sie-dwa'
         ? [['.bad-proof', '.codex-audit'], ['.codex-audit', '.bad-proof-takeaway']]
+        : slide.id === 'idee'
+          ? [
+              ['.slide-header', '.rectangle-idea-layout'],
+              ['.board-panel', '.case-principles'],
+              ['.codex-candidates', '.case-principles']
+            ]
+        : slide.id === 'codex'
+          ? [['.slide-header', '.codex-run-grid'], ['.codex-run-grid', '.codex-result-line']]
+        : slide.id === 'jak-sie-uczyc'
+          ? [['.slide-header', '.tutor-case']]
         : [];
     return pairs.flatMap(([firstSelector, secondSelector]) => {
       const first = slide.querySelector(firstSelector);
@@ -100,6 +113,9 @@ def main() -> int:
 
         for position, slide_id in enumerate(ids, start=1):
             page.evaluate(ACTIVATE_SCRIPT, slide_id)
+            if slide_id == "codex":
+                page.locator("[data-run-rectangle-demo]").click()
+                page.wait_for_timeout(1750)
             page.wait_for_timeout(70)
 
             overflow = page.locator(f"#{slide_id}").evaluate(OVERFLOW_SCRIPT)
@@ -125,6 +141,9 @@ def main() -> int:
             page.goto(f"{URL}/?viewport={width}x{height}", wait_until="networkidle")
             for position, slide_id in enumerate(ids, start=1):
                 page.evaluate(ACTIVATE_SCRIPT, slide_id)
+                if slide_id == "codex":
+                    page.locator("[data-run-rectangle-demo]").click()
+                    page.wait_for_timeout(1750)
                 overflow = page.locator(f"#{slide_id}").evaluate(OVERFLOW_SCRIPT)
                 overlap = page.locator(f"#{slide_id}").evaluate(OVERLAP_SCRIPT)
                 if overflow:
@@ -135,7 +154,13 @@ def main() -> int:
                     failures.append(
                         f"Slajd {position} ({slide_id}) ma nakładające się sekcje w {width}×{height}: {overlap}"
                     )
-                if slide_id in {"dziewiec-dziewiec", "dowod-jeden-rowna-sie-dwa"}:
+                if slide_id in {
+                    "dziewiec-dziewiec",
+                    "dowod-jeden-rowna-sie-dwa",
+                    "idee",
+                    "codex",
+                    "jak-sie-uczyc",
+                }:
                     page.wait_for_timeout(320)
                     page.screenshot(
                         path=str(OUTPUT / f"{position:02d}-{slide_id}-{width}x{height}.png"),
@@ -172,6 +197,16 @@ def main() -> int:
         result = page.locator("#euler .terminal-result").inner_text()
         if "n = 40" not in result or "41²" not in result:
             failures.append(f"Demo Eulera zwróciło nieoczekiwany wynik: {result}")
+
+        page.goto(f"{URL}/?rectangle-interaction=1#codex", wait_until="networkidle")
+        page.locator("#codex .fragment").evaluate_all(
+            "(nodes) => nodes.forEach((node) => node.classList.add('is-visible'))"
+        )
+        page.locator("[data-run-rectangle-demo]").click()
+        page.wait_for_timeout(1750)
+        rectangle_output = page.locator("[data-rectangle-transcript]").inner_text()
+        if "784" not in rectangle_output or "FAIL" not in rectangle_output or "1296" not in rectangle_output:
+            failures.append(f"Symulacja Codex ma niepełny przebieg: {rectangle_output}")
 
         if console_errors:
             failures.append(f"Błędy konsoli: {console_errors}")

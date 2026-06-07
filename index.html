@@ -369,65 +369,91 @@
       </aside>
     </section>
 
-    <section class="slide" id="idee" data-title="Idee i intuicja" data-duration="105">
+    <section class="slide" id="idee" data-title="Codex szuka pomysłu" data-duration="105">
       <div class="slide-header compact">
-        <span class="kicker">Czy AI ma pomysły?</span>
-        <h2>Tak. Nie. To zależy, co nazywamy <em>pomysłem.</em></h2>
+        <span class="kicker">Konkretny problem · etap 1</span>
+        <h2>Ile prostokątów ma szachownica 8×8?</h2>
       </div>
-      <div class="idea-axis">
-        <div class="axis-card strong fragment">
-          <span>mocna</span>
-          <h3>Łączenie</h3>
-          <p>Łączy znane pomysły w tysiące nowych propozycji.</p>
+      <div class="rectangle-idea-layout">
+        <div class="board-panel fragment">
+          <div class="codex-prompt-tag">Pytanie do Codex</div>
+          <p>„Znajdź metodę, która zadziała także dla planszy 100×100. Zaproponuj wzór i sposób sprawdzenia.”</p>
+          <div class="chessboard" aria-label="Szachownica osiem na osiem z zaznaczonym prostokątem">
+            <i></i>
+            <span class="board-lines board-lines--top">9 linii pionowych</span>
+            <span class="board-lines board-lines--side">9 poziomych</span>
+          </div>
         </div>
-        <div class="axis-card strong fragment">
-          <span>mocna</span>
-          <h3>Poszukiwanie</h3>
-          <p>Szybko przeszukuje warianty i testuje hipotezy.</p>
-        </div>
-        <div class="axis-card weak fragment">
-          <span>słaba</span>
-          <h3>Nowość</h3>
-          <p>Nie zawsze wie, czy ktoś już to wymyślił.</p>
-        </div>
-        <div class="axis-card weak fragment">
-          <span>słaba</span>
-          <h3>Wartość</h3>
-          <p>Nie ma własnych celów i nie wie, któremu problemowi warto poświęcić dziesięć lat.</p>
+        <div class="codex-candidates">
+          <article class="candidate-card candidate-card--wrong fragment">
+            <b>1. Pierwszy strzał</b>
+            <strong>64?</strong>
+            <p>To liczba pól, nie prostokątów. Szybka odpowiedź może być zbyt szybka.</p>
+          </article>
+          <article class="candidate-card candidate-card--idea fragment">
+            <b>2. Pomysł</b>
+            <strong>Wybierz boki</strong>
+            <p>Każdy prostokąt wyznaczają 2 z 9 linii pionowych i 2 z 9 poziomych.</p>
+          </article>
+          <article class="candidate-card candidate-card--test fragment">
+            <b>3. Sprawdzenie</b>
+            <strong>Program</strong>
+            <p>Przejdź przez wszystkie pary linii i policz otrzymane prostokąty.</p>
+          </article>
+          <article class="candidate-card candidate-card--human fragment">
+            <b>4. Człowiek ustala sens</b>
+            <strong>Czy kwadrat też liczymy?</strong>
+            <p>Tak. Bez doprecyzowania nawet poprawny rachunek może odpowiadać na inne pytanie.</p>
+          </article>
         </div>
       </div>
-      <p class="bottom-line fragment">AI rozsiewa nasiona pomysłów. <strong>Intuicja wybiera, które podlewać.</strong></p>
+      <div class="case-principles fragment">
+        <span><b>Łączenie:</b> geometria + kombinatoryka</span>
+        <span><b>Poszukiwanie:</b> kilka metod</span>
+        <span><b>Ocena:</b> test i ludzki sens</span>
+      </div>
       <aside class="notes">
-        To korekta zbyt prostej tezy „AI nie potrafi wymyślać”. Potrafi tworzyć propozycje,
-        czasem zaskakujące. Trudniej ocenia ich nowość, sens, piękno, znaczenie i koszt realizacji.
-        Ludzka intuicja też nie jest magią: powstaje z doświadczenia, ciała, celów i długiej pracy.
+        Najpierw poproś salę o szybki strzał. „64” jest kuszące, ale liczy pola. Pokaż zaznaczony
+        prostokąt: jego boki leżą na dwóch liniach pionowych i dwóch poziomych. Codex może połączyć
+        geometrię z kombinatoryką i zaproponować program sprawdzający. Człowiek nadal doprecyzowuje
+        pytanie: czy liczymy kwadraty, czy tylko prostokąty o różnych bokach?
       </aside>
     </section>
 
-    <section class="slide" id="codex" data-title="Codex" data-duration="120">
+    <section class="slide" id="codex" data-title="Codex uruchamia test" data-duration="120">
       <div class="slide-header compact">
-        <span class="kicker">Dlaczego Codex potrafi więcej niż zwykły czat?</span>
-        <h2>Bo nie musi poprzestać na odpowiedzi</h2>
+        <span class="kicker">Konkretny problem · etap 2</span>
+        <h2>Codex pisze program. I popełnia błąd.</h2>
       </div>
-      <div class="agent-loop" aria-label="Pętla pracy agenta Codex">
-        <div class="loop-node fragment"><b>1</b><span>czytaj</span><small>problem, pliki, dane</small></div>
-        <div class="loop-arrow">→</div>
-        <div class="loop-node fragment"><b>2</b><span>planuj</span><small>hipoteza i kroki</small></div>
-        <div class="loop-arrow">→</div>
-        <div class="loop-node fragment"><b>3</b><span>działaj</span><small>kod, rachunek, narzędzie</small></div>
-        <div class="loop-arrow">→</div>
-        <div class="loop-node fragment"><b>4</b><span>testuj</span><small>dowód, test, wynik</small></div>
-        <div class="loop-return fragment">↺ popraw</div>
+      <div class="codex-run-grid">
+        <div class="codex-run-brief">
+          <div class="codex-run-prompt fragment">
+            <span>POLECENIE</span>
+            „Napisz program liczący prostokąty. Najpierw przetestuj go na planszach 1×1 i 2×2.”
+          </div>
+          <div class="codex-run-plan fragment">
+            <b>Plan Codex</b>
+            <p>Prostokąt = wybór dwóch pionowych i dwóch poziomych linii.</p>
+            <code>C(9,2) · C(9,2)</code>
+          </div>
+          <pre class="code-diff fragment"><code><span class="diff-minus">- lines = range(n)</span>
+<span class="diff-plus">+ lines = range(n + 1)</span></code></pre>
+          <button class="demo-button rectangle-demo-button fragment" type="button" data-run-rectangle-demo>Uruchom symulację Codex</button>
+        </div>
+        <div class="codex-terminal" data-rectangle-terminal aria-live="polite">
+          <div class="terminal-title"><i></i><i></i><i></i><span>codex · rectangle_demo.py</span></div>
+          <div class="terminal-transcript" data-rectangle-transcript>
+            <p class="terminal-idle">$ gotowy do uruchomienia testów</p>
+          </div>
+        </div>
       </div>
-      <div class="codex-callout fragment">
-        <span>Sam model:</span> „Wydaje mi się, że działa.”
-        <span>Agent:</span> „Uruchomiłem kod. Nie zadziałał. Poprawiłem go. Oto test.”
-      </div>
-      <p class="tiny source-note">Oficjalny podręcznik Codex: model → działanie → sprawdzenie → poprawka; nacisk na testy i przegląd pracy.</p>
+      <p class="codex-result-line fragment" data-rectangle-result>Wzór przewiduje: C(9,2)² = 36² = <strong>1296</strong>.</p>
       <aside class="notes">
-        Codex jest agentem programistycznym: może czytać repozytorium, edytować pliki i uruchamiać polecenia.
-        To ważne także w matematyce obliczeniowej: kod staje się laboratorium. Nadal trzeba ocenić,
-        czy test sprawdza właściwą rzecz i czy eksperyment numeryczny nie jest mylony z dowodem.
+        Kliknij „Uruchom symulację Codex”. Pierwszy program zwraca 784, bo używa ośmiu linii zamiast
+        dziewięciu. Mały test 1×1 natychmiast pokazuje zero zamiast jednego. Codex diagnozuje błąd
+        typu „o jeden”, zmienia range(n) na range(n+1), uruchamia trzy testy i otrzymuje 1296.
+        To jest konkretna przewaga agenta: nie tylko wypowiada odpowiedź, lecz tworzy plik, uruchamia go,
+        czyta błąd i poprawia kod. Program sprawdza rachunek; wzór wyjaśnia, dlaczego wynik jest poprawny.
       </aside>
     </section>
 
@@ -462,23 +488,39 @@
       </aside>
     </section>
 
-    <section class="slide" id="jak-sie-uczyc" data-title="Jak się uczyć z AI" data-duration="105">
+    <section class="slide" id="jak-sie-uczyc" data-title="Uczeń pracuje z Codexem" data-duration="105">
       <div class="slide-header compact">
-        <span class="kicker">Jak korzystać z AI, żeby nie oduczyć się myślenia?</span>
-        <h2>Nie pytaj tylko o odpowiedź</h2>
+        <span class="kicker">Ten sam problem · etap 3</span>
+        <h2>Codex jako korepetytor, nie automat z odpowiedziami</h2>
       </div>
-      <div class="learning-loop">
-        <div class="learning-step fragment"><b>1</b><span>Zacznij sam</span><small>zapisz swój pierwszy pomysł</small></div>
-        <div class="learning-step fragment"><b>2</b><span>Poproś o wskazówkę</span><small>nie o gotową odpowiedź</small></div>
-        <div class="learning-step fragment"><b>3</b><span>Porównaj</span><small>zestaw dwa rozwiązania</small></div>
-        <div class="learning-step fragment"><b>4</b><span>Wyjaśnij</span><small>opowiedz metodę bez AI</small></div>
-        <div class="learning-step fragment"><b>5</b><span>Sprawdź się</span><small>rozwiąż sam podobne zadanie</small></div>
+      <div class="tutor-case">
+        <div class="tutor-chat" aria-label="Przykładowa rozmowa ucznia z Codexem">
+          <div class="chat-message chat-message--student fragment"><b>Uczeń</b><span>Myślę, że odpowiedź to 64. Nie podawaj wyniku. Zadaj mi jedno pytanie.</span></div>
+          <div class="chat-message chat-message--codex fragment"><b>Codex</b><span>Ile pionowych linii ogranicza osiem kolumn pól?</span></div>
+          <div class="chat-message chat-message--student fragment"><b>Uczeń</b><span>Dziewięć. Prostokąt wybiera lewy i prawy bok.</span></div>
+          <div class="chat-message chat-message--codex fragment"><b>Codex</b><span>Ile par można wybrać z dziewięciu linii?</span></div>
+          <div class="chat-message chat-message--student fragment"><b>Uczeń</b><span>C(9,2)=36. Dla góry i dołu też 36, więc 36·36=1296.</span></div>
+          <div class="chat-message chat-message--codex fragment"><b>Codex</b><span>Sprawdź metodę na planszy 2×2. Ile powinno wyjść?</span></div>
+        </div>
+        <div class="learning-in-practice">
+          <div class="practice-prompt fragment">
+            <span>PROMPT, KTÓRY UCZY</span>
+            „Nie rozwiązuj za mnie. Zadawaj po jednym pytaniu. Jeśli popełnię błąd, wskaż pierwszy błędny krok.”
+          </div>
+          <ol>
+            <li class="fragment"><b>Własna próba:</b> „64” daje punkt wyjścia.</li>
+            <li class="fragment"><b>Wskazówka:</b> Codex pyta o liczbę linii.</li>
+            <li class="fragment"><b>Sprawdzenie:</b> program daje 1296.</li>
+            <li class="fragment"><b>Wyjaśnienie:</b> każda para boków daje jeden prostokąt.</li>
+            <li class="fragment"><b>Nowe zadanie:</b> plansza 10×10 → C(11,2)² = 3025.</li>
+          </ol>
+        </div>
       </div>
-      <div class="prompt-chip fragment">„Nie rozwiązuj zadania. Zadaj mi jedno pytanie, które pomoże mi zrobić następny krok.”</div>
       <aside class="notes">
-        Najlepszy test nauki: czy potrafisz odtworzyć ideę bez okna czatu i zastosować ją w nowym zadaniu.
-        Uczniowie mogą prosić AI, by było korepetytorem odpowiadającym pytaniami, generatorem kontrprzykładów,
-        recenzenta rozwiązania lub autora krótkiego quizu.
+        Odegraj rozmowę, prosząc jednego ucznia o odpowiedzi. Najważniejsza różnica jest w pierwszym
+        poleceniu: uczeń pokazuje własną próbę i zabrania podawania wyniku. Codex zadaje jedno pytanie,
+        potem sprawdza tok rozumowania. Na końcu uczeń rozwiązuje wariant 10×10 bez kopiowania rozwiązania.
+        To dopiero jest transfer wiedzy: nowy problem, ta sama idea.
       </aside>
     </section>
 
