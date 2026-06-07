@@ -297,7 +297,7 @@
           <p class="proof-answer">Taka dodatnia różnica nie może istnieć.</p>
         </div>
       </div>
-      <p class="bottom-line fragment">Model może podać pięć dowodów. <strong>Ty wybierasz ten, który naprawdę pomaga ci zrozumieć.</strong></p>
+      <p class="proof-takeaway fragment">Model może podać pięć dowodów. <strong>Ty wybierasz ten, który naprawdę pomaga ci zrozumieć.</strong></p>
       <aside class="notes">
         Zapytaj o pierwszą reakcję: „to prawda” czy „to oszustwo zapisu?”. Pokaż dwa wyjaśnienia.
         Druga droga jest celowo mniej formalna dla młodszych. W liceum można dopowiedzieć o granicy ciągu
@@ -325,11 +325,26 @@
           <p>Dzielenie przez zero udaje tu zwykłe skracanie.</p>
         </div>
       </div>
-      <p class="bottom-line fragment">Błędne rozumowanie też może brzmieć elegancko i bardzo pewnie.</p>
+      <div class="codex-audit fragment">
+        <div class="codex-audit__prompt">
+          <span>POLECENIE DLA CODEX</span>
+          „Sprawdź każdy krok. Wskaż pierwszy błąd i warunek, który został złamany.”
+        </div>
+        <div class="codex-audit__flow" aria-label="Trzy kroki analizy Codex">
+          <div><b>1</b><span>Czyta założenie:<br><strong>a = b</strong></span></div>
+          <i>→</i>
+          <div><b>2</b><span>Wylicza:<br><strong>a − b = 0</strong></span></div>
+          <i>→</i>
+          <div class="codex-audit__verdict"><b>3</b><span>Wskazuje pierwszy błąd:<br><strong>dzielenie przez zero</strong></span></div>
+        </div>
+      </div>
+      <p class="bad-proof-takeaway fragment">Codex nie powinien oceniać tylko wyniku. Powinien sprawdzić <strong>każdy krok i jego warunki.</strong></p>
       <aside class="notes">
         Nie pokazuj alarmu od razu. Daj publiczności trop: „Który krok wymaga warunku?”.
         To modelowy przykład halucynacji matematycznej: lokalnie płynne kroki, jeden niedozwolony ruch,
-        globalnie absurdalny wynik. Dobre pytanie do AI: „Wskaż pierwszy niepoprawny krok i nazwij warunek”.
+        globalnie absurdalny wynik. Potem pokaż ścieżkę Codex. Dobre polecenie nie brzmi „czy ten dowód
+        jest poprawny?”, lecz: „Sprawdź każdy krok, wskaż pierwszy niepoprawny i nazwij złamany warunek”.
+        Codex powinien odczytać założenie a=b, wywnioskować a−b=0 i dopiero wtedy odrzucić skracanie.
       </aside>
     </section>
 

@@ -52,6 +52,23 @@ OVERFLOW_SCRIPT = """(slide) => {
     return problems;
 }"""
 
+OVERLAP_SCRIPT = """(slide) => {
+    const pairs = slide.id === 'dziewiec-dziewiec'
+      ? [['.proof-split', '.proof-takeaway']]
+      : slide.id === 'dowod-jeden-rowna-sie-dwa'
+        ? [['.bad-proof', '.codex-audit'], ['.codex-audit', '.bad-proof-takeaway']]
+        : [];
+    return pairs.flatMap(([firstSelector, secondSelector]) => {
+      const first = slide.querySelector(firstSelector);
+      const second = slide.querySelector(secondSelector);
+      if (!first || !second) return [];
+      const a = first.getBoundingClientRect();
+      const b = second.getBoundingClientRect();
+      const overlap = a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
+      return overlap ? [{ first: firstSelector, second: secondSelector }] : [];
+    });
+}"""
+
 
 def main() -> int:
     OUTPUT.mkdir(parents=True, exist_ok=True)
@@ -86,13 +103,22 @@ def main() -> int:
             page.wait_for_timeout(70)
 
             overflow = page.locator(f"#{slide_id}").evaluate(OVERFLOW_SCRIPT)
+            overlap = page.locator(f"#{slide_id}").evaluate(OVERLAP_SCRIPT)
 
             if overflow:
                 failures.append(f"Slajd {position} ({slide_id}) ma elementy poza kadrem w 1440×900: {overflow}")
+            if overlap:
+                failures.append(f"Slajd {position} ({slide_id}) ma nakładające się sekcje w 1440×900: {overlap}")
 
             screenshot = OUTPUT / f"{position:02d}-{slide_id}.png"
             page.screenshot(path=str(screenshot), full_page=False)
-            report.append({"number": position, "id": slide_id, "overflow": overflow, "screenshot": str(screenshot.relative_to(ROOT))})
+            report.append({
+                "number": position,
+                "id": slide_id,
+                "overflow": overflow,
+                "overlap": overlap,
+                "screenshot": str(screenshot.relative_to(ROOT)),
+            })
 
         for width, height in [(1366, 768), (1920, 1080)]:
             page.set_viewport_size({"width": width, "height": height})
@@ -100,9 +126,20 @@ def main() -> int:
             for position, slide_id in enumerate(ids, start=1):
                 page.evaluate(ACTIVATE_SCRIPT, slide_id)
                 overflow = page.locator(f"#{slide_id}").evaluate(OVERFLOW_SCRIPT)
+                overlap = page.locator(f"#{slide_id}").evaluate(OVERLAP_SCRIPT)
                 if overflow:
                     failures.append(
                         f"Slajd {position} ({slide_id}) ma elementy poza kadrem w {width}×{height}: {overflow}"
+                    )
+                if overlap:
+                    failures.append(
+                        f"Slajd {position} ({slide_id}) ma nakładające się sekcje w {width}×{height}: {overlap}"
+                    )
+                if slide_id in {"dziewiec-dziewiec", "dowod-jeden-rowna-sie-dwa"}:
+                    page.wait_for_timeout(320)
+                    page.screenshot(
+                        path=str(OUTPUT / f"{position:02d}-{slide_id}-{width}x{height}.png"),
+                        full_page=False,
                     )
 
         page.set_viewport_size({"width": 1440, "height": 900})

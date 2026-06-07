@@ -41,6 +41,8 @@ Matematyka jest wdzięczna, bo ma wyraźną strukturę i często szybko pokazuje
 
 Gauss: dobra reprezentacja usuwa pracę. `0,999…=1`: różne dowody budują różne
 intuicje. `1=2`: płynność lokalnych kroków nie gwarantuje poprawności globalnej.
+Na końcu pokaż, jak Codex powinien przeprowadzić audyt: przeczytać założenie,
+sprawdzić warunek każdej operacji i wskazać pierwszy niepoprawny krok.
 
 ### 14-15. Granice
 

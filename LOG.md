@@ -53,3 +53,13 @@
 - Uproszczono podpisy, przykłady i instrukcje kierowane do uczniów.
 - Po redakcji ponownie sprawdzono 23 slajdy w trzech rozdzielczościach:
   brak przepełnień i błędów.
+
+### Poprawki slajdów 12-13
+
+- Slajd `0,999…=1` otrzymał układ w trzech wierszach, który oddziela puentę
+  od ramek z dowodami także na niższych ekranach.
+- Do fałszywego dowodu `1=2` dodano ilustrację sposobu pracy Codex:
+  precyzyjne polecenie, analiza założenia, wyliczenie `a−b=0` i wskazanie
+  pierwszej niedozwolonej operacji.
+- Test przeglądarkowy sprawdza teraz również nakładanie się głównych sekcji
+  na obu slajdach.
