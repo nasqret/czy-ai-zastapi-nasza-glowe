@@ -1,52 +1,63 @@
-"""Deterministyczna symulacja pracy Codex nad zadaniem o prostokątach."""
+"""Deterministic Codex-style simulation for rectangles on an m by k board."""
 
 from math import comb
 
 
-def count_rectangles_buggy(n: int) -> int:
-    """Typowy pierwszy błąd: użycie n linii zamiast n+1."""
-    lines = range(n)
-    return sum(
-        1
-        for left in lines
-        for right in lines
-        for top in lines
-        for bottom in lines
-        if left < right and top < bottom
-    )
+def count_rectangles_buggy(rows: int, columns: int | None = None) -> int:
+    """Typical off-by-one bug: use cell counts as line counts."""
+    columns = rows if columns is None else columns
+    return comb(rows, 2) * comb(columns, 2)
 
 
-def count_rectangles(n: int) -> int:
-    """Każdy prostokąt wybiera dwie z n+1 linii pionowych i poziomych."""
-    lines = range(n + 1)
+def count_rectangles(rows: int, columns: int | None = None) -> int:
+    """Choose two of rows+1 horizontal and two of columns+1 vertical lines."""
+    columns = rows if columns is None else columns
+    if rows < 1 or columns < 1:
+        raise ValueError("Board dimensions must be positive.")
+    return comb(rows + 1, 2) * comb(columns + 1, 2)
+
+
+def count_rectangles_by_enumeration(rows: int, columns: int) -> int:
+    """Independent enumeration used to check the closed formula."""
+    horizontal = range(rows + 1)
+    vertical = range(columns + 1)
     return sum(
         1
-        for left in lines
-        for right in lines
-        for top in lines
-        for bottom in lines
-        if left < right and top < bottom
+        for top in horizontal
+        for bottom in horizontal
+        for left in vertical
+        for right in vertical
+        if top < bottom and left < right
     )
 
 
 def main() -> None:
-    print("[PLAN] Prostokąt wyznaczają 2 linie pionowe i 2 poziome.")
-    print(f"[RUN 1] count_rectangles_buggy(8) = {count_rectangles_buggy(8)}")
+    rows, columns = 2, 3
+    print("[PLAN] A rectangle selects 2 horizontal and 2 vertical grid lines.")
+    print(
+        f"[RUN 1] buggy({rows}x{columns}) = "
+        f"C({rows},2)C({columns},2) = {count_rectangles_buggy(rows, columns)}"
+    )
+    print("[TEST] 1x1: expected 1, buggy code returns 0 -> FAIL")
+    print("[DIAGNOSIS] An m x k board has m+1 horizontal and k+1 vertical lines.")
 
-    small_result = count_rectangles_buggy(1)
-    print(f"[TEST] plansza 1x1: oczekiwano 1, otrzymano {small_result} -> FAIL")
-    print("[DIAGNOZA] Plansza nxn ma n+1 linii w każdym kierunku, nie n.")
-    print("[POPRAWKA] range(n) -> range(n + 1)")
+    expected = {(1, 1): 1, (1, 2): 3, (2, 3): 18, (8, 8): 1296}
+    for dimensions, value in expected.items():
+        result = count_rectangles(*dimensions)
+        enumerated = count_rectangles_by_enumeration(*dimensions)
+        status = "PASS" if result == value == enumerated else "FAIL"
+        print(f"[TEST] board {dimensions[0]}x{dimensions[1]}: {result} -> {status}")
 
-    expected = {1: 1, 2: 9, 8: 1296}
-    for size, value in expected.items():
-        result = count_rectangles(size)
-        status = "PASS" if result == value else "FAIL"
-        print(f"[TEST] plansza {size}x{size}: {result} -> {status}")
-
-    formula = comb(9, 2) ** 2
-    print(f"[WZOR] C(9,2)^2 = 36^2 = {formula}")
-    print(f"[WYNIK] Szachownica 8x8 zawiera {count_rectangles(8)} prostokątów.")
+    result = count_rectangles(rows, columns)
+    print(
+        f"[FORMULA] C({rows + 1},2)C({columns + 1},2) = "
+        f"{comb(rows + 1, 2)} * {comb(columns + 1, 2)} = {result}"
+    )
+    print(f"[COMPUTER FOUND] {result} rectangles on a {rows}x{columns} board.")
+    print(
+        "[MATHEMATICS STILL NEEDS TO EXPLAIN] "
+        "why line pairs correspond one-to-one with rectangles."
+    )
 
 
 if __name__ == "__main__":

@@ -12,6 +12,7 @@ OUTPUT = ROOT / "test-results" / "slides"
 BASE_URL = "http://127.0.0.1:4173"
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 PRESENTATIONS = {"pl": "/pl/", "en": "/en/"}
+PROFILE_COUNTS = {"core": 24, "math": 30, "full": 34}
 
 ACTIVATE_SCRIPT = """(id) => {
     const slides = [...document.querySelectorAll('.slide')];
@@ -28,14 +29,15 @@ OVERFLOW_SCRIPT = """(slide) => {
     const selectors = [
       'h1', 'h2', 'h3', 'p', 'blockquote', 'pre', 'button',
       '.poll-card', '.training-card', '.reason', '.proof-card',
-      '.crime-scene', '.axis-card', '.loop-node', '.learning-step',
-      '.recipe-row', '.rules-list li', '.sources-grid a',
-      '.backup-cards article', '.formula-card', '.token-machine',
-      '.board-panel', '.candidate-card', '.codex-terminal',
-      '.codex-run-prompt', '.codex-run-plan', '.code-diff',
-      '.chat-message', '.practice-prompt', '.learning-in-practice li',
-      '.fermat-lab', '.fermat-conclusion', '.fermat-offline',
-      '.fermat-rule-strip', '.fermat-rule-strip span', '.title-meta'
+      '.proof-puzzle', '.crime-scene', '.axis-card', '.loop-node',
+      '.learning-step', '.rules-list li', '.sources-grid a',
+      '.formula-card', '.token-machine', '.attention-matrix',
+      '.fluency-card', '.board-panel', '.candidate-card',
+      '.codex-terminal', '.codex-run-prompt', '.codex-run-plan',
+      '.chat-message', '.practice-prompt', '.checklist-grid article',
+      '.transfer-grid article', '.attempt-card', '.school-rules article',
+      '.fermat-definitions article', '.fermat-lab', '.resource-slide',
+      '.resource-rules span', '.title-meta', '.track-control'
     ];
     return [...slide.querySelectorAll(selectors.join(','))].flatMap((node) => {
       const style = getComputedStyle(node);
@@ -43,24 +45,25 @@ OVERFLOW_SCRIPT = """(slide) => {
       if (style.display === 'none' || style.visibility === 'hidden' || rect.width === 0 || rect.height === 0) return [];
       const outside = rect.left < frame.left - 2 || rect.right > frame.right + 2 ||
         rect.top < frame.top - 2 || rect.bottom > frame.bottom + 2;
-      return outside ? [{node: node.tagName.toLowerCase(), rect: [rect.left, rect.top, rect.right, rect.bottom].map(Math.round)}] : [];
+      return outside ? [{
+        node: node.tagName.toLowerCase(),
+        classes: node.className,
+        rect: [rect.left, rect.top, rect.right, rect.bottom].map(Math.round)
+      }] : [];
     });
 }"""
 
 OVERLAP_SCRIPT = """(slide) => {
-    const pairs = slide.id === 'dziewiec-dziewiec'
-      ? [['.proof-split', '.proof-takeaway']]
-      : slide.id === 'dowod-jeden-rowna-sie-dwa'
-        ? [['.bad-proof', '.codex-audit'], ['.codex-audit', '.bad-proof-takeaway']]
-        : slide.id === 'idee'
-          ? [['.slide-header', '.rectangle-idea-layout'], ['.board-panel', '.case-principles'], ['.codex-candidates', '.case-principles']]
-        : slide.id === 'codex'
-          ? [['.slide-header', '.codex-run-grid'], ['.codex-run-grid', '.codex-result-line']]
-        : slide.id === 'jak-sie-uczyc'
-          ? [['.slide-header', '.tutor-case']]
-        : slide.id === 'fermat-zabawa'
-          ? [['.slide-header', '.fermat-lab'], ['.fermat-lab', '.fermat-rule-strip']]
-        : [];
+    const pairs = {
+      'uwaga-wzor': [['.slide-header', '.formula-card']],
+      'falszywy-dowod': [['.slide-header', '.proof-puzzle']],
+      'audyt-dowodu': [['.bad-proof', '.bad-proof-takeaway']],
+      'prostokaty': [['.slide-header', '.rectangle-idea-layout']],
+      'codex': [['.slide-header', '.codex-run-grid'], ['.codex-run-grid', '.evidence-pair']],
+      'euler-eksperyment': [['.slide-header', '.euler-lab'], ['.euler-lab', '.evidence-pair']],
+      'korepetytor': [['.slide-header', '.tutor-case']],
+      'fermat-341': [['.slide-header', '.fermat-lab'], ['.fermat-lab', '.evidence-pair']]
+    }[slide.id] || [];
     return pairs.flatMap(([firstSelector, secondSelector]) => {
       const first = slide.querySelector(firstSelector);
       const second = slide.querySelector(secondSelector);
@@ -73,9 +76,39 @@ OVERLAP_SCRIPT = """(slide) => {
 }"""
 
 
+def visible_slide_count(page) -> int:
+    return page.locator(".slide:not(.is-filtered)").count()
+
+
+def exercise_profiles(page, language: str, failures: list[str]) -> None:
+    path = PRESENTATIONS[language]
+    for track, expected in PROFILE_COUNTS.items():
+        page.goto(f"{BASE_URL}{path}?track={track}#start", wait_until="networkidle")
+        actual = visible_slide_count(page)
+        if actual != expected:
+            failures.append(f"{language}: profil {track} pokazuje {actual} slajdów zamiast {expected}")
+        talk_count = page.locator(".slide:not(.is-filtered):not(.appendix)").count()
+        expected_talk = expected - 2
+        if talk_count != expected_talk:
+            failures.append(f"{language}: profil {track} ma {talk_count} slajdów wykładu zamiast {expected_talk}")
+        if page.locator("[data-track-select]").input_value() != track:
+            failures.append(f"{language}: selektor profilu nie wskazuje {track}")
+
+    page.goto(f"{BASE_URL}{path}?track=core#start", wait_until="networkidle")
+    page.locator("[data-track-select]").select_option("math")
+    page.wait_for_timeout(100)
+    if visible_slide_count(page) != 30 or "track=math" not in page.url:
+        failures.append(f"{language}: zmiana profilu przez select nie aktywuje 30 slajdów math")
+    page.locator("[data-track-select]").select_option("full")
+    page.wait_for_timeout(100)
+    if visible_slide_count(page) != 34 or "track=full" not in page.url:
+        failures.append(f"{language}: zmiana profilu przez select nie aktywuje 34 slajdów full")
+
+
 def exercise_interactions(page, language: str, failures: list[str]) -> None:
-    url = f"{BASE_URL}/{language}/"
-    page.goto(f"{url}?interaction-test=1#start", wait_until="networkidle")
+    path = PRESENTATIONS[language]
+    url = f"{BASE_URL}{path}"
+    page.goto(f"{url}?track=core&interaction-test=1#start", wait_until="networkidle")
     first_fragment = page.locator("#sonda .fragment").first
     page.keyboard.press("ArrowRight")
     if page.locator(".slide.is-active").get_attribute("id") != "sonda":
@@ -94,31 +127,37 @@ def exercise_interactions(page, language: str, failures: list[str]) -> None:
     page.keyboard.press("o")
     if not page.locator(".deck").evaluate("(node) => node.classList.contains('is-overview')"):
         failures.append(f"{language}: klawisz O nie otwiera przeglądu")
-    page.locator("#euler").click()
-    page.locator("[data-run-demo]").click()
-    page.wait_for_timeout(900)
-    result = page.locator("#euler .terminal-result").inner_text()
+
+    page.goto(f"{url}?track=full#uwaga-wzor", wait_until="networkidle")
+    formula = page.locator("#uwaga-wzor .formula").inner_text()
+    if "QK" not in formula or "+ M" not in formula or "√d" not in formula:
+        failures.append(f"{language}: wzór uwagi nie zawiera maski M lub skali √d_k: {formula}")
+
+    page.goto(f"{url}?track=full#euler-eksperyment", wait_until="networkidle")
+    page.evaluate(ACTIVATE_SCRIPT, "euler-eksperyment")
+    page.locator("#euler-eksperyment [data-run-demo]").evaluate("(button) => button.click()")
+    page.wait_for_timeout(600)
+    result = page.locator("#euler-eksperyment .terminal-result").inner_text()
     if "n = 40" not in result or "41²" not in result:
         failures.append(f"{language}: demo Eulera zwróciło {result}")
 
-    page.goto(f"{url}?rectangle-interaction=1#codex", wait_until="networkidle")
+    page.goto(f"{url}?track=full#codex", wait_until="networkidle")
+    page.evaluate(ACTIVATE_SCRIPT, "codex")
     page.locator("#codex .fragment").evaluate_all("(nodes) => nodes.forEach((node) => node.classList.add('is-visible'))")
-    page.locator("[data-run-rectangle-demo]").click()
-    page.wait_for_timeout(1750)
+    page.locator("#codex [data-run-rectangle-demo]").evaluate("(button) => button.click()")
+    page.wait_for_timeout(1900)
     output = page.locator("[data-rectangle-transcript]").inner_text()
-    if not all(value in output for value in ["784", "FAIL", "1296"]):
-        failures.append(f"{language}: niepełna symulacja prostokątów: {output}")
+    if not all(value in output for value in ["1×1", "2×3", "1296"]):
+        failures.append(f"{language}: niepełna symulacja prostokątów m×k: {output}")
 
-    page.goto(f"{url}?fermat-interaction=1#fermat-zabawa", wait_until="networkidle")
-    page.locator("#fermat-zabawa .fragment").evaluate_all("(nodes) => nodes.forEach((node) => node.classList.add('is-visible'))")
-    page.locator("[data-run-fermat-demo]").click()
-    page.wait_for_timeout(1350)
+    page.goto(f"{url}?track=full#fermat-341", wait_until="networkidle")
+    page.evaluate(ACTIVATE_SCRIPT, "fermat-341")
+    page.locator("#fermat-341 .fragment").evaluate_all("(nodes) => nodes.forEach((node) => node.classList.add('is-visible'))")
+    page.locator("#fermat-341 [data-run-fermat-demo]").evaluate("(button) => button.click()")
+    page.wait_for_timeout(1500)
     output = page.locator("[data-fermat-transcript]").inner_text()
-    transfer = page.locator("[data-fermat-offline]").inner_text()
-    if "341 = 11 × 31" not in output or "mod 341 = 0" not in output:
-        failures.append(f"{language}: symulacja Fermata nie znalazła 341: {output}")
-    if not all(value in transfer for value in ["3", "100", "4"]):
-        failures.append(f"{language}: brak samodzielnego rachunku Fermata: {transfer}")
+    if not all(value in output for value in ["341 = 11 × 31", "gcd(2,341)=1", "2^340 mod 341 = 1"]):
+        failures.append(f"{language}: symulacja standardowego testu Fermata jest niepełna: {output}")
 
 
 def main() -> int:
@@ -137,26 +176,30 @@ def main() -> int:
             page.on("console", lambda message, errors=console_errors: errors.append(message.text) if message.type == "error" else None)
             page.on("pageerror", lambda error, errors=page_errors: errors.append(str(error)))
 
-            response = page.goto(f"{BASE_URL}{path}", wait_until="networkidle")
+            response = page.goto(f"{BASE_URL}{path}?track=full", wait_until="networkidle")
             if response is None or not response.ok:
                 failures.append(f"{language}: nie udało się otworzyć prezentacji")
                 page.close()
                 continue
             ids = page.locator(".slide").evaluate_all("(nodes) => nodes.map((node) => node.id)")
-            if len(ids) != 24:
-                failures.append(f"{language}: oczekiwano 24 slajdów, znaleziono {len(ids)}")
+            if len(ids) != 34:
+                failures.append(f"{language}: oczekiwano 34 slajdów DOM, znaleziono {len(ids)}")
+
+            tracks = page.locator(".slide").evaluate_all(
+                """(nodes) => nodes.reduce((counts, node) => {
+                    const track = node.dataset.track;
+                    counts[track] = (counts[track] || 0) + 1;
+                    return counts;
+                }, {})"""
+            )
+            if tracks != {"core": 22, "technical": 4, "math": 6, "appendix": 2}:
+                failures.append(f"{language}: niepoprawny podział data-track: {tracks}")
 
             for width, height in [(1440, 900), (1366, 768), (1920, 1080)]:
                 page.set_viewport_size({"width": width, "height": height})
-                page.goto(f"{BASE_URL}{path}?viewport={width}x{height}", wait_until="networkidle")
+                page.goto(f"{BASE_URL}{path}?track=full&viewport={width}x{height}", wait_until="networkidle")
                 for position, slide_id in enumerate(ids, start=1):
                     page.evaluate(ACTIVATE_SCRIPT, slide_id)
-                    if slide_id == "codex":
-                        page.locator("[data-run-rectangle-demo]").click()
-                        page.wait_for_timeout(1750)
-                    if slide_id == "fermat-zabawa":
-                        page.locator("[data-run-fermat-demo]").click()
-                        page.wait_for_timeout(1350)
                     overflow = page.locator(f"#{slide_id}").evaluate(OVERFLOW_SCRIPT)
                     overlap = page.locator(f"#{slide_id}").evaluate(OVERLAP_SCRIPT)
                     if overflow:
@@ -166,8 +209,15 @@ def main() -> int:
                     if width == 1440:
                         screenshot = language_output / f"{position:02d}-{slide_id}.png"
                         page.screenshot(path=str(screenshot), full_page=False)
-                        report.append({"language": language, "number": position, "id": slide_id, "overflow": overflow, "overlap": overlap})
+                        report.append({
+                            "language": language,
+                            "number": position,
+                            "id": slide_id,
+                            "overflow": overflow,
+                            "overlap": overlap,
+                        })
 
+            exercise_profiles(page, language, failures)
             exercise_interactions(page, language, failures)
             if console_errors:
                 failures.append(f"{language}: błędy konsoli: {console_errors}")
@@ -183,7 +233,7 @@ def main() -> int:
         for failure in failures:
             print(f"  ✗ {failure}")
         return 1
-    print("Test slajdów udany: 48 slajdów, 3 rozdzielczości, wszystkie interakcje.")
+    print("Test slajdów udany: 68 renderów slajdów, 3 rozdzielczości, 3 profile i wszystkie interakcje.")
     return 0
 
 

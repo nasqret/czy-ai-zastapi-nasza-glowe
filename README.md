@@ -1,24 +1,32 @@
 # Czy AI zastąpi naszą głowę?
 
-Dwujęzyczny, interaktywny serwis do 35-minutowego wykładu popularnonaukowego
-dla klas 7-8 szkoły podstawowej i liceum.
+Dwujęzyczny, interaktywny serwis do popularnonaukowego wykładu dla klas 7-8
+szkoły podstawowej i liceum.
 
 Autor: Bartosz Naskręcki, UAM/CCAI. Warszawa, 8.06.2026.
 
 Strona: <https://nasqret.github.io/czy-ai-zastapi-nasza-glowe/>
 
+## Profile prezentacji
+
+- `core` - 22 slajdy i dokładnie 35 minut;
+- `math` - rdzeń oraz opcjonalne moduły matematyczne;
+- `full` - rdzeń, matematyka i techniczne szczegóły transformera.
+
+Profil można wybrać w panelu prowadzącego albo przez parametr adresu:
+`/pl/?track=math`, `/en/?track=full`.
+
 ## Zawartość
 
-- `/` - landing page z wyborem języka;
-- `/pl/` - polska prezentacja;
-- `/en/` - angielska prezentacja;
-- `/experiments/pl/` - pięć polskich laboratoriów Codex Math Lab;
-- `/experiments/en/` - pięć angielskich laboratoriów;
-- `scripts/build_english_presentation.py` - odtwarzalne generowanie wersji EN;
-- `docs/` - notatki prowadzącego, źródła i materiały organizacyjne.
+- `/pl/` i `/en/` - prezentacje z notatkami prowadzącego;
+- `/experiments/pl/` i `/experiments/en/` - pięć laboratoriów Codex Math Lab;
+- `REVAMP_PLAN.md` - plan przebudowy wynikający z krytycznego audytu;
+- `sources/ai_presentation_critical_audit.md` - dokument źródłowy audytu;
+- `scripts/build_english_presentation.py` - ścisłe generowanie wersji angielskiej;
+- `docs/` - notatki prowadzącego i bibliografia.
 
-Laboratoria wykonują obliczenia lokalnie w przeglądarce. Nie łączą się z API,
-nie wysyłają danych i jasno oznaczają dzienniki pracy Codexa jako symulacje.
+Laboratoria wykonują obliczenia lokalnie w przeglądarce. Nie łączą się z API
+i odróżniają wynik eksperymentu od matematycznego wyjaśnienia.
 
 ## Uruchomienie
 
@@ -28,14 +36,14 @@ npm run serve
 
 Otwórz <http://127.0.0.1:4173/>.
 
-## Sterowanie prezentacją
+## Sterowanie
 
 - `→`, `↓`, `Spacja`, `Enter` - następny element lub slajd;
 - `←`, `↑`, `Backspace` - poprzedni element lub slajd;
 - `N` - notatki prowadzącego;
 - `O` - przegląd slajdów;
 - `F` - pełny ekran;
-- `Home`, `End` - początek lub finał.
+- `Home`, `End` - początek lub koniec aktywnej ścieżki.
 
 ## Testy
 
@@ -44,15 +52,8 @@ npm test
 npm run test:browser
 ```
 
-`npm test` generuje wersję angielską, wykonuje 85 kontroli struktury i ponownie
-przelicza wszystkie przykłady matematyczne. Test przeglądarkowy sprawdza 48
-slajdów w trzech rozdzielczościach, interakcje, landing page i laboratoria
-na desktopie oraz telefonie.
-
-## Publikacja
-
-Serwis jest statyczny i działa bez procesu budowania po stronie GitHub Pages.
-Publikowana jest gałąź `main`, katalog `/`.
+Testy sprawdzają strukturę i lokalizację obu wersji, matematykę, profile slajdów,
+interakcje, dostępność podstawową, laboratoria i układ w kilku rozdzielczościach.
 
 ## Prawa
 

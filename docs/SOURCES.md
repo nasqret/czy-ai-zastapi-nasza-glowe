@@ -2,6 +2,11 @@
 
 Stan materiałów produktowych OpenAI: **7 czerwca 2026**.
 
+Punktem wyjścia do dużej przebudowy był również lokalny dokument
+[`sources/ai_presentation_critical_audit.md`](../sources/ai_presentation_critical_audit.md).
+Jego zalecenia zostały zweryfikowane matematycznie i przełożone na plan
+[`REVAMP_PLAN.md`](../REVAMP_PLAN.md).
+
 ## Mechanizm modeli
 
 1. Ashish Vaswani i in., [Attention Is All You Need](https://arxiv.org/abs/1706.03762),
@@ -43,6 +48,8 @@ i kryterium ukończenia. Podręcznik sprawdzono ponownie 7 czerwca 2026.
 - Slajdy upraszczają architekturę. Współczesne modele mogą zawierać dodatkowe
   mechanizmy niewidoczne na schemacie „tokeny → transformer → token”.
 - Mechanizm atencji nie jest świadomą uwagą.
+- W autoregresyjnym GPT pojedyncza głowa uwagi używa maski przyczynowej `M`,
+  która blokuje dostęp do przyszłych pozycji.
 - Publiczne materiały nie ujawniają pełnego składu danych ani wszystkich etapów
   treningu najnowszych modeli. Slajd o treningu opisuje publicznie znane klasy
   metod, a nie kompletną recepturę konkretnego modelu.
@@ -50,6 +57,8 @@ i kryterium ukończenia. Podręcznik sprawdzono ponownie 7 czerwca 2026.
   na jednym procencie ani rankingu.
 - Wygenerowanie kontrprzykładu lub wykonanie obliczeń nie jest samo w sobie
   dowodem matematycznym.
+- Test Fermata `a^(n-1) ≡ 1 (mod n)` jest stosowany przy `NWD(a,n)=1`;
+  jego przejście nie dowodzi, że `n` jest pierwsza.
 - Pretrening i posttrening są etapami uczenia modelu. Korzystanie z plików,
   kodu i testów przez agenta opisuje sposób użycia modelu, a nie kolejny etap treningu.
 
