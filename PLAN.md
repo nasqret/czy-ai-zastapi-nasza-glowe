@@ -48,9 +48,14 @@ Slajdy 23-24 są dodatkami do pytań i nie wchodzą do czasu wykładu.
 ## Kryteria ukończenia
 
 - 22 główne slajdy mają łącznie dokładnie 2100 sekund.
+- Polska i angielska wersja prezentacji mają ten sam układ i pełne notatki.
+- Landing page prowadzi do obu prezentacji oraz laboratoriów Codex Math Lab.
+- Pięć eksperymentów działa w języku polskim i angielskim bez zewnętrznego API.
 - Prezentacja działa offline i nie pobiera fontów ani bibliotek.
 - Każdy slajd ma notatki prowadzącego.
 - Klawiatura, dotyk, pełny ekran, przegląd i fragmenty działają.
 - Wszystkie lokalne obrazy i skrypty istnieją.
 - Brak poziomego lub pionowego przepełnienia w typowej rozdzielczości 16:9.
+- Landing page i laboratoria nie mają poziomego przepełnienia na telefonie.
+- GitHub Pages publikuje gałąź `main` z katalogu głównego.
 - Repozytorium git zawiera źródła, dokumentację i wyniki testów.

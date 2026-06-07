@@ -4,10 +4,11 @@
   "private": true,
   "description": "35-minutowy popularnonaukowy wykład HTML o AI, matematyce i myśleniu.",
   "scripts": {
+    "build": "python3 scripts/build_english_presentation.py",
     "serve": "python3 -m http.server 4173 --bind 127.0.0.1",
-    "test": "node scripts/validate-slides.mjs && python3 scripts/verify_math.py",
+    "test": "npm run build && node scripts/validate-slides.mjs && python3 scripts/verify_math.py",
     "test:math": "python3 scripts/verify_math.py",
-    "test:browser": "python3 tests/test_slides.py",
+    "test:browser": "python3 tests/test_slides.py && python3 tests/test_site.py",
     "demo:fermat": "python3 scripts/fermat_demo.py",
     "demo:rectangles": "python3 scripts/rectangle_demo.py"
   }

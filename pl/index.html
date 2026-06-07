@@ -1,0 +1,731 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Czy AI zastąpi naszą głowę?</title>
+  <meta name="description" content="35-minutowy popularnonaukowy wykład o AI, matematyce i myśleniu dla klas 7-8 i liceum.">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <main class="deck" aria-live="polite">
+    <section class="slide slide--image title-slide is-active" id="start" data-title="Tytuł" data-duration="60">
+      <img class="slide-bg" src="../assets/hero-human-ai.png" alt="Uczeń i zbudowany z kart pomocnik AI wspólnie oglądają geometryczną zagadkę">
+      <div class="image-scrim"></div>
+      <div class="title-lockup">
+        <p class="eyebrow">35 minut · zero magii · trochę matematyki</p>
+        <h1>Czy AI zastąpi<br>naszą <em>głowę?</em></h1>
+        <p class="lead">Krótka instrukcja współpracy z maszyną do myślenia.</p>
+        <div class="title-meta">
+          <strong>Bartosz Naskręcki</strong>
+          <span>UAM/CCAI</span>
+          <span>Warszawa, 8.06.2026</span>
+        </div>
+      </div>
+      <aside class="notes">
+        <strong>Otwarcie.</strong> „Nie odpowiem dziś, czy AI zabierze wam pracę w 2042 roku.
+        Spróbujemy odpowiedzieć na trudniejsze pytanie: które części myślenia warto jej oddać,
+        a które warto zachować dla siebie?”. Poproś, by publiczność zapamiętała swoją odpowiedź do końca.
+      </aside>
+    </section>
+
+    <section class="slide" id="sonda" data-title="Sonda" data-duration="75">
+      <div class="slide-header">
+        <span class="kicker">Szybka sonda</span>
+        <h2>Kto już dziś poprosił AI, żeby pomyślała za niego?</h2>
+      </div>
+      <div class="poll-grid">
+        <article class="poll-card coral fragment">
+          <span class="poll-icon">?</span>
+          <h3>„Wyjaśnij mi”</h3>
+          <p>coś, czego nie zrozumiałem na lekcji albo w podręczniku</p>
+        </article>
+        <article class="poll-card cyan fragment">
+          <span class="poll-icon">{ }</span>
+          <h3>„Zrób to za mnie”</h3>
+          <p>kod, prezentację, zadanie albo wiadomość do nauczyciela</p>
+        </article>
+        <article class="poll-card yellow fragment">
+          <span class="poll-icon">✓</span>
+          <h3>„Sprawdź moje rozwiązanie”</h3>
+          <p>znajdź błąd, zadaj mi pytanie, podpowiedz, co poprawić</p>
+        </article>
+      </div>
+      <p class="bottom-line fragment">Te prośby brzmią podobnie. Ale każda <strong>angażuje mózg w inny sposób.</strong></p>
+      <aside class="notes">
+        Głosowanie ręką. Najpierw pytanie o wyjaśnienie, potem o wykonanie zadania,
+        a na końcu o sprawdzenie własnej pracy.
+        Nie oceniaj odpowiedzi. Puenta: AI jako korepetytor, wykonawca i recenzent to trzy różne role.
+      </aside>
+    </section>
+
+    <section class="slide slide--statement" id="teza" data-title="Teza" data-duration="60">
+      <div class="orbit orbit--one"></div>
+      <div class="orbit orbit--two"></div>
+      <p class="eyebrow">Teza na dziś</p>
+      <h2>AI raczej nie zastąpi<br><span class="ink-coral">nam głowy.</span></h2>
+      <p class="statement-tail fragment">Ale wyręczy nas w wielu <strong>czynnościach</strong>, które dotąd wykonywaliśmy sami.</p>
+      <div class="micro fragment">Dlatego warto nauczyć się nią kierować, zanim pozwolimy jej wybrać drogę.</div>
+      <aside class="notes">
+        Zaznacz różnicę między narzędziem i odpowiedzialnością. Kalkulator nie „zastąpił matematyki”,
+        ale zmienił, które rachunki wykonujemy ręcznie. AI ma większy zakres, więc zmiana jest poważniejsza.
+      </aside>
+    </section>
+
+    <section class="slide" id="gra-w-token" data-title="Gra w następny token" data-duration="90">
+      <div class="slide-header compact">
+        <span class="kicker">Najdroższa gra w zgadywanie świata</span>
+        <h2>Co będzie dalej?</h2>
+      </div>
+      <div class="prediction-stage">
+        <div class="prompt-line">
+          <span class="token">2</span><span class="token">3</span><span class="token">5</span>
+          <span class="token">7</span><span class="token">11</span><span class="token token--question">?</span>
+        </div>
+        <div class="candidates fragment">
+          <span style="--p: 0.72">13 <small>72%</small></span>
+          <span style="--p: 0.16">12 <small>16%</small></span>
+          <span style="--p: 0.08">17 <small>8%</small></span>
+          <span style="--p: 0.04">kot <small>4%</small></span>
+        </div>
+        <div class="giant-arrow fragment">↓</div>
+        <p class="prediction-punch fragment">GPT robi podobną rzecz z językiem. <strong>Token po tokenie.</strong></p>
+      </div>
+      <p class="tiny source-note">Uproszczenie: procenty są ilustracyjne. Model przewiduje token, nie całe słowo, i nie zawsze wybiera najbardziej prawdopodobną możliwość.</p>
+      <aside class="notes">
+        Najpierw pozwól odpowiedzieć publiczności. „13” nie jest zapisane w modelu jako odpowiedź do tej planszy:
+        wynik powstaje z rozkładu prawdopodobieństwa kolejnego tokenu. Podkreśl, że „przewidywanie” nie znaczy
+        „bezmyślne kopiowanie”; żeby dobrze przewidywać, model musi uchwycić bardzo dużo struktury.
+      </aside>
+    </section>
+
+    <section class="slide" id="tokeny" data-title="Tokeny" data-duration="75">
+      <div class="two-col">
+        <div>
+          <span class="kicker">Krok 1</span>
+          <h2>Najpierw tekst rozpada się na <span class="ink-cyan">kawałki</span></h2>
+          <p class="lead">Model nie widzi zdań tak jak my. Otrzymuje ciąg tokenów: słów, części słów i znaków.</p>
+          <div class="tokenizer-demo fragment" aria-label="Przykładowy podział wyrazu matematyka na tokeny">
+            <span>mate</span><span>mat</span><span>yka</span><span>!</span>
+          </div>
+          <p class="caveat fragment">To tylko ilustracja. Faktyczny podział zależy od konkretnego tokenizera.</p>
+        </div>
+        <div class="token-machine" aria-hidden="true">
+          <div class="machine-mouth">Abstrakcja jest super!</div>
+          <div class="machine-blades">✦ ✦ ✦</div>
+          <div class="machine-output">
+            <i>Ab</i><i>strak</i><i>cja</i><i>jest</i><i>super</i><i>!</i>
+          </div>
+        </div>
+      </div>
+      <aside class="notes">
+        Token może być słowem, częścią słowa, znakiem lub fragmentem kodu. To ważne w matematyce:
+        model operuje zapisem symboli i nie odczytuje ich znaczenia w taki sposób jak człowiek.
+      </aside>
+    </section>
+
+    <section class="slide slide--image" id="atencja" data-title="Atencja" data-duration="105">
+      <img class="slide-bg" src="../assets/attention-party.png" alt="Rząd geometrycznych postaci połączonych łukami o różnej grubości">
+      <div class="image-scrim image-scrim--left"></div>
+      <div class="image-copy">
+        <span class="kicker">Krok 2 · mechanizm atencji</span>
+        <h2>Każdy token pyta:<br><em>„Kogo mam słuchać?”</em></h2>
+        <div class="attention-example fragment">
+          <span>Ola</span> powiedziała <span>Mai</span>, że <b>ona</b> wygrała.
+        </div>
+        <p class="fragment">Atencja nadaje wcześniejszym tokenom różne wagi. Nie rozwiązuje całej zagadki, ale pomaga zbudować kontekst.</p>
+      </div>
+      <aside class="notes">
+        Powiedz: „Wyobraźcie sobie klasową imprezę, na której każdy słucha wszystkich, ale nie każdego równie mocno”.
+        Zapytaj: kim jest „ona”? Język bywa niejednoznaczny. Mechanizm atencji pomaga śledzić zależności,
+        lecz sam nie gwarantuje poprawnej interpretacji.
+      </aside>
+    </section>
+
+    <section class="slide" id="atencja-matematycznie" data-title="Atencja matematycznie" data-duration="105">
+      <div class="slide-header compact">
+        <span class="kicker">Wersja dla odważnych</span>
+        <h2>Atencja w jednym wzorze</h2>
+      </div>
+      <div class="formula-card">
+        <div class="formula">Attention(Q,K,V) = softmax(<span>QK<sup>T</sup></span> / √d<sub>k</sub>) V</div>
+        <div class="formula-legend">
+          <div class="fragment"><b>Q</b><span>czego szukam?</span></div>
+          <div class="fragment"><b>K</b><span>do czego pasuję?</span></div>
+          <div class="fragment"><b>V</b><span>co mam do przekazania?</span></div>
+        </div>
+      </div>
+      <div class="attention-plain fragment">
+        <span>1.</span> Sprawdź, które klucze pasują do pytania
+        <span>2.</span> Zamień wyniki w wagi
+        <span>3.</span> Połącz informacje według tych wag
+      </div>
+      <p class="tiny source-note">Vaswani i in., „Attention Is All You Need”, 2017.</p>
+      <aside class="notes">
+        Nie wyprowadzaj wzoru. Pokaż tylko intuicję: Q jak „query”, K jak „key”, V jak „value”.
+        Softmax zamienia wyniki porównania na wagi podobne do procentów. Kilka głów atencji może równolegle
+        tropić różne relacje: składnię, odwołania, wzorce w kodzie czy zależności między symbolami.
+      </aside>
+    </section>
+
+    <section class="slide" id="transformer" data-title="Transformer" data-duration="75">
+      <div class="two-col two-col--wide">
+        <div>
+          <span class="kicker">Krok 3</span>
+          <h2>Jedna warstwa to za mało</h2>
+          <p class="lead">Transformer wielokrotnie łączy informacje z kontekstu i je przekształca.</p>
+          <p class="fragment">Na wejściu są reprezentacje tokenów i ich pozycji. Kolejne warstwy mogą kodować zależności, role i procedury. Nie ma jednej szufladki z napisem „twierdzenie Pitagorasa”.</p>
+        </div>
+        <div class="transformer-stack" aria-label="Schemat wielu warstw transformera">
+          <div class="stack-output fragment">następny token</div>
+          <div class="stack-layer">atencja + sieć</div>
+          <div class="stack-layer">atencja + sieć</div>
+          <div class="stack-layer">atencja + sieć</div>
+          <div class="stack-dots">⋮</div>
+          <div class="stack-layer">atencja + sieć</div>
+          <div class="stack-input">tokeny + pozycje</div>
+        </div>
+      </div>
+      <aside class="notes">
+        Wiedza jest rozproszona: nie siedzi w jednym „neuronie od ułamków”.
+        Kolejne warstwy przekształcają reprezentacje tokenów. Można je porównać do serii filtrów,
+        z których każdy wydobywa inne zależności potrzebne do przewidzenia dalszego ciągu.
+      </aside>
+    </section>
+
+    <section class="slide" id="trening" data-title="Trening" data-duration="105">
+      <div class="slide-header compact">
+        <span class="kicker">Skąd bierze się ta skuteczność?</span>
+        <h2>Dwa etapy uczenia. Potem narzędzia.</h2>
+      </div>
+      <div class="training-timeline">
+        <article class="training-card fragment">
+          <span class="act">I</span>
+          <h3>Pretrening</h3>
+          <p>Model uczy się przewidywać kolejny token na podstawie ogromnej liczby przykładów.</p>
+          <small>W parametrach zapisują się wzorce poznane z danych.</small>
+        </article>
+        <div class="timeline-arrow">→</div>
+        <article class="training-card fragment">
+          <span class="act">II</span>
+          <h3>Posttrening</h3>
+          <p>Model uczy się lepiej wykonywać polecenia, rozwiązywać zadania i przestrzegać zasad.</p>
+          <small>Wykorzystuje przykłady, oceny oraz automatyczne sprawdzanie.</small>
+        </article>
+        <div class="timeline-arrow">→</div>
+        <article class="training-card fragment">
+          <span class="act">III</span>
+          <h3>Użycie: agent + narzędzia</h3>
+          <p>Agent czyta pliki, uruchamia kod, sprawdza wynik i poprawia błędy.</p>
+          <small>To nie jest trening, lecz sposób pracy gotowego modelu.</small>
+        </article>
+      </div>
+      <p class="caveat fragment">Dokładny skład danych i wszystkie receptury treningowe współczesnych modeli nie są publiczne.</p>
+      <aside class="notes">
+        Rozdziel trzy rzeczy. Pretrening buduje ogólne umiejętności przewidywania i reprezentacje.
+        Posttrening kształtuje sposób wykonywania poleceń i rozwiązywania zadań.
+        Agent nie jest trzecim etapem treningu: dodaje pętlę działania i zewnętrzne narzędzia.
+        Nie mów, że model „uczy się z każdej rozmowy”
+        w czasie rzeczywistym. Wspomnij, że procesy nowszych modeli są tylko częściowo opisane publicznie.
+      </aside>
+    </section>
+
+    <section class="slide" id="dlaczego-matematyka" data-title="Dlaczego matematyka" data-duration="105">
+      <div class="slide-header compact">
+        <span class="kicker">Dlaczego nowsze modele są tak dobre w matematyce?</span>
+        <h2>Bo matematyka zostawia <span class="ink-yellow">ślady</span></h2>
+      </div>
+      <div class="reason-grid">
+        <article class="reason fragment">
+          <span>①</span><h3>Ma strukturę</h3><p>W definicjach, dowodach i kodzie powtarzają się reguły oraz wzorce.</p>
+        </article>
+        <article class="reason fragment">
+          <span>②</span><h3>Da się sprawdzać</h3><p>Wiele wyników można zweryfikować rachunkiem, testem albo programem.</p>
+        </article>
+        <article class="reason fragment">
+          <span>③</span><h3>Można próbować</h3><p>Propozycja → test → poprawka. Błąd może stać się informacją zwrotną.</p>
+        </article>
+        <article class="reason fragment">
+          <span>④</span><h3>Ma narzędzia</h3><p>Python, programy do algebry i testy działają jak zewnętrzny brudnopis.</p>
+        </article>
+      </div>
+      <p class="bottom-line fragment">Największa zmiana nie polega na tym, że AI zna więcej wzorów. <strong>Może też użyć narzędzi do sprawdzania prób.</strong></p>
+      <aside class="notes">
+        To centralny slajd. Podkreśl różnicę między pamiętaniem wyniku i procedurą dochodzenia do wyniku.
+        Matematyka i programowanie często dają szybką i jednoznaczną informację zwrotną. Agent może
+        wykorzystać test, interpreter albo system algebry, ale narzędzie również trzeba zastosować poprawnie.
+        To nie eliminuje błędów,
+        ale pozwala je wykrywać częściej niż w pytaniach o gust, sens lub wartość pomysłu.
+      </aside>
+    </section>
+
+    <section class="slide" id="gauss" data-title="Gauss" data-duration="165">
+      <div class="slide-header compact">
+        <span class="kicker">Prawdziwa matematyka · runda 1</span>
+        <h2>1 + 2 + 3 + … + 100 = ?</h2>
+      </div>
+      <div class="gauss-stage">
+        <div class="gauss-question fragment">Liczyć po kolei?</div>
+        <div class="pairing fragment">
+          <div><b>1</b> + <b>100</b> = <span>101</span></div>
+          <div><b>2</b> + <b>99</b> = <span>101</span></div>
+          <div><b>3</b> + <b>98</b> = <span>101</span></div>
+          <div class="ellipsis">…</div>
+          <div><b>50</b> + <b>51</b> = <span>101</span></div>
+        </div>
+        <div class="gauss-result fragment">50 × 101 = <strong>5050</strong></div>
+      </div>
+      <blockquote class="fragment">Intuicja często polega na tym, by spojrzeć na problem tak, aby odpowiedź stała się oczywista.</blockquote>
+      <aside class="notes">
+        Daj 20-30 sekund na pomysły. Najpierw zaakceptuj odpowiedź z kalkulatorem, potem zapytaj o metodę,
+        która działa również dla miliona. Pokaż parowanie. Powiedz, że model widział wiele podobnych strategii
+        i umie je składać; nie wiemy jednak, czy „widzi” symetrię tak jak człowiek.
+      </aside>
+    </section>
+
+    <section class="slide" id="dziewiec-dziewiec" data-title="0,999..." data-duration="105">
+      <div class="slide-header compact">
+        <span class="kicker">Prawdziwa matematyka · runda 2</span>
+        <h2>Czy 0,999… naprawdę równa się 1?</h2>
+      </div>
+      <div class="proof-split">
+        <div class="proof-card fragment">
+          <span class="proof-label">Droga algebraiczna</span>
+          <p>x = 0,999…</p>
+          <p>10x = 9,999…</p>
+          <p>9x = 9</p>
+          <p class="proof-answer">x = 1</p>
+        </div>
+        <div class="proof-card fragment">
+          <span class="proof-label">Argument przez różnicę</span>
+          <p>Gdyby różnica 1 − 0,999… była dodatnia,</p>
+          <p>musiałaby być mniejsza od 0,1; 0,01; 0,001; …</p>
+          <p class="proof-answer">W liczbach rzeczywistych taka dodatnia różnica nie istnieje.</p>
+        </div>
+      </div>
+      <p class="proof-takeaway fragment">Model może podać pięć dowodów. <strong>Ty wybierasz ten, który naprawdę pomaga ci zrozumieć.</strong></p>
+      <aside class="notes">
+        Zapytaj o pierwszą reakcję: „to prawda” czy „to oszustwo zapisu?”. Pokaż dwa wyjaśnienia.
+        Druga droga jest celowo mniej formalna dla młodszych. W liceum można dopowiedzieć o granicy ciągu
+        lub szeregu geometrycznym. To przykład, jak AI może podawać różne wyjaśnienia tego samego zjawiska.
+      </aside>
+    </section>
+
+    <section class="slide" id="dowod-jeden-rowna-sie-dwa" data-title="Fałszywy dowód" data-duration="150">
+      <div class="slide-header compact">
+        <span class="kicker">Prawdziwa matematyka · pułapka</span>
+        <h2>Dowód, że 1 = 2. Gdzie ukrył się błąd?</h2>
+      </div>
+      <div class="bad-proof">
+        <div class="proof-lines">
+          <p class="fragment">Załóżmy: <b>a = b ≠ 0</b></p>
+          <p class="fragment">a² = ab</p>
+          <p class="fragment">a² − b² = ab − b²</p>
+          <p class="fragment">(a − b)(a + b) = b(a − b)</p>
+          <p class="fragment trap-line">a + b = b <span class="trap-marker">← dzielimy przez a − b</span></p>
+          <p class="fragment">2b = b, więc <strong>2 = 1</strong></p>
+        </div>
+        <div class="crime-scene fragment">
+          <span>ALARM</span>
+          <b>a − b = 0</b>
+          <p>Dzielenie przez zero udaje tu zwykłe skracanie.</p>
+        </div>
+      </div>
+      <div class="codex-audit fragment">
+        <div class="codex-audit__prompt">
+          <span>POLECENIE DLA CODEX</span>
+          „Sprawdź każdy krok. Wskaż pierwszy błąd i warunek, który został złamany.”
+        </div>
+        <div class="codex-audit__flow" aria-label="Trzy kroki analizy Codex">
+          <div><b>1</b><span>Czyta założenie:<br><strong>a = b</strong></span></div>
+          <i>→</i>
+          <div><b>2</b><span>Wylicza:<br><strong>a − b = 0</strong></span></div>
+          <i>→</i>
+          <div class="codex-audit__verdict"><b>3</b><span>Wskazuje pierwszy błąd:<br><strong>dzielenie przez zero</strong></span></div>
+        </div>
+      </div>
+      <p class="bad-proof-takeaway fragment">Codex nie powinien oceniać tylko wyniku. Powinien sprawdzić <strong>każdy krok i jego warunki.</strong></p>
+      <aside class="notes">
+        Nie pokazuj alarmu od razu. Daj publiczności trop: „Który krok wymaga warunku?”.
+        To dobry model błędu spotykanego w matematycznych halucynacjach: lokalnie płynne kroki,
+        jeden niedozwolony ruch, globalnie absurdalny wynik. Potem pokaż ścieżkę Codex. Dobre polecenie nie brzmi „czy ten dowód
+        jest poprawny?”, lecz: „Sprawdź każdy krok, wskaż pierwszy niepoprawny i nazwij złamany warunek”.
+        Założenie b≠0 jest potrzebne dopiero w ostatnim kroku, aby z 2b=b wyciągnąć 2=1.
+        Codex powinien odczytać a=b, wywnioskować a−b=0 i odrzucić wcześniejsze skracanie.
+      </aside>
+    </section>
+
+    <section class="slide slide--statement" id="pewnosc" data-title="Pewność" data-duration="60">
+      <p class="eyebrow">Najważniejszy bezpiecznik</p>
+      <h2>Płynność ≠ prawda</h2>
+      <div class="confidence-meter fragment">
+        <span>brzmi pewnie</span>
+        <div class="meter"><i></i></div>
+        <strong>bardzo</strong>
+      </div>
+      <div class="truth-meter fragment">
+        <span>jest sprawdzone</span>
+        <div class="meter"><i></i></div>
+        <strong>?</strong>
+      </div>
+      <p class="micro fragment">Model potrafi tworzyć płynne i przekonujące odpowiedzi. Nie ma jednak niezawodnego alarmu, który włącza się, gdy odpowiedź jest fałszywa.</p>
+      <aside class="notes">
+        „Brzmieć jak ekspert” i „mieć rację” to dwie osie. W matematyce pytaj o weryfikację,
+        kontrprzykład, test numeryczny lub niezależny dowód. W sprawach faktograficznych pytaj o źródła
+        i sprawdzaj je poza modelem.
+      </aside>
+    </section>
+
+    <section class="slide" id="idee" data-title="Codex szuka pomysłu" data-duration="105">
+      <div class="slide-header compact">
+        <span class="kicker">Konkretny problem · etap 1</span>
+        <h2>Ile prostokątów ma szachownica 8×8?</h2>
+      </div>
+      <div class="rectangle-idea-layout">
+        <div class="board-panel fragment">
+          <div class="codex-prompt-tag">Pytanie do Codex</div>
+          <p>„Znajdź metodę, która zadziała także dla planszy 100×100. Zaproponuj wzór i sposób sprawdzenia.”</p>
+          <div class="chessboard" aria-label="Szachownica osiem na osiem z zaznaczonym prostokątem">
+            <i></i>
+            <span class="board-lines board-lines--top">9 linii pionowych</span>
+            <span class="board-lines board-lines--side">9 poziomych</span>
+          </div>
+        </div>
+        <div class="codex-candidates">
+          <article class="candidate-card candidate-card--wrong fragment">
+            <b>1. Pierwszy strzał</b>
+            <strong>64?</strong>
+            <p>To liczba pól, nie prostokątów. Szybka odpowiedź może być zbyt szybka.</p>
+          </article>
+          <article class="candidate-card candidate-card--idea fragment">
+            <b>2. Pomysł</b>
+            <strong>Wybierz boki</strong>
+            <p>Każdy prostokąt wyznaczają 2 z 9 linii pionowych i 2 z 9 poziomych.</p>
+          </article>
+          <article class="candidate-card candidate-card--test fragment">
+            <b>3. Sprawdzenie</b>
+            <strong>Program</strong>
+            <p>Wybierz każdą parę linii pionowych i każdą parę poziomych, a potem policz wyniki.</p>
+          </article>
+          <article class="candidate-card candidate-card--human fragment">
+            <b>4. Człowiek ustala sens</b>
+            <strong>Czy kwadrat też liczymy?</strong>
+            <p>W szkolnej geometrii tak. Bez doprecyzowania poprawny rachunek może odpowiadać na inne pytanie.</p>
+          </article>
+        </div>
+      </div>
+      <div class="case-principles fragment">
+        <span><b>Łączenie:</b> geometria + kombinatoryka</span>
+        <span><b>Poszukiwanie:</b> kilka metod</span>
+        <span><b>Ocena:</b> test + definicja problemu</span>
+      </div>
+      <aside class="notes">
+        Najpierw poproś salę o szybki strzał. „64” jest kuszące, ale liczy pola. Pokaż zaznaczony
+        prostokąt: jego boki leżą na dwóch liniach pionowych i dwóch poziomych. Codex może połączyć
+        geometrię z kombinatoryką i zaproponować program sprawdzający. Człowiek nadal doprecyzowuje
+        pytanie: czy liczymy kwadraty, czy tylko prostokąty o różnych bokach?
+      </aside>
+    </section>
+
+    <section class="slide" id="codex" data-title="Codex uruchamia test" data-duration="105">
+      <div class="slide-header compact">
+        <span class="kicker">Konkretny problem · symulowany etap 2</span>
+        <h2>Codex pisze program. Test znajduje błąd.</h2>
+      </div>
+      <div class="codex-run-grid">
+        <div class="codex-run-brief">
+          <div class="codex-run-prompt fragment">
+            <span>POLECENIE</span>
+            „Napisz program liczący prostokąty. Najpierw przetestuj go na planszach 1×1 i 2×2.”
+          </div>
+          <div class="codex-run-plan fragment">
+            <b>Plan Codex</b>
+            <p>Prostokąt = wybór dwóch pionowych i dwóch poziomych linii.</p>
+            <code>C(9,2) · C(9,2)</code>
+          </div>
+          <pre class="code-diff fragment"><code><span class="diff-minus">- lines = range(n)</span>
+<span class="diff-plus">+ lines = range(n + 1)</span></code></pre>
+          <button class="demo-button rectangle-demo-button fragment" type="button" data-run-rectangle-demo>Uruchom symulację Codex</button>
+        </div>
+        <div class="codex-terminal" data-rectangle-terminal aria-live="polite">
+          <div class="terminal-title"><i></i><i></i><i></i><span>codex · rectangle_demo.py</span></div>
+          <div class="terminal-transcript" data-rectangle-transcript>
+            <p class="terminal-idle">$ gotowy do uruchomienia testów</p>
+          </div>
+        </div>
+      </div>
+      <p class="codex-result-line fragment" data-rectangle-result>Wzór przewiduje: C(9,2)² = 36² = <strong>1296</strong>.</p>
+      <aside class="notes">
+        To zaprogramowana ilustracja typowego cyklu pracy, a nie zapis prawdziwej sesji.
+        Kliknij „Uruchom symulację Codex”. Pierwszy program zwraca 784, bo używa ośmiu linii zamiast
+        dziewięciu. Mały test 1×1 natychmiast pokazuje zero zamiast jednego. Codex diagnozuje błąd
+        typu „o jeden”, zmienia range(n) na range(n+1), uruchamia trzy testy i otrzymuje 1296.
+        To jest konkretna przewaga agenta: nie tylko wypowiada odpowiedź, lecz tworzy plik, uruchamia go,
+        czyta błąd i poprawia kod. Program sprawdza rachunek; wzór wyjaśnia, dlaczego wynik jest poprawny.
+      </aside>
+    </section>
+
+    <section class="slide" id="euler" data-title="Euler i narzędzia" data-duration="105">
+      <div class="slide-header compact">
+        <span class="kicker">Krótki pokaz bez internetu</span>
+        <h2>Kiedy zawodzi słynny wielomian Eulera?</h2>
+      </div>
+      <div class="euler-grid">
+        <div class="euler-problem">
+          <p>n² + n + 41</p>
+          <small>Dla n = 0, 1, …, 39 daje liczby pierwsze.</small>
+          <button class="demo-button" type="button" data-run-demo>Uruchom eksperyment</button>
+        </div>
+        <pre class="code-window"><code>for (let n = 0; ; n++) {
+  const value = n*n + n + 41;
+  if (!isPrime(value)) {
+    return { n, value };
+  }
+}</code></pre>
+        <div class="terminal-window" aria-live="polite">
+          <span class="terminal-prompt">$ testujemy hipotezę…</span>
+          <strong class="terminal-result">czekam na uruchomienie</strong>
+        </div>
+      </div>
+      <p class="bottom-line fragment">Eksperyment znajduje kontrprzykład. <strong>Matematyka tłumaczy, skąd się wziął.</strong></p>
+      <aside class="notes">
+        Kliknij przycisk. Wynik: n=40, wartość 1681=41². Zapytaj „czy to przypadek?”.
+        Dla n=40 mamy 40²+40+41=1681=41². To przykład współpracy: narzędzie znajduje kontrprzykład,
+        a człowiek lub model dostrzega stojącą za nim zależność. Poprawny test pierwszości może sprawdzić
+        skończoną listę n=0,…,39; nadal nie wyjaśnia jednak, dlaczego pierwszy prosty rozkład pojawia się dla n=40.
+      </aside>
+    </section>
+
+    <section class="slide" id="jak-sie-uczyc" data-title="Uczeń pracuje z Codexem" data-duration="105">
+      <div class="slide-header compact">
+        <span class="kicker">Ten sam problem · etap 3</span>
+        <h2>Codex jako korepetytor, nie automat z odpowiedziami</h2>
+      </div>
+      <div class="tutor-case">
+        <div class="tutor-chat" aria-label="Przykładowa rozmowa ucznia z Codexem">
+          <div class="chat-message chat-message--student fragment"><b>Uczeń</b><span>Myślę, że odpowiedź to 64. Nie podawaj wyniku. Zadaj mi jedno pytanie.</span></div>
+          <div class="chat-message chat-message--codex fragment"><b>Codex</b><span>Ile pionowych linii ogranicza osiem kolumn pól?</span></div>
+          <div class="chat-message chat-message--student fragment"><b>Uczeń</b><span>Dziewięć. Prostokąt wybiera lewy i prawy bok.</span></div>
+          <div class="chat-message chat-message--codex fragment"><b>Codex</b><span>Ile par można wybrać z dziewięciu linii?</span></div>
+          <div class="chat-message chat-message--student fragment"><b>Uczeń</b><span>C(9,2)=36. Dla góry i dołu też 36, więc 36·36=1296.</span></div>
+          <div class="chat-message chat-message--codex fragment"><b>Codex</b><span>Sprawdź metodę na planszy 2×2. Ile powinno wyjść?</span></div>
+        </div>
+        <div class="learning-in-practice">
+          <div class="practice-prompt fragment">
+            <span>PROMPT, KTÓRY UCZY</span>
+            „Nie rozwiązuj za mnie. Zadawaj po jednym pytaniu. Jeśli popełnię błąd, wskaż pierwszy błędny krok.”
+          </div>
+          <ol>
+            <li class="fragment"><b>Własna próba:</b> „64” daje punkt wyjścia.</li>
+            <li class="fragment"><b>Wskazówka:</b> Codex pyta o liczbę linii.</li>
+            <li class="fragment"><b>Sprawdzenie:</b> program daje 1296.</li>
+            <li class="fragment"><b>Wyjaśnienie:</b> para linii pionowych i para poziomych wyznaczają prostokąt.</li>
+            <li class="fragment"><b>Nowe zadanie:</b> plansza 10×10 → C(11,2)² = 3025.</li>
+          </ol>
+        </div>
+      </div>
+      <aside class="notes">
+        Odegraj rozmowę, prosząc jednego ucznia o odpowiedzi. Najważniejsza różnica jest w pierwszym
+        poleceniu: uczeń pokazuje własną próbę i zabrania podawania wyniku. Codex zadaje jedno pytanie,
+        potem sprawdza tok rozumowania. Na końcu uczeń rozwiązuje wariant 10×10 bez kopiowania rozwiązania.
+        To dopiero jest transfer wiedzy: nowy problem, ta sama idea.
+      </aside>
+    </section>
+
+    <section class="slide" id="dobry-prompt" data-title="Dobry prompt" data-duration="75">
+      <div class="slide-header compact">
+        <span class="kicker">Jak dobrze pytać AI</span>
+        <h2>Dobry prompt jasno określa zadanie</h2>
+      </div>
+      <div class="prompt-recipe">
+        <div class="recipe-row fragment"><b>CEL</b><span>Co chcę osiągnąć?</span></div>
+        <div class="recipe-row fragment"><b>KONTEKST</b><span>Co już wiem i czego próbowałem?</span></div>
+        <div class="recipe-row fragment"><b>OGRANICZENIA</b><span>Jaki poziom, zakres i format? Czego AI ma nie robić?</span></div>
+        <div class="recipe-row fragment"><b>GOTOWE, GDY…</b><span>Co musi być sprawdzone, zanim uznam zadanie za zakończone?</span></div>
+      </div>
+      <div class="prompt-example fragment">
+        <span>Zamiast:</span> „Zrób zadanie 7.”
+        <span>Spróbuj:</span> „Jestem w 8. klasie. Daj mi jedną wskazówkę. Potem sprawdź mój tok rozumowania i wskaż pierwszy błąd.”
+      </div>
+      <aside class="notes">
+        To cztery elementy zalecane również w aktualnych dobrych praktykach Codex:
+        cel, kontekst, ograniczenia i kryterium ukończenia. W szkole „gotowe” powinno często znaczyć:
+        „umiem wyjaśnić metodę i rozwiązać wariant sam”, a nie „mam tekst do oddania”.
+      </aside>
+    </section>
+
+    <section class="slide" id="zasady" data-title="Zasady" data-duration="90">
+      <div class="slide-header compact">
+        <span class="kicker">Pięć zasad higieny umysłowej</span>
+        <h2>Zlecaj pracę. Nie oddawaj kierownicy.</h2>
+      </div>
+      <ol class="rules-list">
+        <li class="fragment"><b>Najpierw spróbuj sam.</b><span>Zapisz choćby hipotezę, rysunek albo pytanie.</span></li>
+        <li class="fragment"><b>Proś o krytykę.</b><span>„Znajdź pierwszy błąd”, nie „potwierdź, że mam rację”.</span></li>
+        <li class="fragment"><b>Proś o sprawdzenie.</b><span>Poproś o rachunek, kontrprzykład lub drugi dowód. Źródła sprawdź sam.</span></li>
+        <li class="fragment"><b>Chroń dane.</b><span>Nie wklejaj cudzych danych, haseł ani prywatnych rozmów.</span></li>
+        <li class="fragment"><b>Umiej wyłączyć AI.</b><span>Jeśli bez niej nie umiesz wyjaśnić wyniku, to jeszcze nie jest twoja wiedza.</span></li>
+      </ol>
+      <aside class="notes">
+        Zwróć uwagę na prywatność i zasady szkoły. Nie moralizuj o „oszukiwaniu”; pokaż praktyczny koszt:
+        kiedy oddajesz gotowe zadanie, omijasz trening własnego mózgu. AI może ten trening wzmocnić albo pomóc go ominąć.
+      </aside>
+    </section>
+
+    <section class="slide" id="fermat-zabawa" data-title="Zabawa z Fermatem" data-duration="105">
+      <div class="slide-header compact">
+        <span class="kicker">Pięć zasad w jednym eksperymencie</span>
+        <h2>Czy podzielność rozpoznaje liczby pierwsze?</h2>
+      </div>
+      <div class="fermat-lab">
+        <div class="fermat-conversation" aria-label="Rozmowa ucznia z Codexem">
+          <div class="codex-window-bar">
+            <i></i><i></i><i></i>
+            <span>codex · fermat_lab.py</span>
+            <b>bez danych osobowych</b>
+          </div>
+          <div class="fermat-chat">
+            <div class="chat-message chat-message--student fragment">
+              <b>Uczeń · 1</b>
+              <span>Sprawdziłem liczby 2, 3, 5, 7 i 11. Każda dzieli <strong>2<sup>p</sup>−2</strong>. Hipoteza: dzieje się tak dokładnie dla liczb pierwszych.</span>
+            </div>
+            <div class="chat-message chat-message--student fragment">
+              <b>Uczeń · 2</b>
+              <span>Nie potwierdzaj. Znajdź najmniejszy kontrprzykład, pokaż test i nazwij twierdzenie.</span>
+            </div>
+            <div class="chat-message chat-message--codex fragment">
+              <b>Codex</b>
+              <span>Najpierw przetestuję liczby złożone. Potem oddzielę twierdzenie od zbyt mocnego wniosku.</span>
+            </div>
+            <button class="demo-button fermat-demo-button fragment" type="button" data-run-fermat-demo>Uruchom Codex</button>
+          </div>
+        </div>
+        <div class="fermat-workbench">
+          <div class="codex-terminal fermat-terminal" aria-live="polite">
+            <div class="terminal-title"><i></i><i></i><i></i><span>python3 scripts/fermat_demo.py</span></div>
+            <div class="terminal-transcript" data-fermat-transcript>
+              <p class="terminal-idle">$ czekam na test hipotezy</p>
+            </div>
+          </div>
+          <div class="fermat-conclusion fragment" data-fermat-conclusion>
+            <div class="fermat-theorem">
+              <span>PRAWDA</span>
+              <b>p pierwsza ⇒ a<sup>p</sup> ≡ a (mod p)</b>
+              <small>Małe twierdzenie Fermata, dla każdej liczby całkowitej a.</small>
+            </div>
+            <div class="fermat-trap">
+              <span>PUŁAPKA</span>
+              <b>Test dla a=2 nie rozpoznaje pierwszości.</b>
+              <small>341 = 11 · 31, a mimo to 341 dzieli 2<sup>341</sup>−2.</small>
+            </div>
+          </div>
+          <div class="fermat-offline fragment" data-fermat-offline>
+            <span class="offline-label">AI WYŁĄCZONE · 5</span>
+            <p><b>3<sup>100</sup> mod 7 = ?</b> 3<sup>6</sup>≡1, a 100=16·6+4, więc 3<sup>100</sup>≡3<sup>4</sup>=81≡<strong>4</strong>.</p>
+          </div>
+        </div>
+      </div>
+      <div class="fermat-rule-strip" aria-label="Pięć zasad zilustrowanych w eksperymencie">
+        <span><b>1</b> własna hipoteza</span>
+        <span><b>2</b> prośba o krytykę</span>
+        <span><b>3</b> kod + rachunek</span>
+        <span><b>4</b> bez prywatnych danych</span>
+        <span><b>5</b> samodzielny transfer</span>
+      </div>
+      <aside class="notes">
+        Najpierw przeczytaj hipotezę ucznia i zapytaj salę, czy pięć przykładów wystarcza.
+        Kliknij „Uruchom Codex”. Program znajduje 341: liczbę złożoną, która mimo to spełnia
+        podzielność dla podstawy 2. To nie obala małego twierdzenia Fermata. Pokazuje tylko,
+        że pojedynczy test z a=2 nie wystarcza do rozpoznawania liczb pierwszych.
+        Wskaż kolejno pięć zasad: własna próba, prośba
+        o krytykę, test i rachunek, brak danych osobowych oraz wyłączenie AI. Ostatni rachunek
+        wykonajcie wspólnie: 3^6 daje resztę 1 przy dzieleniu przez 7, więc zostaje wykładnik 4.
+      </aside>
+    </section>
+
+    <section class="slide slide--image closing-slide" id="final" data-title="Finał" data-duration="75">
+      <img class="slide-bg" src="../assets/idea-garden.png" alt="Uczniowie z pomocnikiem AI badają nasiona pomysłów, z których wyrasta geometryczne drzewo">
+      <div class="image-scrim image-scrim--left"></div>
+      <div class="closing-copy">
+        <p class="eyebrow">Odpowiedź po 35 minutach</p>
+        <h2>AI nie zastąpi<br>nam głowy.</h2>
+        <p class="fragment">Kto umie z nią <strong>myśleć, sprawdzać i tworzyć</strong>, zachowa więcej sprawczości niż ktoś, kto tylko naciska „generuj”.</p>
+        <div class="final-question fragment">Jaką część myślenia zostawisz sobie?</div>
+      </div>
+      <aside class="notes">
+        Wróć do odpowiedzi z pierwszego slajdu. Ostatnie zdanie wypowiedz wolno.
+        Zostaw 3 sekundy ciszy przed pytaniami. Nie kończ prognozą rynku pracy, tylko decyzją,
+        którą uczeń może podjąć dziś.
+      </aside>
+    </section>
+
+    <section class="slide appendix" id="zrodla" data-title="Źródła" data-duration="0">
+      <div class="slide-header compact">
+        <span class="kicker">Dodatek · źródła</span>
+        <h2>Na czym opiera się ten wykład?</h2>
+      </div>
+      <div class="sources-grid">
+        <a href="https://arxiv.org/abs/1706.03762">Vaswani i in. (2017)<span>Attention Is All You Need</span></a>
+        <a href="https://arxiv.org/abs/2005.14165">Brown i in. (2020)<span>Language Models are Few-Shot Learners</span></a>
+        <a href="https://arxiv.org/abs/2203.02155">Ouyang i in. (2022)<span>Training language models to follow instructions</span></a>
+        <a href="https://arxiv.org/abs/2305.20050">Lightman i in. (2023)<span>Let's Verify Step by Step</span></a>
+        <a href="https://openai.com/index/learning-to-reason-with-llms/">OpenAI (2024)<span>Learning to reason with LLMs</span></a>
+        <a href="https://developers.openai.com/codex/">OpenAI Codex<span>Dokumentacja i dobre praktyki</span></a>
+      </div>
+      <p class="tiny source-note">Pełna bibliografia i zastrzeżenia: docs/SOURCES.md. Stan materiałów OpenAI: 7 czerwca 2026.</p>
+      <aside class="notes">Slajd zapasowy do pytań. Linki są klikalne, ale prezentacja działa całkowicie offline.</aside>
+    </section>
+
+    <section class="slide appendix" id="sciaga" data-title="Ściąga prowadzącego" data-duration="0">
+      <div class="slide-header compact">
+        <span class="kicker">Dodatek · pytania z sali</span>
+        <h2>Trzy zdania, których warto pilnować</h2>
+      </div>
+      <div class="backup-cards">
+        <article><b>„Czy model rozumie?”</b><p>Zależy od definicji. Wynik w zadaniu nie rozstrzyga, czy model ma ludzką intuicję, intencje albo doświadczenie świata.</p></article>
+        <article><b>„Czy AI jest kreatywna?”</b><p>Generuje nowe kombinacje i czasem wartościowe rozwiązania. Spór dotyczy nowości, intencji, oceny i autorstwa.</p></article>
+        <article><b>„Czy można jej ufać?”</b><p>Tylko w granicach, w których umiemy sprawdzić wynik, a koszt błędu jest akceptowalny. Pewny ton nie jest dowodem.</p></article>
+      </div>
+      <aside class="notes">Materiał zapasowy. Nie używaj w podstawowych 35 minutach.</aside>
+    </section>
+  </main>
+
+  <a class="deck-home" href="../" aria-label="Wróć do strony głównej">⌂</a>
+  <div class="deck-language" aria-label="Wybór języka">
+    <a href="../pl/" data-lang="pl">PL</a>
+    <a href="../en/" data-lang="en">EN</a>
+  </div>
+  <div class="deck-copyright">Copyright © 2026 Bartosz Naskręcki. All rights reserved.</div>
+
+  <nav class="deck-controls" aria-label="Sterowanie prezentacją">
+    <button type="button" data-prev aria-label="Poprzedni slajd">←</button>
+    <div class="progress-track" aria-hidden="true"><i data-progress></i></div>
+    <span class="slide-counter" data-counter>1 / 22</span>
+    <button type="button" data-next aria-label="Następny slajd">→</button>
+  </nav>
+
+  <div class="presenter-tools" aria-live="polite">
+    <span data-clock>00:00</span>
+    <button type="button" data-notes-toggle>Notatki <kbd>N</kbd></button>
+    <button type="button" data-overview-toggle>Przegląd <kbd>O</kbd></button>
+    <button type="button" data-fullscreen-toggle>Pełny ekran <kbd>F</kbd></button>
+  </div>
+
+  <aside class="speaker-panel" data-speaker-panel aria-label="Notatki prowadzącego">
+    <div class="speaker-panel__head">
+      <strong data-note-title>Tytuł</strong>
+      <button type="button" data-notes-close aria-label="Zamknij notatki">×</button>
+    </div>
+    <div class="speaker-panel__body" data-note-body></div>
+    <div class="speaker-panel__foot">
+      <span>Plan slajdu: <b data-slide-time>1:15</b></span>
+      <span>Plan łączny: <b data-total-time>35:00</b></span>
+    </div>
+  </aside>
+
+  <noscript>Ta prezentacja wymaga JavaScript do nawigacji i ujawniania elementów.</noscript>
+  <script src="../app.js"></script>
+</body>
+</html>

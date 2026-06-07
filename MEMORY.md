@@ -3,7 +3,7 @@
 ## Odbiorca i ton
 
 - Odbiorcy: uczniowie klas 7-8 i liceum, bez wymaganego przygotowania technicznego.
-- Język: polski, lekki, bez infantylizacji.
+- Języki: polski i angielski, lekko, bez infantylizacji.
 - Humor ma wynikać z trafnych metafor i kontrastów, nie z memów wymagających
   znajomości bieżącego internetu.
 - Główna ambicja: połączyć rozrywkę z uczciwością epistemiczną.
@@ -33,6 +33,19 @@
 - Obrazy są dodatkiem do narracji; diagramy techniczne są kodowane w HTML/CSS,
   aby pozostały ostre i łatwe do zmiany.
 - Brak zewnętrznych zależności, fontów sieciowych i odtwarzanych filmów.
+
+## Serwis publiczny
+
+- Landing page pod `/` pozwala wybrać wersję polską lub angielską.
+- Kanonicznym źródłem prezentacji jest `pl/index.html`; wersję angielską generuje
+  `scripts/build_english_presentation.py`.
+- Codex Math Lab zawiera pięć dwujęzycznych eksperymentów: prostokąty, test
+  Fermata, wielomian Eulera, audyt fałszywego dowodu i prompt dojo.
+- Wszystkie eksperymenty liczą lokalnie. Nie należy dodawać kluczy API ani
+  sugerować, że symulowany terminal jest zapisem prawdziwej sesji.
+- Publikacja GitHub Pages korzysta z gałęzi `main` i katalogu głównego.
+- Każda publiczna strona zawiera:
+  `Copyright © 2026 Bartosz Naskręcki. All rights reserved.`
 
 ## Zasady prowadzenia
 

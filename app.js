@@ -12,6 +12,69 @@
   const noteBody = document.querySelector("[data-note-body]");
   const slideTime = document.querySelector("[data-slide-time]");
   const totalTime = document.querySelector("[data-total-time]");
+  const language = document.documentElement.lang === "en" ? "en" : "pl";
+  const copy = {
+    pl: {
+      appendix: "dodatek",
+      missingNotes: "Brak notatek.",
+      counting: "Liczymy…",
+      counterexampleFound: "Znaleziono kontrprzykład",
+      eulerProgress: "n = 0, 1, 2, 3…",
+      rectangleWorking: "Codex pracuje…",
+      rectangleDone: "Testy zakończone",
+      rectangleLines: [
+        ["plan", "[PLAN] Prostokąt wyznaczają 2 linie pionowe i 2 poziome."],
+        ["run", "[RUN 1] count_rectangles_buggy(8) = 784"],
+        ["fail", "[TEST] plansza 1x1: oczekiwano 1, otrzymano 0 -> FAIL"],
+        ["diagnosis", "[DIAGNOZA] Plansza nxn ma n+1 linii, nie n."],
+        ["patch", "[POPRAWKA] range(n) -> range(n + 1)"],
+        ["pass", "[TEST] plansza 1x1: 1 -> PASS"],
+        ["pass", "[TEST] plansza 2x2: 9 -> PASS"],
+        ["pass", "[TEST] plansza 8x8: 1296 -> PASS"],
+        ["result", "[WYNIK] C(9,2)^2 = 36^2 = 1296"]
+      ],
+      fermatWorking: "Codex sprawdza…",
+      fermatDone: "Kontrprzykład znaleziony",
+      fermatLines: [
+        ["plan", "[HIPOTEZA] p | (2^p - 2)  ⇔  p jest pierwsza?"],
+        ["run", "[TEST] p = 2, 3, 5, 7, 11 -> działa"],
+        ["diagnosis", "[SZUKAM] liczby złożone n < 400..."],
+        ["fail", "[KONTRPRZYKŁAD] 341 = 11 × 31"],
+        ["pass", "[SPRAWDZENIE] (2^341 - 2) mod 341 = 0"],
+        ["result", "[WERDYKT] Test dla podstawy 2 nie rozpoznaje pierwszości."]
+      ]
+    },
+    en: {
+      appendix: "appendix",
+      missingNotes: "No speaker notes.",
+      counting: "Calculating…",
+      counterexampleFound: "Counterexample found",
+      eulerProgress: "n = 0, 1, 2, 3…",
+      rectangleWorking: "Codex is working…",
+      rectangleDone: "Tests completed",
+      rectangleLines: [
+        ["plan", "[PLAN] A rectangle is determined by 2 vertical and 2 horizontal lines."],
+        ["run", "[RUN 1] count_rectangles_buggy(8) = 784"],
+        ["fail", "[TEST] 1x1 board: expected 1, got 0 -> FAIL"],
+        ["diagnosis", "[DIAGNOSIS] An nxn board has n+1 lines, not n."],
+        ["patch", "[PATCH] range(n) -> range(n + 1)"],
+        ["pass", "[TEST] 1x1 board: 1 -> PASS"],
+        ["pass", "[TEST] 2x2 board: 9 -> PASS"],
+        ["pass", "[TEST] 8x8 board: 1296 -> PASS"],
+        ["result", "[RESULT] C(9,2)^2 = 36^2 = 1296"]
+      ],
+      fermatWorking: "Codex is checking…",
+      fermatDone: "Counterexample found",
+      fermatLines: [
+        ["plan", "[HYPOTHESIS] p | (2^p - 2)  ⇔  p is prime?"],
+        ["run", "[TEST] p = 2, 3, 5, 7, 11 -> passes"],
+        ["diagnosis", "[SEARCH] composite numbers n < 400..."],
+        ["fail", "[COUNTEREXAMPLE] 341 = 11 × 31"],
+        ["pass", "[CHECK] (2^341 - 2) mod 341 = 0"],
+        ["result", "[VERDICT] The base-2 test does not characterize primes."]
+      ]
+    }
+  }[language];
 
   let index = 0;
   let startTime = null;
@@ -30,7 +93,7 @@
     const slide = slides[index];
     const notes = slide.querySelector(".notes");
     noteTitle.textContent = slide.dataset.title || `Slajd ${index + 1}`;
-    noteBody.innerHTML = notes ? notes.innerHTML : "Brak notatek.";
+    noteBody.innerHTML = notes ? notes.innerHTML : copy.missingNotes;
     slideTime.textContent = formatTime(Number(slide.dataset.duration || 0));
     const planned = talkSlides.reduce((sum, item) => sum + Number(item.dataset.duration || 0), 0);
     totalTime.textContent = formatTime(planned);
@@ -55,7 +118,7 @@
       : 100;
     progress.style.width = `${percentage}%`;
     counter.textContent = slides[index].classList.contains("appendix")
-      ? `dodatek ${index - talkSlides.length + 1}`
+      ? `${copy.appendix} ${index - talkSlides.length + 1}`
       : `${talkPosition} / ${talkSlides.length}`;
     updateNotes();
     updateUrl();
@@ -127,12 +190,12 @@
     const slide = button.closest(".slide");
     const result = slide.querySelector(".terminal-result");
     button.disabled = true;
-    button.textContent = "Liczymy…";
-    result.textContent = "n = 0, 1, 2, 3…";
+    button.textContent = copy.counting;
+    result.textContent = copy.eulerProgress;
 
     window.setTimeout(() => {
       result.textContent = "n = 40 → 1681 = 41²";
-      button.textContent = "Znaleziono kontrprzykład";
+      button.textContent = copy.counterexampleFound;
       slide.querySelectorAll(".fragment").forEach((fragment) => fragment.classList.add("is-visible"));
     }, 700);
   };
@@ -141,20 +204,10 @@
     const slide = button.closest(".slide");
     const transcript = slide.querySelector("[data-rectangle-transcript]");
     const result = slide.querySelector("[data-rectangle-result]");
-    const lines = [
-      ["plan", "[PLAN] Prostokąt wyznaczają 2 linie pionowe i 2 poziome."],
-      ["run", "[RUN 1] count_rectangles_buggy(8) = 784"],
-      ["fail", "[TEST] plansza 1x1: oczekiwano 1, otrzymano 0 -> FAIL"],
-      ["diagnosis", "[DIAGNOZA] Plansza nxn ma n+1 linii, nie n."],
-      ["patch", "[POPRAWKA] range(n) -> range(n + 1)"],
-      ["pass", "[TEST] plansza 1x1: 1 -> PASS"],
-      ["pass", "[TEST] plansza 2x2: 9 -> PASS"],
-      ["pass", "[TEST] plansza 8x8: 1296 -> PASS"],
-      ["result", "[WYNIK] C(9,2)^2 = 36^2 = 1296"]
-    ];
+    const lines = copy.rectangleLines;
 
     button.disabled = true;
-    button.textContent = "Codex pracuje…";
+    button.textContent = copy.rectangleWorking;
     transcript.innerHTML = "";
 
     lines.forEach(([type, text], lineIndex) => {
@@ -165,7 +218,7 @@
         transcript.appendChild(line);
 
         if (lineIndex === lines.length - 1) {
-          button.textContent = "Testy zakończone";
+          button.textContent = copy.rectangleDone;
           result.classList.add("is-visible");
         }
       }, lineIndex * 180);
@@ -177,17 +230,10 @@
     const transcript = slide.querySelector("[data-fermat-transcript]");
     const conclusion = slide.querySelector("[data-fermat-conclusion]");
     const offline = slide.querySelector("[data-fermat-offline]");
-    const lines = [
-      ["plan", "[HIPOTEZA] p | (2^p - 2)  ⇔  p jest pierwsza?"],
-      ["run", "[TEST] p = 2, 3, 5, 7, 11 -> działa"],
-      ["diagnosis", "[SZUKAM] liczby złożone n < 400..."],
-      ["fail", "[KONTRPRZYKŁAD] 341 = 11 × 31"],
-      ["pass", "[SPRAWDZENIE] (2^341 - 2) mod 341 = 0"],
-      ["result", "[WERDYKT] Test dla podstawy 2 nie rozpoznaje pierwszości."]
-    ];
+    const lines = copy.fermatLines;
 
     button.disabled = true;
-    button.textContent = "Codex sprawdza…";
+    button.textContent = copy.fermatWorking;
     transcript.innerHTML = "";
 
     lines.forEach(([type, text], lineIndex) => {
@@ -198,7 +244,7 @@
         transcript.appendChild(line);
 
         if (lineIndex === lines.length - 1) {
-          button.textContent = "Kontrprzykład znaleziony";
+          button.textContent = copy.fermatDone;
           conclusion.classList.add("is-visible");
           offline.classList.add("is-visible");
         }
